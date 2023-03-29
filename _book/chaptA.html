@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Epidemiology Methods lecture notes - 2&nbsp; Introduction to R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapt1.html" rel="next">
+<link href="./intro.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Epidemiology Methods lecture notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chaptA.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data displays</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Identifying research questions and data sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testing hypotheses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Associations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Causality vs association</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Excess risk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Measurement error and screening</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Confounding and linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt9.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt10.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt11.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Example data analysis in YRBS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt12.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt13.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt14.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt15.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case-control studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-r" id="toc-what-is-r" class="nav-link active" data-scroll-target="#what-is-r"><span class="toc-section-number">2.1</span>  What is R</a></li>
+  <li><a href="#installing-r-and-rstudio" id="toc-installing-r-and-rstudio" class="nav-link" data-scroll-target="#installing-r-and-rstudio"><span class="toc-section-number">2.2</span>  Installing R and Rstudio</a></li>
+  <li><a href="#using-rstudio" id="toc-using-rstudio" class="nav-link" data-scroll-target="#using-rstudio"><span class="toc-section-number">2.3</span>  Using Rstudio</a></li>
+  <li><a href="#conventions-of-programming" id="toc-conventions-of-programming" class="nav-link" data-scroll-target="#conventions-of-programming"><span class="toc-section-number">2.4</span>  Conventions of programming</a></li>
+  <li><a href="#r-reference" id="toc-r-reference" class="nav-link" data-scroll-target="#r-reference"><span class="toc-section-number">2.5</span>  R Reference</a>
+  <ul class="collapse">
+  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries"><span class="toc-section-number">2.5.1</span>  Libraries</a></li>
+  <li><a href="#help" id="toc-help" class="nav-link" data-scroll-target="#help"><span class="toc-section-number">2.5.2</span>  Help</a></li>
+  <li><a href="#using-data" id="toc-using-data" class="nav-link" data-scroll-target="#using-data"><span class="toc-section-number">2.5.3</span>  Using data</a></li>
+  <li><a href="#using-variables" id="toc-using-variables" class="nav-link" data-scroll-target="#using-variables"><span class="toc-section-number">2.5.4</span>  Using variables</a></li>
+  <li><a href="#describing-data-objects" id="toc-describing-data-objects" class="nav-link" data-scroll-target="#describing-data-objects"><span class="toc-section-number">2.5.5</span>  Describing data objects</a></li>
+  <li><a href="#creating-data-objects" id="toc-creating-data-objects" class="nav-link" data-scroll-target="#creating-data-objects"><span class="toc-section-number">2.5.6</span>  Creating data objects</a></li>
+  <li><a href="#referring-to-elements" id="toc-referring-to-elements" class="nav-link" data-scroll-target="#referring-to-elements"><span class="toc-section-number">2.5.7</span>  Referring to elements</a></li>
+  <li><a href="#shortcuts" id="toc-shortcuts" class="nav-link" data-scroll-target="#shortcuts"><span class="toc-section-number">2.5.8</span>  Shortcuts</a></li>
+  <li><a href="#calculation" id="toc-calculation" class="nav-link" data-scroll-target="#calculation"><span class="toc-section-number">2.5.9</span>  Calculation</a></li>
+  <li><a href="#comparisons" id="toc-comparisons" class="nav-link" data-scroll-target="#comparisons"><span class="toc-section-number">2.5.10</span>  Comparisons</a></li>
+  <li><a href="#defining-new-variables" id="toc-defining-new-variables" class="nav-link" data-scroll-target="#defining-new-variables"><span class="toc-section-number">2.5.11</span>  Defining new variables</a></li>
+  <li><a href="#summarizing-data" id="toc-summarizing-data" class="nav-link" data-scroll-target="#summarizing-data"><span class="toc-section-number">2.5.12</span>  Summarizing data</a></li>
+  <li><a href="#plotting-using-mosaic" id="toc-plotting-using-mosaic" class="nav-link" data-scroll-target="#plotting-using-mosaic"><span class="toc-section-number">2.5.13</span>  Plotting using Mosaic</a></li>
+  <li><a href="#univariate-distributions" id="toc-univariate-distributions" class="nav-link" data-scroll-target="#univariate-distributions"><span class="toc-section-number">2.5.14</span>  Univariate distributions</a></li>
+  <li><a href="#bivariate-distributions" id="toc-bivariate-distributions" class="nav-link" data-scroll-target="#bivariate-distributions"><span class="toc-section-number">2.5.15</span>  Bivariate distributions</a></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="toc-section-number">2.5.16</span>  Data analysis</a></li>
+  <li><a href="#defining-variables" id="toc-defining-variables" class="nav-link" data-scroll-target="#defining-variables"><span class="toc-section-number">2.5.17</span>  Defining variables</a></li>
+  <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices"><span class="toc-section-number">2.5.18</span>  Matrices</a></li>
+  <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data"><span class="toc-section-number">2.5.19</span>  Missing data</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">2.6</span>  Exercises</a>
+  <ul class="collapse">
+  <li><a href="#software-preparation" id="toc-software-preparation" class="nav-link" data-scroll-target="#software-preparation"><span class="toc-section-number">2.6.1</span>  Software preparation</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Using statistics software</p>
+<section id="what-is-r" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="what-is-r"><span class="header-section-number">2.1</span> What is R</h2>
+<p>R is free software, in the sense of both “free speech” and “free beer” (in the words of Richard Stallman). R can implement almost every type of statistics, produces high-quality statistical graphics, and you can use it for free for the rest of your long careers.</p>
+<p>R uses an open format, so that the data that you use and generate in R will always be available to you. R also does not cost money, as opposed to proprietary software packages that require large annual fees that get higher after you are no longer students, which tend to increase because people using a proprietary software will generally avoid having to convert everything over.</p>
+</section>
+<section id="installing-r-and-rstudio" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="installing-r-and-rstudio"><span class="header-section-number">2.2</span> Installing R and Rstudio</h2>
+<p>R is available for free here for Mac, Windows, and Linux operating systems. Go to http://R-project.org and choose Downlaod.</p>
+<p>R studio is an interface to R to make everything appear in 1 window, and it lets you click on commands to execute them. You can install it from this website: http://www.rstudio.com/</p>
+</section>
+<section id="using-rstudio" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="using-rstudio"><span class="header-section-number">2.3</span> Using Rstudio</h2>
+<p>Open R Studio and poke around. If you want help for any command type help or simply a question mark followed by the command name, or type the command name in the upper right corner of the R console.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(command<span class="sc">-</span>name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>?commandname</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="conventions-of-programming" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="conventions-of-programming"><span class="header-section-number">2.4</span> Conventions of programming</h2>
+<p>R uses conventions of computer programming, so it may require new forms of thinking.</p>
+<p>In this class, we will use a text formatting program Rmarkdown within Rstudio. You will knit these files to create files to submit to our course website. Knitting executes all code chunks within the file.</p>
+<p>In your Rmarkdown file, explain your code chunks to remind yourself what it does, so that when you come back to it in a few weeks, you will remember what to use it for.</p>
+<ul>
+<li><p>Keep only the code that actually works.</p></li>
+<li><p>Knit frequently.</p></li>
+<li><p>If you paste R code into a document, it will be easier to read in Courier or another monospace font.</p></li>
+<li><p>Text from a word processor or email program or PDF may have hidden characters that R can’t read, so if you paste from these formats, you may need to retype something if you get an error.</p></li>
+<li><p>Be careful with quotation marks: typing quotation marks directly into R will always work, but if you are pasting from another source, occasionally straight up-and-down quotation marks that are the same at the beginning and end will be transformed to “smart” quotation marks that are different at the beginning and end of a quotation. R does not know how to read smart quotation marks.</p></li>
+</ul>
+<p>R can have a steep learning curve. Once you know how to use R, you will have an easier time learning to use other statistical packages and computer languages.</p>
+</section>
+<section id="r-reference" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="r-reference"><span class="header-section-number">2.5</span> R Reference</h2>
+<p>Many of the R commands you will learn this term</p>
+<p>R Studio has menu items for importing data. It also remembers past plots.</p>
+<p>R Studio will display some of the data that you’ve loaded, but it does not show all variables in either the viewer or the list of variables.</p>
+<section id="libraries" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="libraries"><span class="header-section-number">2.5.1</span> Libraries</h3>
+<p>R has a great deal of built-in functionality, but it gets its strength from having user-written packagesthat add functions.</p>
+</section>
+<section id="help" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="help"><span class="header-section-number">2.5.2</span> Help</h3>
+<p>If you want help for any command type help(command-name) or simply a question mark followed by the command name ?commandname, or type the command name in the upper right corner of the R console.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+<th style="text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">?command</td>
+<td style="text-align: left;">Get help for command</td>
+<td style="text-align: left;">?xyplot</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">help(command)</td>
+<td style="text-align: left;">Get help for command</td>
+<td style="text-align: left;">help(xyplot)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">??keyword</td>
+<td style="text-align: left;">Find topics related to keyword</td>
+<td style="text-align: left;">??plot</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="using-data" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="using-data"><span class="header-section-number">2.5.3</span> Using data</h3>
+<p>R stores data in structures called data frames. When you load in data in R, your data will automatically be in a data frame. Data frames are similar to matrices, although R recognizes a difference between them.</p>
+<table class="table">
+<colgroup>
+<col style="width: 57%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DF=read.table(“file”, header=T)}</td>
+<td style="text-align: left;">Read in data from tab-separated file with header containing variable names and assign it to dataframe called DF.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DF=read.csv(“file”, header=T)</td>
+<td style="text-align: left;">Read in data from comma-separated file with header containing variable names and assign it to dataframe called DF.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="using-variables" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="using-variables"><span class="header-section-number">2.5.4</span> Using variables</h3>
+<p>All variables must be referenced by their dataframe, such as DF$x.</p>
+<p>Avoid using attach/detach</p>
+</section>
+<section id="describing-data-objects" class="level3" data-number="2.5.5">
+<h3 data-number="2.5.5" class="anchored" data-anchor-id="describing-data-objects"><span class="header-section-number">2.5.5</span> Describing data objects</h3>
+<table class="table">
+<colgroup>
+<col style="width: 57%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">nrow(DF)</td>
+<td style="text-align: left;">Number of rows in data frame or other two-dimensional object DF</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ncol(DF)</td>
+<td style="text-align: left;">Number of columns in data frame or other two-dimensional object DF</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rownames(DF)</td>
+<td style="text-align: left;">Lists names of rows in data frame or other two-dimensional object DF</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">colnames(DF)</td>
+<td style="text-align: left;">Lists names of columns in data frame or other two-dimensional object DF</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">summary(DF)</td>
+<td style="text-align: left;">Summarize data frame DF</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">names(DF)</td>
+<td style="text-align: left;">List all the names of all items in data frame DF</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">str(DF)</td>
+<td style="text-align: left;">Summarize each item in data frame DF</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">length(Var1)</td>
+<td style="text-align: left;">Length of one-dimensional object Var1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">is.na(Var1)</td>
+<td style="text-align: left;">Tests whether each item in Var1 is missing (NA)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="creating-data-objects" class="level3" data-number="2.5.6">
+<h3 data-number="2.5.6" class="anchored" data-anchor-id="creating-data-objects"><span class="header-section-number">2.5.6</span> Creating data objects</h3>
+<table class="table">
+<colgroup>
+<col style="width: 57%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">X = cbind(v1, v2)</td>
+<td style="text-align: left;">Create 2-dimensional object X where vectors v1 and v2 are the columns</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">X = rbind(v1, v2)</td>
+<td style="text-align: left;">Create 2-dimensional object X where vectors v1 and v2 are the rows</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">X = c(1, 2, 3)</td>
+<td style="text-align: left;">Create vector X, which is the numbers (1, 2, 3)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DF1=subset(DF, condition)</td>
+<td style="text-align: left;">Create a new object DF1: all items in DF that satisfy a condition.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="referring-to-elements" class="level3" data-number="2.5.7">
+<h3 data-number="2.5.7" class="anchored" data-anchor-id="referring-to-elements"><span class="header-section-number">2.5.7</span> Referring to elements</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Var1[1]</td>
+<td style="text-align: left;">first element in Var1 (one-dimensional).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DF[1,]</td>
+<td style="text-align: left;">first row in DF (two-dimensional).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DF[,1]</td>
+<td style="text-align: left;">first column in DF (two-dimensional).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DF[3,4]</td>
+<td style="text-align: left;">fourth element in the third row of DF (two-dimensional).</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="shortcuts" class="level3" data-number="2.5.8">
+<h3 data-number="2.5.8" class="anchored" data-anchor-id="shortcuts"><span class="header-section-number">2.5.8</span> Shortcuts</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">seq(0, 100, 10)</td>
+<td style="text-align: left;">All multiples of 10 from 0 to 100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1:10</td>
+<td style="text-align: left;">All numbers between 1 and 10</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="calculation" class="level3" data-number="2.5.9">
+<h3 data-number="2.5.9" class="anchored" data-anchor-id="calculation"><span class="header-section-number">2.5.9</span> Calculation</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">Plus</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">Minus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">*</td>
+<td style="text-align: left;">Multiply</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">/</td>
+<td style="text-align: left;">Division</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">!</td>
+<td style="text-align: left;">Logical not (opposite)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log()</td>
+<td style="text-align: left;">Natural log (base e)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log10()</td>
+<td style="text-align: left;">log base 10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">exp(x)</td>
+<td style="text-align: left;">(e^x)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sqrt(x)</td>
+<td style="text-align: left;">()</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">abs(x)</td>
+<td style="text-align: left;">Absolute value of x</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">round(x, digits=2)</td>
+<td style="text-align: left;">Round x to 2 digits</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="comparisons" class="level3" data-number="2.5.10">
+<h3 data-number="2.5.10" class="anchored" data-anchor-id="comparisons"><span class="header-section-number">2.5.10</span> Comparisons</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">==</td>
+<td style="text-align: left;">Tests for equality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">=</td>
+<td style="text-align: left;">Sets equal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;-</td>
+<td style="text-align: left;">Sets equal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">!=</td>
+<td style="text-align: left;">Tests for inequality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;=</td>
+<td style="text-align: left;">Tests for less than or equal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;</td>
+<td style="text-align: left;">Tests for less than</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&gt;=</td>
+<td style="text-align: left;">Tests for greater than or equal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&gt;</td>
+<td style="text-align: left;">Tests for greater than</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="defining-new-variables" class="level3" data-number="2.5.11">
+<h3 data-number="2.5.11" class="anchored" data-anchor-id="defining-new-variables"><span class="header-section-number">2.5.11</span> Defining new variables</h3>
+<p>When defining new variables, remember that == tests for equality and = sets a variable equal to the quantity on the right hand side.</p>
+</section>
+<section id="summarizing-data" class="level3" data-number="2.5.12">
+<h3 data-number="2.5.12" class="anchored" data-anchor-id="summarizing-data"><span class="header-section-number">2.5.12</span> Summarizing data</h3>
+<p>For many of these functions, you must first load the mosaic library. Mosaic was written by professors at small colleges to make R easier to use for students.</p>
+<p>If this is your first time using mosaic, you must first install it. When you press “save” on an Rmarkdown file that calls the library, Rstudio will automaically ask if you want to install the library.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<table class="table">
+<colgroup>
+<col style="width: 57%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">favstats()</td>
+<td style="text-align: left;">Displays numerical summaries: minimum, maximum, median, quartiles, sample sizes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sum()</td>
+<td style="text-align: left;">Sum everything in parentheses</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mean()</td>
+<td style="text-align: left;">Mean</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">median()</td>
+<td style="text-align: left;">Median</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sd()</td>
+<td style="text-align: left;">Standard deviation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">var()</td>
+<td style="text-align: left;">Variance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">median()</td>
+<td style="text-align: left;">Median</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">min()</td>
+<td style="text-align: left;">Minimum</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">max()</td>
+<td style="text-align: left;">Maximum</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tally(~x, data=DF)</td>
+<td style="text-align: left;">Frequency table of x in dataframe DF</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tally(y~x, data=DF)</td>
+<td style="text-align: left;">Cross-tabulation table of x and y in dataframe DF</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="plotting-using-mosaic" class="level3" data-number="2.5.13">
+<h3 data-number="2.5.13" class="anchored" data-anchor-id="plotting-using-mosaic"><span class="header-section-number">2.5.13</span> Plotting using Mosaic</h3>
+<p>The Mosaic package uses the same form for many plotting and analysis commands.</p>
+<p>command ( y ~ x | z, data= DF, groups = w, auto.key=T)</p>
+<p>y is the y-axis variable</p>
+<p>x is the x-axis variable</p>
+<p>z is the grouping variable to make separate plots</p>
+<p>w is the grouping variable to plot in different colors in the same plot.</p>
+<p>DF is the data frame that these variables are located in.</p>
+<p>auto.key=T tells the plotting command to automatically draw a key for each item.</p>
+</section>
+<section id="univariate-distributions" class="level3" data-number="2.5.14">
+<h3 data-number="2.5.14" class="anchored" data-anchor-id="univariate-distributions"><span class="header-section-number">2.5.14</span> Univariate distributions</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">histogram()</td>
+<td style="text-align: left;">Histogram</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">densityplot()</td>
+<td style="text-align: left;">Density plot (kernel density plot)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">freqpolygon()</td>
+<td style="text-align: left;">Frequency polygon</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bargraph()</td>
+<td style="text-align: left;">Bargraph</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bivariate-distributions" class="level3" data-number="2.5.15">
+<h3 data-number="2.5.15" class="anchored" data-anchor-id="bivariate-distributions"><span class="header-section-number">2.5.15</span> Bivariate distributions</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">bwplot()</td>
+<td style="text-align: left;">Box and whisker plot</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xyplot()</td>
+<td style="text-align: left;">Scatter plot</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-analysis" class="level3" data-number="2.5.16">
+<h3 data-number="2.5.16" class="anchored" data-anchor-id="data-analysis"><span class="header-section-number">2.5.16</span> Data analysis</h3>
+<section id="bivariate-analysis" class="level4" data-number="2.5.16.1">
+<h4 data-number="2.5.16.1" class="anchored" data-anchor-id="bivariate-analysis"><span class="header-section-number">2.5.16.1</span> Bivariate analysis</h4>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">t.test()</td>
+<td style="text-align: left;">T-test</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wilcox.test()</td>
+<td style="text-align: left;">Wilcoxon test</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">chisq.test()</td>
+<td style="text-align: left;">Chi-squared test</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">prop.test()</td>
+<td style="text-align: left;">Proportion test</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">binom.test()</td>
+<td style="text-align: left;">Binomial test</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="multivariate-analysis" class="level4" data-number="2.5.16.2">
+<h4 data-number="2.5.16.2" class="anchored" data-anchor-id="multivariate-analysis"><span class="header-section-number">2.5.16.2</span> Multivariate analysis</h4>
+<table class="table">
+<colgroup>
+<col style="width: 57%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">model1=lm(y~x1 + x2, data=DF)</td>
+<td style="text-align: left;">Perform linear regression of y on x1 and x2 and put results in model1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">model1=glm(y~x1 + x2, family=binomial)</td>
+<td style="text-align: left;">Perform logistic regression of y on x1 and x2 and put results in model1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">model1=glm(y~x1 + x2, family=poisson)</td>
+<td style="text-align: left;">Perform Poisson regression of y on x1 and x2 and put results in model1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">summary(model1)</td>
+<td style="text-align: left;">Summarize results in model1</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="defining-variables" class="level3" data-number="2.5.17">
+<h3 data-number="2.5.17" class="anchored" data-anchor-id="defining-variables"><span class="header-section-number">2.5.17</span> Defining variables</h3>
+<p>In R, all variables are lists of numbers. More formally, they are vectors. Here is an example. In this case, I am using R’s shortcut for all the numbers from 1 to 10.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>var1<span class="ot">=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>var1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+<p>An equivalent way to write this command is using the c() function, which tells R to make a list out of everything within the parentheses. c stands for concatenate, which means to attach elements together. If you need to enter a few numbers yourself, you can use the c() function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>var1<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>var1<span class="sc">+</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  2  3  4  5  6  7  8  9 10 11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>var2<span class="ot">=</span>var1<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>var2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  2  3  4  5  6  7  8  9 10 11</code></pre>
+</div>
+</div>
+<p>I just defined a new variable called test which is the numbers from 1 to 10. I then created a new variable called test2 which is defined as test+1. That is, you add 1 to every member of test. If you do something to a variable without setting it equal to anything, R just prints the output.</p>
+<p>You can also add two variables. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>var1<span class="sc">+</span>var2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  3  5  7  9 11 13 15 17 19 21</code></pre>
+</div>
+</div>
+<p>If you want just a few elements of a variable, you can use brackets to ask for them. The following commands ask for the first element, the first through third elements, and the elements in the list c(2,4,6):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>var2[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>var2[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 3 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>var2[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 5 7</code></pre>
+</div>
+</div>
+<p>R also has other data types besides vectors.</p>
+</section>
+<section id="matrices" class="level3" data-number="2.5.18">
+<h3 data-number="2.5.18" class="anchored" data-anchor-id="matrices"><span class="header-section-number">2.5.18</span> Matrices</h3>
+<p>Matrices are 2-dimensional ways to store variables. For example, a two by two table can be represented as a matrix.</p>
+<p>You can create a matrix with the matrix command. The following creates a matrix with the elements from 1 to 8. You can tell R how many rows or columns you want using either the option nrow= or ncol=. By default, this function fills in columns in order. If you want the matrix to be entered by row, you have to use the option byrow=T.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>test.matrix<span class="ot">=</span><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>test.matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]    1    3    5    7
+[2,]    2    4    6    8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>test.matrix2<span class="ot">=</span><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">byrow=</span>T)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>test.matrix2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]    1    2    3    4
+[2,]    5    6    7    8</code></pre>
+</div>
+</div>
+</section>
+<section id="missing-data" class="level3" data-number="2.5.19">
+<h3 data-number="2.5.19" class="anchored" data-anchor-id="missing-data"><span class="header-section-number">2.5.19</span> Missing data</h3>
+<p>Sometimes, data is missing. In this case, I am using a command to set the 3rd element of test to be missing, using a command called is.na(). You don’t have to worry about that command yet, but I’m using it to get somewhere.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(var1)<span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>var1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2 NA  4  5  6  7  8  9 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>var2<span class="ot">=</span>var1<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>var2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  2  3 NA  5  6  7  8  9 10 11</code></pre>
+</div>
+</div>
+<p>Now I just made the third element of the variable missing (NA). I created var2 which is again var1+1, but notice that NA stays the same because adding 1 to missing is still missing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>test3<span class="ot">=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>test4<span class="ot">=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(test3)<span class="ot">=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(test4)<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>test3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1 NA  3 NA  5 NA  7 NA  9 NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>test4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] NA  2 NA  4 NA  6 NA  8 NA 10</code></pre>
+</div>
+</div>
+<p>In each case where test1 is missing, there is a test2 number to fill in.</p>
+<p>You can use the ifelse command to combine the variables test1 and test2 so that you again get 1 through 10.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>test5<span class="ot">=</span><span class="fu">ifelse</span>(<span class="fu">is.na</span>(test3), test4, test3)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>test5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exercises" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.6</span> Exercises</h2>
+<section id="software-preparation" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="software-preparation"><span class="header-section-number">2.6.1</span> Software preparation</h3>
+<p>Install R and R Studio on your computer of choice (if not already installed). If already installed, update all of these.</p>
+<p>Familiarize yourself with the menus in Rstudio.</p>
+<p>Find the following features of R studio:</p>
+<ul>
+<li><p>History listings</p></li>
+<li><p>File pane</p></li>
+<li><p>Editing window where you can create an Rmarkdown file.</p></li>
+<li><p>Button to create a code chunk: green +C. Run code in a chunk by pressing the green “play” button in it. Remember to write all of your code in this document and to knit code frequently.</p></li>
+<li><p>Environment, where all the items in memory are displayed.</p></li>
+<li><p>Listing of all available packages.</p></li>
+<li><p>The help window.</p></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./intro.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapt1.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data displays</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Epidemiology Methods lecture notes - 1&nbsp; Introduction: Types of studies</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chaptA.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Epidemiology Methods lecture notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chaptA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data displays</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Identifying research questions and data sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testing hypotheses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Associations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Causality vs association</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Excess risk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Measurement error and screening</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Confounding and linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt9.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt10.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt11.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Example data analysis in YRBS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt12.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt13.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt14.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt15.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case-control studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#pretest" id="toc-pretest" class="nav-link active" data-scroll-target="#pretest"><span class="toc-section-number">1.1</span>  Pretest</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="toc-section-number">1.2</span>  Introduction</a></li>
+  <li><a href="#suggested-answers" id="toc-suggested-answers" class="nav-link" data-scroll-target="#suggested-answers"><span class="toc-section-number">1.3</span>  Suggested answers</a></li>
+  <li><a href="#example-case-study-should-i-drink-more-coffee" id="toc-example-case-study-should-i-drink-more-coffee" class="nav-link" data-scroll-target="#example-case-study-should-i-drink-more-coffee"><span class="toc-section-number">1.4</span>  Example case study: Should I drink more coffee?</a></li>
+  <li><a href="#evidence-based-health-behaviors-example-of-yoga" id="toc-evidence-based-health-behaviors-example-of-yoga" class="nav-link" data-scroll-target="#evidence-based-health-behaviors-example-of-yoga"><span class="toc-section-number">1.5</span>  Evidence-based health behaviors: example of yoga</a></li>
+  <li><a href="#another-example-kidney-stones-and-roller-coasters" id="toc-another-example-kidney-stones-and-roller-coasters" class="nav-link" data-scroll-target="#another-example-kidney-stones-and-roller-coasters"><span class="toc-section-number">1.6</span>  Another example: kidney stones and roller coasters</a></li>
+  <li><a href="#another-example-multitasking-and-electronic-distractions" id="toc-another-example-multitasking-and-electronic-distractions" class="nav-link" data-scroll-target="#another-example-multitasking-and-electronic-distractions"><span class="toc-section-number">1.7</span>  Another example: Multitasking and electronic distractions</a></li>
+  <li><a href="#professionalism" id="toc-professionalism" class="nav-link" data-scroll-target="#professionalism"><span class="toc-section-number">1.8</span>  Professionalism</a>
+  <ul class="collapse">
+  <li><a href="#connecting-with-professional-associations" id="toc-connecting-with-professional-associations" class="nav-link" data-scroll-target="#connecting-with-professional-associations"><span class="toc-section-number">1.8.1</span>  Connecting with professional associations</a></li>
+  <li><a href="#job-resources" id="toc-job-resources" class="nav-link" data-scroll-target="#job-resources"><span class="toc-section-number">1.8.2</span>  Job resources</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">1.9</span>  Exercises</a>
+  <ul class="collapse">
+  <li><a href="#binary-classification-tree" id="toc-binary-classification-tree" class="nav-link" data-scroll-target="#binary-classification-tree"><span class="toc-section-number">1.9.1</span>  Binary classification tree</a></li>
+  <li><a href="#epidemiology-overview" id="toc-epidemiology-overview" class="nav-link" data-scroll-target="#epidemiology-overview"><span class="toc-section-number">1.9.2</span>  Epidemiology overview</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This is a book created from markdown and executable code.</p>
+<p>See <span class="citation" data-cites="knuth84">Knuth (<a href="references.html#ref-knuth84" role="doc-biblioref">1984</a>)</span> for additional discussion of literate programming.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p>Epidemiology research uses different types of research designs to test hypotheses. Once you understand the types of research design, you can understand which designs are possible to test specific hypotheses. You can also make educated guesses about the type of research design, likely data sources, and potential limitations when you hear a study described in the mass media.</p>
+<p>Further these types of research designs are limited to epidemiology. A range of quantitative social sciences use designs with similar structure. For example, just as you can do a case-control study to understand potential causes of a disease, you can use the exact same research design in the field of education to understand potential causes of not graduating from college. Even though these are very different fields of academia studying diseases and studying college completion, many techniques transfer between all quantitative social sciences.</p>
+<p>As another example, just as you can do a cohort study to understand the association between a health exposure and a health outcome, you can do a similar type of study tThe silo ino understand any exposure and any outcome: for example, not graduating college could be an exposure of interest in a cohort study.</p>
+<p>Unfortunately, quantitative social scientists often remain siloed in their departments or even on different campuses of the same university. Epidemiology and biostatistics departments may be in a school of public health on a medical campus, whereas statistics, economics, and sociology departments, schools of education, and other social scientists may not be at the same campus or even at the same university. On my campus, I am on a medical campus at a university that only has health sciences fields. We have no schools of arts and sciences, education, or government. By contrast, I was educated in a PhD program in a school of arts and sciences where I took courses in economics, psychology, and statistics, as well as at the school of public health across the river.</p>
+<p>You may be in a similar situation and you may also be in social sciences for the first time. Many people come to epidemiology after deciding that public health will let them have a bigger impact on the world than medicine or biosciences would, and their undergraduate educations may have been primarily in lab sciences with limited exposure to advanced quantitative social science research methods.</p>
+<p>I am writing this book to fill a lacuna that I have noticed in epidemiology and research methods textbooks: this book concentrates on the competencies for an intermediate epidemiology methods course while integrating that perspective within the full range of quantitative social sciences. Many quantitative social science textbooks are written for economists, political scientists, and sociologists, and they use a wide variety of studies from these areas. Meanwhile, many statistics textbooks use examples from social science fields, biology, and astrophysics.</p>
+<p>In contrast, epidemiology textbooks focus on a more narrow range of research and data. My goal with this book is to write an intermediate epidemiology research methdos book with a perspective recognizable to quantitative social scientists.</p>
+<p>I have taught from books certain by economists and psychologists and statisticians that my students have really enjoyed, but I know that my students most enjoy examples that are clearly from epidemiology itself and with that perspective.</p>
+<section id="pretest" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="pretest"><span class="header-section-number">1.1</span> Pretest</h2>
+<p>Take a few moments to check your memory of different research designs from introductory epidemiology. I’ve included some example answers.</p>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 47%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Types of study</th>
+<th style="text-align: left;">Advantages</th>
+<th style="text-align: left;">Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Case study</td>
+<td style="text-align: left;">Can describe a rare condition</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Case series</td>
+<td style="text-align: left;">Implicit comparison with population</td>
+<td style="text-align: left;">May highlight wrong feature</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Descriptive rate-based</td>
+<td style="text-align: left;">Can observe trends</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pre-post, no control</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cross sectional</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Prospective cohort</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Retrospective cohort</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Case-control</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ecological</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Randomized experiment</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Natural/quasi-experiment</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="introduction" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.2</span> Introduction</h2>
+<p>Studies vary by:</p>
+<ul>
+<li><p>Unit of analysis: individual (above designs) versus population (ecological).</p></li>
+<li><p>Whether researcher assigns participants to the treatment or not.</p></li>
+<li><p>Whether participants are observed prospectively or not</p></li>
+<li><p>Whether all data comes from a single time point.</p></li>
+<li><p>Whether the primary grouping of participants is by exposure or by disease/outcome.</p></li>
+<li><p>Whether they test hypothesis: Descriptive (does not test hypotheses) versus analytic (tests hypotheses).</p></li>
+</ul>
+<p>A study of large entities (countries or counties) is ecological. Intermediate units of analysis may be either type of study. Examples: schools. Could do an ecological study of schools (e.g., compare test scores versus teacher-student ratio) or an experiment on schools (e.g., hire more teachers at schools in the treatment group, do nothing for control group, and observe test scores as the outcome.)</p>
+<p>Definition: Here I use three terms to be synonymous: treatment, exposure status, and main predictor. `Treatment’ is shorter, and I use it in quotes to indicate that it can be either assigned randomly or not.</p>
+<p>In non-random studies, statistical methods can still allow causal inference.</p>
+<ul>
+<li><p>Instrumental variables: control for a factor that predicts both `treatment’ and outcome.</p></li>
+<li><p>Propensity matching methods: propensity score weighting/matching, nearest-neighbor matching. Balance treatment and control groups so that only differences remaining between the two groups (treated and control) is their treatment status in an attempt to replicate the assignment mechanism to treatment versus control.</p></li>
+<li><p>Quasi-experiments are also sometimes called natural experiments. e.g., New York’s calorie menu labeling requirement, compared with neighboring states.</p></li>
+</ul>
+</section>
+<section id="suggested-answers" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="suggested-answers"><span class="header-section-number">1.3</span> Suggested answers</h2>
+<p>Your answers may vary but here are some suggested answers to the quiz.</p>
+<table class="table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 34%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Types of study</th>
+<th style="text-align: left;">Advantages</th>
+<th style="text-align: left;">Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Case study</td>
+<td style="text-align: left;">Can describe a rare condition</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Case series</td>
+<td style="text-align: left;">Implicit comparison with population</td>
+<td style="text-align: left;">May highlight wrong feature</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Descriptive rate-based</td>
+<td style="text-align: left;">Can observe trends</td>
+<td style="text-align: left;">Causality unclear</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Does not test hypotheses</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pre-post, no control</td>
+<td style="text-align: left;">Can do something</td>
+<td style="text-align: left;">No comparison group</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Politically easier to treat all.</td>
+<td style="text-align: left;">Conclusions may be incorrect.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cross sectional</td>
+<td style="text-align: left;">Data easier to find.</td>
+<td style="text-align: left;">No temporal ordering.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Inexpensive.</td>
+<td style="text-align: left;">Potential confounding.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Prospective cohort</td>
+<td style="text-align: left;">Establishes temporal sequence.</td>
+<td style="text-align: left;">Self-selection/confounding limits causal inference.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Need to wait for disease to emerge.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Only possible for common diseases.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Retrospective cohort</td>
+<td style="text-align: left;">May establish temporal sequence</td>
+<td style="text-align: left;">Self-selection/confounding.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Exposure status may not be accurate.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Temporal sequence may not be accurate.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Case-control</td>
+<td style="text-align: left;">Can examine many factors.</td>
+<td style="text-align: left;">False significance (multiple comparisons)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Useful to generate hypotheses.</td>
+<td style="text-align: left;">Comparison group validity.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Quick; disease already emerged.</td>
+<td style="text-align: left;">Measures often retrospective.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Can study rare diseases.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ecological</td>
+<td style="text-align: left;">Useful for system-level differences.</td>
+<td style="text-align: left;">No individual-level conclusions.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Useful first step in research.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Randomized experiment</td>
+<td style="text-align: left;">Causal inference.</td>
+<td style="text-align: left;">Limited to tested intervention.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Can falsify initial hypotheses.</td>
+<td style="text-align: left;">May test ``wrong’’ intervention.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Time-consuming and expensive.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Natural/quasi-experiment</td>
+<td style="text-align: left;">Almost as good as RCT.</td>
+<td style="text-align: left;">Rare and hard to identify.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Discovered rather than designed.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-case-study-should-i-drink-more-coffee" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="example-case-study-should-i-drink-more-coffee"><span class="header-section-number">1.4</span> Example case study: Should I drink more coffee?</h2>
+<p>Observational evidence suggests that coffee predicts lower mortality and morbidity from a variety of diseases. Is the evidence sufficient to suggest that people should drink more coffee? How do we figure that out?</p>
+<p>One difference you might notice when we think about the personal decisions that individuals make about their health behaviors is that individuals want good outcomes, broadly speaking. Usually when individuals take actions to try to improve their health, they’re not picky about which good health outcomes results from their new health behavior. By contrast, research always has specific outcomes. These outcomes can be very specific.</p>
+<p>When the concern is long-term outcomes, individuals don’t even know which outcomes result from which health behaviors because they don’t know the counterfactuals: the outcomes in the case that they had different exposures.</p>
+<p>Because of the difference between how individuals and reserachers talk about the effects of health behaviors and exposures, there can be a disconnect. Individuals have the question does this health behavior work? In research, that’s too vague of a question.</p>
+<p>In best practice, these outcomes are pre-specified: that is, before anybody started the research, they write down which hypotheses they plan to test. The reason it’s so important to pre-specify your hypothesis is that we want research to be replicable. Many have made the analogy between research andarchery. In archery, we shoot an arrow at the center of a target that already exists; if we hit the center of the target, that suggests that we have a good chance of likewise hitting near the center of future targets under similar conditions. In other words, hitting a target with an arrow is replicable. Shooting an arrow and then drawing a target around where the arrow landed is not replicable: it doesn’t demonstrate that you would be able to shoot the arrow at the target.</p>
+<p>A 1981 case-control study found an association between coffee and pancreatic cancer. Many other studies have found an association between coffee and reduced morbidity and mortality. So which direction is right? Is coffee likely to lead to better outcomes? Or is coffee likely lead to worse outcomes? Or do we just not know? How much evidence is there and what quality of evidence is there? How certain are we? How much confidence do we have in these results?</p>
+<p>We can think about the types of studies that might be done. A case control study takes people who have a specific disease and compares them with similar people who don’t have that disease. This type of study compares people with and without the disease to see which exposures are associated with the disease.</p>
+<p>A cohort study or a longitudinal study follows people over time to see which exposures they have and then sees which diseases they develop. If we think about what types of study might collect information about coffee drinking, we can see why it might be so challenging to study the effect of coffee drinking on long-term outcomes.</p>
+<p>There is a national study called the national health and nutrition examination study or NHANES that asks people about all the different things that they eat and drink. It also does some lab studies and examinations like taking blood samples and urine samples. Then the federal researchers that run the NHANES study link it up with death records. This is one source of data that might have coffee drinking recorded and then later on have death and cause of death recorded. These data already exist, and you could actually go right now and look for these data and conduct the study.</p>
+</section>
+<section id="evidence-based-health-behaviors-example-of-yoga" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="evidence-based-health-behaviors-example-of-yoga"><span class="header-section-number">1.5</span> Evidence-based health behaviors: example of yoga</h2>
+<p>The long-term effects of coffee drinking have been studied reasonably thoroughly. Other health behaviors may have sparser research.</p>
+<p>If I take up yoga, and I find that I feel generally happier, I’ll probably feel satisfied with my decision even if I have no measurable differences in any other health metric or disease risk.</p>
+<p>Health practices like yoga could be qualitatively beneficial even in the absence of quantitative evidence that they improve specific health outcomes. Because of the way that we do research about health, each one of the possible outcomes of yoga might be studied entirely separately. For example, researchers might want to know whether yoga reduces the number of months it takes to conceive a pregnancy, reduces systolic blood pressure, reduces depression as measured by the score on a depression screening survey, or decreases sleep latency, the number of minutes it takes to fall asleep as measured by a specific device. These are all super concrete outcomes. Further, although there is one part of the national institutes of health that studies complementary medicine such as yoga, researchers might apply for funding for these outcomes from entirely different parts of the national institutes of health or similar research funding bodies.</p>
+<p>Using observational data, we can study health behaviors like yoga, but then we need to evaluate selection into these behaviors. People who do yoga are different from people who don’t.</p>
+</section>
+<section id="another-example-kidney-stones-and-roller-coasters" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="another-example-kidney-stones-and-roller-coasters"><span class="header-section-number">1.6</span> Another example: kidney stones and roller coasters</h2>
+<p>Kidney stones are painful and require expensive intervention to clear if they don’t pass while small. A urologist noticed that many patients who rode roller coasters seemed to pass kidney stones and not need intervention, so he devised a model kidney filled with kidney stones and his own urine and brought it to Disney World to ride a roller coaster. He noticed that the kidney stones passed more often when he was in the back of the roller coaster than in the front. He will use this information to design a randomized controlled trial to test the hypothesis that riding roller coasters helps people to pass kidney stones. Whether or not roller coasters are the next treatment for kidney stones would depend on the results of the RCT.</p>
+<p>James Hamblin, ``A Health Benefit of Roller Coasters’’, Atlantic Monthly Sep 26, 2016 http://www.theatlantic.com/health/archive/2016/09/for-kidney-health-roller-coaster-therapy/501278/</p>
+</section>
+<section id="another-example-multitasking-and-electronic-distractions" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="another-example-multitasking-and-electronic-distractions"><span class="header-section-number">1.7</span> Another example: Multitasking and electronic distractions</h2>
+<p>The research cited below comes was cited in slides by Andrew Mills of Otterbein University. Some of the research he cited came from a blog post by journalist Nicholas Carr (How Smartphones Hijack Our Minds, Wall Street Journal) that gave the sources of his WSJ article (http://www.roughtype.com/?p=8195) As students, you face distractions that I and most of your faculty instructors never faced. When I was in high school, one of my chief methods of procrastination was bending a paperclip and running it between the keys to pull up dust from the keyboard (true story!).</p>
+<p>In this class, we can use laptops and phones for productive purposes: for learning statisical computations in R, for searching the research literature, for looking up the meaning of a term. However, the presence of a screen presents a distraction for everyone, both the users and those around them.(Sana, Weston, Cepeda, 2013, Laptop multitasking hinders classroom learning for both users and nearby peers https://doi.org/10.1016/j.compedu.2012.10.003) Screens reduce learning and retention of information, (Glass and Kang 2018, Dividing attention reduces exam performance. https://doi.org/10.1080/01443410.2018.1489046; Lauren M. Singer, Patricia A. Alexander 2017, Reading Across Mediums: Effects of Reading Digital and Print Texts on Comprehension and Calibration, J Experimental Education. https://doi.org/10.1080/00220973.2016.1143794) quality of notes, test performance, (Payne Carter, Greenberg, Walker, 2016 http://seii.mit.edu/wp-content/uploads/2016/05/SEII-Discussion-Paper-2016.02-Payne-Carter-Greenberg-and-Walker-2.pdf ) and distract others. I summarize the two studies that are most striking to me.</p>
+<p>Researchers at the US military academy performed an experiment in which one section of a class was allowed unlimited use of laptops/tablets (treatment) and the other were only permited tablets that were flat on the desk (control); the average final exam scores in the treatment group were 0.18 standard deviations lower than in the control group. (Payne Carter, Greenberg, Walker, 2016 http://seii.mit.edu/wp-content/uploads/2016/05/SEII-Discussion-Paper-2016.02-Payne-Carter-Greenberg-and-Walker-2.pdf )</p>
+<p>Psychologists performed experiments in which students were instructed to listen to a lecture, and a random subset were assigned to multitask during the lecture: that is, to perform tasks unrelated to the lecture during the lecture. Both students assigned to multitask and students who could see their screen them both performed worse in an exam on the content of the lecture than students assigned not to multitask and who could not see the screen of a multitasker. (Sana, Weston, Cepeda, 2013, Laptop multitasking hinders classroom learning for both users and nearby peers https://doi.org/10.1016/j.compedu.2012.10.003)</p>
+<p>Psychologists teaching two sections of the same course performed a randomized experiment, randomly assigning half of their class sessions to <code>no devices allowed'' or</code>devices permitted’’ condtions: during the no device class sessions, proctors enforced the rule of not allowing devices. The experiment used a cross-over design, so that for each class session, one section of the class banned devices and the other allowed devices. Students allowed to use devices did not differ in their scores on in-class quizzes on the material presented in class than students who were not allowed to use devices in that class, but students allowed to use devices scored lower on midterm/final exams that were in later class sessions than students not allowed to use devices. Dividing attention bewteen a laptop/tablet/phone and a lecture did not reduce short-term retention of material but reduced long-term retention of material. (Glass and Kang 2018, Dividing attention reduces exam performance. https://doi.org/10.1080/01443410.2018.1489046)</p>
+<p>An observational study of student use of their laptops in class found that 42% of the time students had open software that was unrelated to the course, and that students underestimated their multitasking behavior in the classroom (email and instant messaging, at the time) compared with the objective measures of multitasking observed by the researchers (Kraushaar, James M.; Novak, David C. Examining the Affects of Student Multitasking with Laptops during the Lecture, Journal of Information Systems Education, v21 n2 p241-251 2010 https://eric.ed.gov/?id=EJ893903)</p>
+<p>Educational psycholgists randomly assigned students to read texts on screens and in print in a cross-over experiment, and found that students performed better on tests of retention for the material that they read in print than on screens. (Lauren M. Singer, Patricia A. Alexander 2017, Reading Across Mediums: Effects of Reading Digital and Print Texts on Comprehension and Calibration, J Experimental Education.https://doi.org/10.1080/00220973.2016.1143794)</p>
+<p>Researchers randomly assigned participants to place their cell phones nearby in view, nearby out of view, or in another room. Participants assigned to have their phone in view had lower scores on various measures of memory and cognitive capacity than participants whose phones were in another room. However, irrespective of their phone’s location, most participants reported that they did not think about their phone at all while performing the tasks, and they did not think their phone’s location affected their performance. (Ward, Duke, Gneezy, Bos, ``Brain Drain: The Mere Presence of One’s Own Smartphone Reduces Available Cognitive Capacity,’’ Journal of the Association for Consumer Research, 2017.)</p>
+<p>The educational research suggests that students have worse learning outcomes from using electronic devices in class, and that they are completely unaware of negative outcomes. However, these studies were not specific to computer-oriented classes. In this class, students may want to use laptops during some class sessions to follow along with the statistical commands. The research suggests to me that learning outcomes for everyone will be better if students put devices out of sight when they are not needed.</p>
+</section>
+<section id="professionalism" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="professionalism"><span class="header-section-number">1.8</span> Professionalism</h2>
+<p>Initiation into a professional identity with norms.</p>
+<p>Play fair — cite others; don’t plagiarize.</p>
+<ul>
+<li><p>Copying others’ words with minimal changes.</p></li>
+<li><p>Failing to cite others’ ideas.</p></li>
+<li><p>Failure to use quotation marks for exact quotes (and exact quotes should almost never be used in scientific papers.)</p></li>
+</ul>
+<p>Respect others’ time.</p>
+<ul>
+<li><p>Communicate clearly and efficiently. Refer to books on communication and always improve.</p></li>
+<li><p>No such thing as a final draft: revision is always possible.</p></li>
+</ul>
+<section id="connecting-with-professional-associations" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="connecting-with-professional-associations"><span class="header-section-number">1.8.1</span> Connecting with professional associations</h3>
+<p>Connecting with professional associations as a student allows you to connect with others across the country/world, share research, get job and conference announcements, and experiment with professional identities at a low cost. You can connect through professional organizations through social networking websites such as Twitter and Facebook, by submitting to professional conferences, and by joining. In the past, SPH has generally paid students’ costs to present at conferences.</p>
+</section>
+<section id="job-resources" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="job-resources"><span class="header-section-number">1.8.2</span> Job resources</h3>
+<p>Become familiar with job listings before job search. Begin job search in August for June graduation: i.e., 10 months ahead. You can prepare job materials even before that, ideally the summer before graduation, especially for doctoral students.</p>
+</section>
+</section>
+<section id="exercises" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.9</span> Exercises</h2>
+<section id="binary-classification-tree" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="binary-classification-tree"><span class="header-section-number">1.9.1</span> Binary classification tree</h3>
+<p>Make a binary classification tree to distinguish between the following study types. Hand writing it will be easier than trying to make it on the computer. See example on next page.</p>
+<ul>
+<li><p>Randomized experiment. Also known as randomized controlled trial (RCT).</p></li>
+<li><p>Quasi-experiment. Also called a natural experiment, although they are not exactly synonymous.</p></li>
+<li><p>Retrospective/prospective cohort study.</p></li>
+<li><p>Case-control study.</p></li>
+<li><p>Cross-sectional study.</p></li>
+<li><p>Descriptive rate-based study.</p></li>
+<li><p>Pre-post study without control group.</p></li>
+<li><p>Ecological study</p></li>
+</ul>
+</section>
+<section id="epidemiology-overview" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="epidemiology-overview"><span class="header-section-number">1.9.2</span> Epidemiology overview</h3>
+<p>Read and prepare to discuss George Davey Smith and Shah Ebrahim, Epidemiology — is it time to call it a day? Int. J. Epidemiol. (2001) 30 (1): 1–11. doi: 10.1093/ije/30.1.1. http://ije.oxfordjournals.org/content/30/1/1.full</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-knuth84" class="csl-entry" role="doc-biblioentry">
+Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https://doi.org/10.1093/comjnl/27.2.97</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chaptA.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

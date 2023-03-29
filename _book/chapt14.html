@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Epidemiology Methods lecture notes - 16&nbsp; Cohort studies</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapt15.html" rel="next">
+<link href="./chapt13.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Epidemiology Methods lecture notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chaptA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data displays</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Identifying research questions and data sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testing hypotheses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Associations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Causality vs association</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Excess risk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Measurement error and screening</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Confounding and linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt9.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt10.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt11.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Example data analysis in YRBS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt12.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt13.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt14.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt15.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case-control studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#prospective-cohort-studies-to-study-a-specific-exposure" id="toc-prospective-cohort-studies-to-study-a-specific-exposure" class="nav-link active" data-scroll-target="#prospective-cohort-studies-to-study-a-specific-exposure"><span class="toc-section-number">16.1</span>  Prospective Cohort Studies to study a specific exposure</a>
+  <ul class="collapse">
+  <li><a href="#sars-and-mers-cohort-studies" id="toc-sars-and-mers-cohort-studies" class="nav-link" data-scroll-target="#sars-and-mers-cohort-studies"><span class="toc-section-number">16.1.1</span>  SARS and MERS cohort studies</a></li>
+  </ul></li>
+  <li><a href="#prospective-cohort-studies-to-study-a-specific-disease" id="toc-prospective-cohort-studies-to-study-a-specific-disease" class="nav-link" data-scroll-target="#prospective-cohort-studies-to-study-a-specific-disease"><span class="toc-section-number">16.2</span>  Prospective Cohort Studies to study a specific disease</a></li>
+  <li><a href="#longitudinalpanel-studies" id="toc-longitudinalpanel-studies" class="nav-link" data-scroll-target="#longitudinalpanel-studies"><span class="toc-section-number">16.3</span>  Longitudinal/panel studies</a>
+  <ul class="collapse">
+  <li><a href="#economics-longitudinalpanel-studies." id="toc-economics-longitudinalpanel-studies." class="nav-link" data-scroll-target="#economics-longitudinalpanel-studies."><span class="toc-section-number">16.3.1</span>  Economics: Longitudinal/Panel Studies.</a></li>
+  <li><a href="#life-course-studies" id="toc-life-course-studies" class="nav-link" data-scroll-target="#life-course-studies"><span class="toc-section-number">16.3.2</span>  Life course studies</a></li>
+  <li><a href="#educational-studies" id="toc-educational-studies" class="nav-link" data-scroll-target="#educational-studies"><span class="toc-section-number">16.3.3</span>  Educational studies</a></li>
+  </ul></li>
+  <li><a href="#studies-by-compiling-data" id="toc-studies-by-compiling-data" class="nav-link" data-scroll-target="#studies-by-compiling-data"><span class="toc-section-number">16.4</span>  Studies by compiling data</a>
+  <ul class="collapse">
+  <li><a href="#disadvantages-of-using-an-external-comparison-group" id="toc-disadvantages-of-using-an-external-comparison-group" class="nav-link" data-scroll-target="#disadvantages-of-using-an-external-comparison-group"><span class="toc-section-number">16.4.1</span>  Disadvantages of using an external comparison group</a></li>
+  </ul></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="toc-section-number">16.5</span>  Exercise</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Last time, we spoke about RCTs and natural experiments. In many cases, we can’t do either an RCT or a natural experiment for ethical or logistical reasons.</p>
+<p>Cohort studies in epidemiology can be chosen by exposure, which is useful for a rare exposure, such as bariatric surgery, SARS, MERS.</p>
+<section id="prospective-cohort-studies-to-study-a-specific-exposure" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="prospective-cohort-studies-to-study-a-specific-exposure"><span class="header-section-number">16.1</span> Prospective Cohort Studies to study a specific exposure</h2>
+<section id="sars-and-mers-cohort-studies" class="level3" data-number="16.1.1">
+<h3 data-number="16.1.1" class="anchored" data-anchor-id="sars-and-mers-cohort-studies"><span class="header-section-number">16.1.1</span> SARS and MERS cohort studies</h3>
+<p>In 2002, the SARS virus began in China, spreading to a few locations including Canada. People who were infected with SARS were successfully isolated, but some health care workers became ill.&nbsp;As a novel virus, this disease was not well-understood, so people who were infected with SARS were followed over years. These follow-up studies found that several years after illness, 30-40% of SARS patients had a new-onset mental illness of varying types, about 30-40% met criteria for chronic fatigue syndrome, and about 30-40% did not go back to work; these were non-mutually exclusive, so some people had more than one of these, and some people had none of these.</p>
+<p>Children who had been infected with SARS had reduced aerobic capacity about 18 months after infection, but it was thought this was due to deconditioning rather than the disease. Patients who had been treated with steroids had femoral head necrosis, likely an effect of steroids rather than disease.</p>
+<p>In 200x, the MERS virus emerged. Similar cohorts were formed of people who had been infected with MERS and followed for years.</p>
+<p>These cohort studies were useful when Covid-19 emerged because they foreshadowed possible effects of Covid-19, such as long covid.</p>
+</section>
+</section>
+<section id="prospective-cohort-studies-to-study-a-specific-disease" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="prospective-cohort-studies-to-study-a-specific-disease"><span class="header-section-number">16.2</span> Prospective Cohort Studies to study a specific disease</h2>
+<p>Cohort studies may also be chosen by demographic characteristic and disease-free status, not by exposure status.</p>
+<p>At the start, no subjects have the outcomes of interest.</p>
+<p>Framingham Heart Study: 5209 residents of Framingham, MA in 1948 ages 30–62 without heart disease (including my late step-grandfather).</p>
+<p>Nurses Health Study follows 117,000 women without cancer or CVD who were nurses in 1976 (including my aunt)</p>
+<p>Whitehall Studies (UK): Whitehall I studied 17,530 male civil servants 1967–77; Whitehall II studies 10,308 civil servants ages 35–55 (2/3 male) 1985–2012.</p>
+<p>Millennium Cohort Study will follow 150,000 military personnel for 21+ years during and after service, recruited in 3 panels beginning in 2001.</p>
+</section>
+<section id="longitudinalpanel-studies" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="longitudinalpanel-studies"><span class="header-section-number">16.3</span> Longitudinal/panel studies</h2>
+<p>Sometimes referred to simply as longitudinal or panel studies because they aren’t chosen by exposure status. Economists refer to longitudinal studies as panel studies.</p>
+<section id="economics-longitudinalpanel-studies." class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="economics-longitudinalpanel-studies."><span class="header-section-number">16.3.1</span> Economics: Longitudinal/Panel Studies.</h3>
+<p>Not designed to study health outcomes but may be used for these purposes.</p>
+<p>National Longitudinal Study of Youth (NLSY79 and NLSY97). https://www.nlsinfo.org</p>
+<p>Panel Study of Income Dynamics (PSID since 1968), and similar studies in other countries. Available here https://www.ipums.org/</p>
+<p>Medical Expenditure Panel Survey (MEPS). Available here: https://www.ipums.org/</p>
+</section>
+<section id="life-course-studies" class="level3" data-number="16.3.2">
+<h3 data-number="16.3.2" class="anchored" data-anchor-id="life-course-studies"><span class="header-section-number">16.3.2</span> Life course studies</h3>
+<p>Youth and human development</p>
+<p>Fragile Families and Child Wellbeing Study followed 5000 children born to mostly unmarried mothers in 1998–2000 at birth, and ages 1, 3, 5, and 9 years old. Available here: https://opr.princeton.edu/archive/</p>
+<p>Northwestern Juvenile Project: 1800 youth enrolled between 1995–98 from Chicago justice system, still following 1644.</p>
+<p>National Longitudinal Study of Adolescent Health (Add Health).</p>
+<p>1958 National Child Development Study or 1958 Birth Cohort Study: 17,000 people born in the UK in a single week in 1958.</p>
+<p>Birth to Twenty in South Africa studied 3273 individuals born during the 7 weeks after Nelson Mandela’s release from prison in February 1990.</p>
+<p>National Children’s Study will follow 100,000 US children from before birth to age 21. A pilot study at 40 locations is currently in progress.</p>
+<p>Wisconsin Longitudinal Study followed a cohort of men and women born in 1939 from high school graduation to the present.</p>
+<p>Project Talent: 440,000 high school students (grades 9–12) in 1960, 1965, 1971.</p>
+<p>Midlife in the US (MIDUS): 7000 middle-aged people in 1995-96 and 2006.</p>
+</section>
+<section id="educational-studies" class="level3" data-number="16.3.3">
+<h3 data-number="16.3.3" class="anchored" data-anchor-id="educational-studies"><span class="header-section-number">16.3.3</span> Educational studies</h3>
+<p>All conducted by Institute for Educational Sciences https://ies.ed.gov/, and available free online.</p>
+<p>Education Longitudinal Study (ELS) is a longitudinal study of 16,197 high school sophomores surveyed in 2002 and followed in 2004, 2006, and 2012. The main outcomes of interest are educational, family formation, and employment.</p>
+<p>ECLS-B follows a cohort from birth until kindergarden, beginning in 2001, and includes family structure, prenatal care, and early infancy factors.</p>
+<p>NELS (high school students followed post-graduation), ECLS (Early Childhood Longitudinal Studies), BPS (Beginning Postsecondary Studies: high school graduates followed in first year of post-secondary studies for several years).</p>
+</section>
+</section>
+<section id="studies-by-compiling-data" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="studies-by-compiling-data"><span class="header-section-number">16.4</span> Studies by compiling data</h2>
+<p>Some epidemiology studies combine different sources of data, rather than using data collected in a unified way.</p>
+<section id="disadvantages-of-using-an-external-comparison-group" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="disadvantages-of-using-an-external-comparison-group"><span class="header-section-number">16.4.1</span> Disadvantages of using an external comparison group</h3>
+<p>Chlamydia prevalence among men, by race/ethnicity, selected populations. This table illustrates how the prevalence of a disease (chlamydia) may vary when samples are taken from different, non-comparable populations.</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Data source (years)</th>
+<th style="text-align: left;">Black race</th>
+<th style="text-align: left;">White race</th>
+<th style="text-align: left;">Hispanic ethnicity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">NHANES (1999–2000; ages 14–39)</td>
+<td style="text-align: left;">5.3</td>
+<td style="text-align: left;">1.5</td>
+<td style="text-align: left;">3.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Add Health (2001–02; ages 18–26)</td>
+<td style="text-align: left;">11.1</td>
+<td style="text-align: left;">1.4</td>
+<td style="text-align: left;">7.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">National Job Training Program (2003–04; ages 16–24)</td>
+<td style="text-align: left;">13.0</td>
+<td style="text-align: left;">3.1</td>
+<td style="text-align: left;">5.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MSM Prevalence Monitoring Project (2005; ages 15–80)</td>
+<td style="text-align: left;">7.0</td>
+<td style="text-align: left;">6.0</td>
+<td style="text-align: left;">6.0</td>
+</tr>
+</tbody>
+</table>
+<p>Source: Satterwhite, Joesoef, Datta, Weinstock. Estimates of Chlamydia trachomatis Infections Among Men: United States, Sexually Transmitted Diseases, 2008: 35:S3-S7.</p>
+<p>Populations may not actually be comparable.</p>
+<p>Populations may differ in exposures other than the exposure of interest.</p>
+<p>Measurement of exposure or outcome may differ between the two studies.</p>
+<p>If significant proportion of the comparison group also has the risky exposure, results are biased, just as if the control group in an experiment is given the treatment.</p>
+</section>
+</section>
+<section id="exercise" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="exercise"><span class="header-section-number">16.5</span> Exercise</h2>
+<p>Read the abstract and look at the tables/figures for the attached study, DeBoer MD, Scharf RJ, Demmer RT, “Sugar-Sweetened Beverages and Weight Gain in 2- to 5-Year-Old Children”, Pediatrics, 2013;132(3):413–420. Do not read the paper itself.</p>
+<ol type="1">
+<li><p>The authors’ hypothesis is that sugar-sweetened beverages (SSBs) cause children to become overweight due to excess energy consumption. That could be true, but it could also be a spurious association caused by other factors — that is, internal validity could be compromised. Before reading the study, what do you think could be going on? That is, what could be causing the association between SSBs and childhood overweight other than the SSBs themselves?</p></li>
+<li><p>Look at the tables and figures. Do any of the tables/figures support your initial thoughts about potential threats to internal validity? Do they spark new ideas?</p></li>
+<li><p>Based just on the tables and figures, which approaches do the authors use to avoid con- founding?</p></li>
+<li><p>Describe what Table 2 shows in your own words. What is the purpose of the three models? What happens as the analysis goes from Model 0 to Model 1 to Model 2, within each age?</p></li>
+<li><p>Based on Table 2, does the association between overweight/obesity status and SSB hold up after analyses?</p></li>
+<li><p>Do you think that the analysis in Table 2 adequately adjusts for each of the covariates in the respective models? Explain why or why not.</p></li>
+<li><p>Describe in your own words what Figure 1 demonstrates. What do the * mean? What do the little Ts above the bars mean? Does Figure 1 demonstrate a dose-response rela- tionship?</p></li>
+<li><p>What’s the difference between Tables 2 and 3? What’s the advantage of each type of analysis?</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapt13.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapt15.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case-control studies</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

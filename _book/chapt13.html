@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Epidemiology Methods lecture notes - 15&nbsp; Randomized experiments and quasi-experiments</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapt14.html" rel="next">
+<link href="./chapt12.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Epidemiology Methods lecture notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chaptA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data displays</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Identifying research questions and data sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testing hypotheses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Associations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Causality vs association</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Excess risk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Measurement error and screening</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Confounding and linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt9.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt10.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt11.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Example data analysis in YRBS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt12.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt13.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt14.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt15.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case-control studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#efficacy-vs.-effectiveness" id="toc-efficacy-vs.-effectiveness" class="nav-link active" data-scroll-target="#efficacy-vs.-effectiveness"><span class="toc-section-number">15.0.1</span>  Efficacy vs.&nbsp;effectiveness</a></li>
+  <li><a href="#control-arm" id="toc-control-arm" class="nav-link" data-scroll-target="#control-arm"><span class="toc-section-number">15.0.2</span>  Control arm</a></li>
+  <li><a href="#threats-to-internal-validity-in-rcts" id="toc-threats-to-internal-validity-in-rcts" class="nav-link" data-scroll-target="#threats-to-internal-validity-in-rcts"><span class="toc-section-number">15.0.3</span>  Threats to internal validity in RCTs</a></li>
+  <li><a href="#interference-between-participants." id="toc-interference-between-participants." class="nav-link" data-scroll-target="#interference-between-participants."><span class="toc-section-number">15.0.4</span>  Interference between participants.</a></li>
+  <li><a href="#differential-non-adherence-to-assigned-treatment" id="toc-differential-non-adherence-to-assigned-treatment" class="nav-link" data-scroll-target="#differential-non-adherence-to-assigned-treatment"><span class="toc-section-number">15.0.5</span>  Differential non-adherence to assigned treatment</a></li>
+  <li><a href="#differential-attrition" id="toc-differential-attrition" class="nav-link" data-scroll-target="#differential-attrition"><span class="toc-section-number">15.0.6</span>  Differential attrition</a></li>
+  <li><a href="#intention-to-treat-treatment-effect" id="toc-intention-to-treat-treatment-effect" class="nav-link" data-scroll-target="#intention-to-treat-treatment-effect"><span class="toc-section-number">15.0.7</span>  Intention to treat treatment effect</a></li>
+  <li><a href="#randomization-methods" id="toc-randomization-methods" class="nav-link" data-scroll-target="#randomization-methods"><span class="toc-section-number">15.0.8</span>  Randomization methods</a></li>
+  <li><a href="#assessing-experimental-results" id="toc-assessing-experimental-results" class="nav-link" data-scroll-target="#assessing-experimental-results"><span class="toc-section-number">15.0.9</span>  Assessing experimental results</a></li>
+  <li><a href="#finnish-vitamin-e-and-beta-carotene-study" id="toc-finnish-vitamin-e-and-beta-carotene-study" class="nav-link" data-scroll-target="#finnish-vitamin-e-and-beta-carotene-study"><span class="toc-section-number">15.0.10</span>  Finnish vitamin E and beta carotene study</a></li>
+  <li><a href="#rakai-study" id="toc-rakai-study" class="nav-link" data-scroll-target="#rakai-study"><span class="toc-section-number">15.1</span>  Rakai study</a></li>
+  <li><a href="#social-experiments" id="toc-social-experiments" class="nav-link" data-scroll-target="#social-experiments"><span class="toc-section-number">15.2</span>  Social experiments</a>
+  <ul class="collapse">
+  <li><a href="#first-social-experiment-new-jersey-income-maintenance-experiment" id="toc-first-social-experiment-new-jersey-income-maintenance-experiment" class="nav-link" data-scroll-target="#first-social-experiment-new-jersey-income-maintenance-experiment"><span class="toc-section-number">15.2.1</span>  First social experiment: New Jersey Income Maintenance Experiment</a></li>
+  <li><a href="#rand-health-insurance-experiment" id="toc-rand-health-insurance-experiment" class="nav-link" data-scroll-target="#rand-health-insurance-experiment"><span class="toc-section-number">15.2.2</span>  RAND Health Insurance Experiment</a></li>
+  <li><a href="#seguro-popular-de-salud-the-mexican-universal-health-care-system" id="toc-seguro-popular-de-salud-the-mexican-universal-health-care-system" class="nav-link" data-scroll-target="#seguro-popular-de-salud-the-mexican-universal-health-care-system"><span class="toc-section-number">15.2.3</span>  Seguro Popular de Salud: the Mexican universal health care system</a></li>
+  <li><a href="#oregon-health-study" id="toc-oregon-health-study" class="nav-link" data-scroll-target="#oregon-health-study"><span class="toc-section-number">15.2.4</span>  Oregon Health Study</a></li>
+  <li><a href="#moving-to-opportunity" id="toc-moving-to-opportunity" class="nav-link" data-scroll-target="#moving-to-opportunity"><span class="toc-section-number">15.2.5</span>  Moving to Opportunity</a></li>
+  <li><a href="#post-diction-and-coincidences" id="toc-post-diction-and-coincidences" class="nav-link" data-scroll-target="#post-diction-and-coincidences"><span class="toc-section-number">15.2.6</span>  Post-diction and coincidences</a></li>
+  <li><a href="#false-significance-due-to-multiple-comparisons" id="toc-false-significance-due-to-multiple-comparisons" class="nav-link" data-scroll-target="#false-significance-due-to-multiple-comparisons"><span class="toc-section-number">15.2.7</span>  False significance due to multiple comparisons</a></li>
+  <li><a href="#publication-bias" id="toc-publication-bias" class="nav-link" data-scroll-target="#publication-bias"><span class="toc-section-number">15.2.8</span>  Publication bias</a></li>
+  <li><a href="#a-study-designed-to-be-misleading-chocolate-for-dieting-rct" id="toc-a-study-designed-to-be-misleading-chocolate-for-dieting-rct" class="nav-link" data-scroll-target="#a-study-designed-to-be-misleading-chocolate-for-dieting-rct"><span class="toc-section-number">15.2.9</span>  A study designed to be misleading: Chocolate for dieting RCT</a></li>
+  </ul></li>
+  <li><a href="#quasi-experimental-designs" id="toc-quasi-experimental-designs" class="nav-link" data-scroll-target="#quasi-experimental-designs"><span class="toc-section-number">15.3</span>  Quasi experimental designs</a>
+  <ul class="collapse">
+  <li><a href="#instrumental-variables" id="toc-instrumental-variables" class="nav-link" data-scroll-target="#instrumental-variables"><span class="toc-section-number">15.3.1</span>  Instrumental variables</a></li>
+  <li><a href="#regression-discontinuity" id="toc-regression-discontinuity" class="nav-link" data-scroll-target="#regression-discontinuity"><span class="toc-section-number">15.3.2</span>  Regression discontinuity</a></li>
+  <li><a href="#interrupted-time-series" id="toc-interrupted-time-series" class="nav-link" data-scroll-target="#interrupted-time-series"><span class="toc-section-number">15.3.3</span>  Interrupted time series</a></li>
+  <li><a href="#differences-in-differences" id="toc-differences-in-differences" class="nav-link" data-scroll-target="#differences-in-differences"><span class="toc-section-number">15.3.4</span>  Differences in differences</a></li>
+  <li><a href="#synthetic-matching" id="toc-synthetic-matching" class="nav-link" data-scroll-target="#synthetic-matching"><span class="toc-section-number">15.3.5</span>  Synthetic matching</a></li>
+  </ul></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="toc-section-number">15.4</span>  Exercise</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>RCTs = randomized control trials = randomized experiments = experiments = random-assignment studies</p>
+<p>We use randomized experiments with modifiable exposures after observational evidence suggests an association. Either there’s uncertainty whether the exposure is beneficial. Sometimes experiments are carried out in spite of reasonable certainty of the effect of the exposure in order to establish political support for a policy. For example, abstinence-only sex education was evaluated with a randomized experiment in spite of observational evidence that mostly showed null effects because of the need to settle a political controversy.</p>
+<p>As another example, Mexico’s Seguro Popular was evaluated with a randomized experiment because the government wanted to maintain political support for continuing the policy even if elections resulted in a change of administration: they wanted to demonstrate that the program was worth continuing.</p>
+<p>Some randomized experiments last for decades (e.g., Head Start, Perry pre-school), but usually the time horizon is shorter.</p>
+<p>Sometimes experimental results surprise us by yielding results that are opposite of the observational finding.</p>
+<p>Example: CARET study: • Strong observational evidence that vegetable intake reduces cancer. • Analytic chemists may have isolated beta-carotene as active against cancer cells in the lab. • Dietary beta carotene associated with reduced chances of cancer in further observational data. • CARET study of whether beta carotene supplements reduces cancer found that beta carotene supplements increased cancer and mortality. • Uncertain whether beta carotene vitamins are better than placebo. Randomization eliminates systematic differences between groups. On average, groups ran- domized to treatment versus control will not vary on observed or unobserved characteristics. Internal versus external validity RCTs usually draw from self-selected group, not representative of general population. In medicine and epidemiology, usually they are healthier and less likely to be minorities. CARET study began with a larger group all assigned placebo, and then focused on people who had taken at least 50% of the assigned placebo drugs to avoid biasing result due to non- adherence. (Which direction would bias go if the non-adherent were included in sample?)</p>
+<p>Few RCTs draw from a nationally representative sample, but some do. Some examples: - Head Start Impact Study: representative of population eligible for Head Start. - RAND Health Insurance Experiment - Medicaid lottery, representative of Medicaid-eligible population in Oregon.</p>
+<p>Some programs get applied universally — maximal external validity — before they can be evaluated rigorously. These programs can no longer be evaluated with randomized experiments. • Universal pre-school program in Oklahoma. (See “This American Life” episode 477, “Getting away with it”, originally aired on 10/21/12)</p>
+<section id="efficacy-vs.-effectiveness" class="level3" data-number="15.0.1">
+<h3 data-number="15.0.1" class="anchored" data-anchor-id="efficacy-vs.-effectiveness"><span class="header-section-number">15.0.1</span> Efficacy vs.&nbsp;effectiveness</h3>
+<p>Efficacy: does treatment work in ideal conditions?</p>
+<p>Effectiveness: does treatment work in the real world?</p>
+<p>Intervention studies may include enthusiastic and charismatic staff, so a program may be efficacious in its trial, but not effective once it gets to the real world.</p>
+<p>Condom efficacy is high, but effectiveness is slightly lower because people might not use them: “perfect use” versus “typical use.” Efficacy and effectiveness are only occasionally used as distinct. Often people will use terms interchangeably.</p>
+</section>
+<section id="control-arm" class="level3" data-number="15.0.2">
+<h3 data-number="15.0.2" class="anchored" data-anchor-id="control-arm"><span class="header-section-number">15.0.2</span> Control arm</h3>
+<p>Participants in the control arm can be assigned to the following conditions: nothing, placebos, another treatment for the condition that is uniform across the control arm, usual care which is not uniform across the control arm.</p>
+<p>Placebos aren’t just sugar pills. Placebo ‘treatments’ can include drugs, surgery, or psychotherapy.</p>
+</section>
+<section id="threats-to-internal-validity-in-rcts" class="level3" data-number="15.0.3">
+<h3 data-number="15.0.3" class="anchored" data-anchor-id="threats-to-internal-validity-in-rcts"><span class="header-section-number">15.0.3</span> Threats to internal validity in RCTs</h3>
+<p>In other words: what problems could occur that would make us unable to reach causal inference in a randomized experiment? We say that an issue threatens the internal validity of an RCT if it has differential effects across treatment versus control conditions, or between those for whom treatment is effective versus ineffective.</p>
+</section>
+<section id="interference-between-participants." class="level3" data-number="15.0.4">
+<h3 data-number="15.0.4" class="anchored" data-anchor-id="interference-between-participants."><span class="header-section-number">15.0.4</span> Interference between participants.</h3>
+<p>We assume that participants’ behaviors are independent of each other. If participants are not independent, then control group might behave as if they got the treatment, or vice-versa. For instance, Anne and Bob are friends, and get randomized to different arms of a randomized trial, we need to make sure that they don’t interfere with the other outcomes. That could happen in an educational intervention, where the intervention is providing information. We might address potential interference by randomizing groups rather than individuals.</p>
+<p>Some samples are recruited in ways that cause interference, such as snowball sampling.</p>
+</section>
+<section id="differential-non-adherence-to-assigned-treatment" class="level3" data-number="15.0.5">
+<h3 data-number="15.0.5" class="anchored" data-anchor-id="differential-non-adherence-to-assigned-treatment"><span class="header-section-number">15.0.5</span> Differential non-adherence to assigned treatment</h3>
+<p>Not all of the treatment group actually took the study medication, or attended the program, etc. The treatment group includes both people who adhered to the treatment + people who didn’t. Treatment participants may have discontinued the drug if it didn’t work.</p>
+<p>Control participants may have acquired and used the treatment.</p>
+<p>In field experiments, control group participants may lobby to gain access to the treatment. For example in project STAR to evaluate the impact of class size on school outcomes, over 10% of the control group moved to different class sizes than they were assigned to. A nutrition project in Kenya that randomly assigned some schools to get enhanced school lunches prompted parents in the control group schools to raise money to provide similar meals.</p>
+<p>Administrators in both the US and Norway have refused to take part in evaluations of job training programs for ethical, professional, or political reasons.</p>
+<p>Even for medical trials, people are less likely to agree to join if they are randomized (Kramer and Shapiro 1984, Scientific challenges in the application of randomized trials. Journal of the American Medical Association, 252, 2739–45.)</p>
+<p>Solution: Find a politically acceptable alternative Work with the stake-holders to find a politically acceptable way to do a randomized experiment to avoid resistance. Randomize one level below where politicians care, following the example of Seguro Popular. Elimination of study subjects after randomization After randomization, the researchers realize that there is one last exclusion criterion. All exclusion criteria must be applied before randomization is known. If subjects are eliminated after randomization, still need to follow them and record their outcomes to analyze.</p>
+</section>
+<section id="differential-attrition" class="level3" data-number="15.0.6">
+<h3 data-number="15.0.6" class="anchored" data-anchor-id="differential-attrition"><span class="header-section-number">15.0.6</span> Differential attrition</h3>
+<p>Attrition from experiments is not random. People may leave because the treatment failed for them, or had a bad side-effect. Similar types of attrition as in non-adherence, only difference is that the participants are no longer participating in the trial and thus not measured.</p>
+<p>Treatment participants may have left the trial if the drug didn’t work. This differential attrition would bias the results away from the null because the treated people who remained were the ones for whom the treatment worked the best.</p>
+<p>Loss-to-followup that’s equal across treatment arms reduces sample size (and thus power) without hurting internal validity. Analysis can establish whether the loss to followup is similar across treatment arms.</p>
+<p>Statisticians have methods of correcting for differential attrition, such as principal stratification, described below.</p>
+<p>Researchers can also screen beforehand on anticipated adherence</p>
+</section>
+<section id="intention-to-treat-treatment-effect" class="level3" data-number="15.0.7">
+<h3 data-number="15.0.7" class="anchored" data-anchor-id="intention-to-treat-treatment-effect"><span class="header-section-number">15.0.7</span> Intention to treat treatment effect</h3>
+<p>Another solution is to compute intention-to-treat treatment effect. The ITT treatment effect compares the entire treatment group with the entire control group. The difference between the two groups is called the “intention to treat” treatment effect. The intention-to-treat analysis may be more generalizable because it captures the fact that in real life, people don’t use a treatment perfectly. Analogous concept: pregnancy rate with typical use of a contraception method.</p>
+<p>Disadvantages of this ITT approach: overly conservative estimates because includes people who did not actually receive the treatment, so decreases power. Doesn’t answer the question about whether the treatment really works for an individual who will definitely complete the treatment. See attached article by Andrew Vickers, “Why Mr.&nbsp;Jones Got Surgery Even If He Didn’t: Intention-to-Treat Analysis” from Medscape.</p>
+<p>Solution: Compute treatment effect on the treated using statistical controls We want to know whether the intervention or drug actually works: that is, we want to know the impact of treatment on the treated, not just the impact of the intention to treat. Can’t compare those who actually took the medication with the entire control group: they’re no longer comparable groups. If you can reasonably predict who in the control group would have adhered to the treatment if they had been in the study, you can compare that subset of the control group with the treatment group who actually took the medication. Analogous concept: pregnancy rate with perfect use of a contraception method.</p>
+</section>
+<section id="randomization-methods" class="level3" data-number="15.0.8">
+<h3 data-number="15.0.8" class="anchored" data-anchor-id="randomization-methods"><span class="header-section-number">15.0.8</span> Randomization methods</h3>
+<p>Simple randomization: assign each participant to treatment versus control.</p>
+<p>Blocked randomization: ensure that half of each group goes to treatment versus control.</p>
+<p>Stratified randomization: divide participants on one or two important variables (e.g., gender) and randomize the groups separately. Stratified randomization ensures that you have a certain number of people from each group in both treatment and control. NIH regulations in some cases require sufficient numbers of women and minorities.</p>
+<p>Blinding/masking: prevent participants from knowing their treatment assignment status.</p>
+<p>Double-blind: participants and investigators are unaware of each participant’s treatment assignment.</p>
+<p>Factorial: do two trials in one. Factor 1 Yes No Factor 2 Yes No Cross-over designs.</p>
+<p>Assign same individual to both treatment and control in random order with a washout period in between. Useful for a short-acting treatment whose effects may abate.</p>
+<p>Assign same individual’s body parts to treatment and control: half of rash gets active cream versus placebo cream.</p>
+<p>Group randomization: assign entire groups to the intervention versus treatment. e.g., Mexican national health care assigned by regional divisions.</p>
+</section>
+<section id="assessing-experimental-results" class="level3" data-number="15.0.9">
+<h3 data-number="15.0.9" class="anchored" data-anchor-id="assessing-experimental-results"><span class="header-section-number">15.0.9</span> Assessing experimental results</h3>
+<p>Intent-to-treat: compare groups assigned to treatment versus control, rather than self-selected groups of those who adhered to treatment versus control. Dilutes treatment effect, but more realistic and preserves internal validity.</p>
+<p>Subgroup analyses: does treatment work better in one group than another?</p>
+<p>Issues: False significance due to multiple comparisons: if attempt many statistical tests, 5% of them are significant at the 95% level just by chance. Second, subgroups must be formed on pre-treatment-assignment variables. Otherwise, the subgroups are intermediate between treatment and outcome, such as compliance status.</p>
+<p>Interim analyses: monitor trial progress, so that can stop early. E.g., circumcision in Rakai project reduced HIV infection by 50%.</p>
+<p>Additional reading: Cite this: Andrew J. Vickers. Why Mr.&nbsp;Jones Got Surgery Even If He Didn’t: Intention-to-Treat Analysis - Medscape - Aug 17, 2009.</p>
+<p>The Beta-Carotene and Retinol Efficacy Trial (CARET) studied 18314 men and women at high risk of developing lung cancer: heavy smokers and people exposed to asbestos. They randomly assigned half the participants to take 30 mg beta-carotene and 25,000 IU vitamin A daily, and half to a placebo. The study ended after 21 months because the group receiving the vitamins had 28% more lung cancers and 17% more deaths. (N Engl J Med. 1996 May 2;334(18):1150-5., J Natl Cancer Inst. 1996 Nov 6;88(21):1550-9.)</p>
+<table class="table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Beta carotene + vitamin A (n=9420)</th>
+<th style="text-align: left;">Placebo (n=8894)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Lung cancer cases</td>
+<td style="text-align: left;">229</td>
+<td style="text-align: left;">159</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Person-years of follow-up</td>
+<td style="text-align: left;">38,684</td>
+<td style="text-align: left;">34,450</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lung cancer incidence rate (per 1000)</td>
+<td style="text-align: left;">5.9 (5.2, 6.7)</td>
+<td style="text-align: left;">4.6 (4.0, 5.4)</td>
+</tr>
+</tbody>
+</table>
+<p>caret-cancer.jpg caret-mortality.jpg</p>
+</section>
+<section id="finnish-vitamin-e-and-beta-carotene-study" class="level3" data-number="15.0.10">
+<h3 data-number="15.0.10" class="anchored" data-anchor-id="finnish-vitamin-e-and-beta-carotene-study"><span class="header-section-number">15.0.10</span> Finnish vitamin E and beta carotene study</h3>
+<p>Similar results in the Finnish Alpha-Tocopherol Beta-Carotene Cancer Prevention Study, which assigned 29,133 male smokers in Finland to 4 conditions: vitamin E (50 mg per day) alone, beta carotene (20 mg per day) alone, both vitamin E and beta carotene, or placebo. The groups that got beta carotene had 18% higher incidence of lung cancer and 8% higher mortality, primarily from lung cancer and heart disease. (N Engl J Med. 1994 Apr 14;330(15):1029-35.) The increased lung cancer incidence persisted for the first 3 years after the trial ended, but decreased after that (Virtamo J, Pietinen P, Huttunen JK, et al, Incidence of Cancer and Mortality Following <span class="math inline">\(\alpha\)</span>-Tocopherol and <span class="math inline">\(\beta\)</span>-Carotene Supplementation: A Postintervention Follow-up, JAMA. 2003;290(4):476-485.)</p>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 26%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Placebo (n=7287)</th>
+<th style="text-align: left;">Vitamin E (n=7286)</th>
+<th style="text-align: left;">Beta Carotene+E (n=7278)</th>
+<th style="text-align: left;">Beta carotene (n=7282)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Lung cancer cases</td>
+<td style="text-align: left;">209</td>
+<td style="text-align: left;">205</td>
+<td style="text-align: left;">239</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Incidence rate (per 1000)</td>
+<td style="text-align: left;">4.93</td>
+<td style="text-align: left;">4.85</td>
+<td style="text-align: left;">5.68</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relative risk (95% CI)</td>
+<td style="text-align: left;">referent</td>
+<td style="text-align: left;">0.98 (0.81, 1.19)</td>
+<td style="text-align: left;">1.15 (0.96, 1.38)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="rakai-study" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="rakai-study"><span class="header-section-number">15.1</span> Rakai study</h2>
+<p>To evaluate whether circumcision decreases HIV incidence, researchers in Rakai Uganda randomly assigned 5000 HIV-negative men ages 15–49 to be circumcised within 2 weeks of enrollment or to wait 24 months for circumcision. Gray RH, et al.&nbsp;Male circumcision for HIV prevention in men in Rakai, Uganda: a randomised trial. Lancet, Feb 24, 2007. Men with contraindications for circumcision were treated for the contraindications and enrolled after treatment if the con- tradindications resolved. Men with anatomical abnormalities were excluded from trial and referred to urologist for treatment, whch may have included circumcision. Both treatment and control participants received identical compensation: $5 at each screening/enrollment, surgery, and post-surgery visit, and $3 at each of 3 follow-up visits (total compensation $21.)</p>
+<p>Participants were randomized using blocks of 20 envelopes that were given to their com- munity, and participants chose one of the 20 envelopes to yield their treatment assignment. Once an envelope was chosen, it was replaced by another envelope from the next block. This randomization method ensured that all communities were balanced in treatment and control assignment status. Here are the demographics of treatment and control groups at baseline. Did randomization succeed in balancing the treatment and control groups?</p>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Treatment (n=2474)</th>
+<th style="text-align: left;">Control (n=2522)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Age (years)</td>
+<td style="text-align: left;">15-19</td>
+<td style="text-align: left;">679 (27%)</td>
+<td style="text-align: left;">719 (29%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">20-24</td>
+<td style="text-align: left;">686 (28%)</td>
+<td style="text-align: left;">686 (27%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">25-29</td>
+<td style="text-align: left;">440 (18%)</td>
+<td style="text-align: left;">473 (19%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">30-49</td>
+<td style="text-align: left;">669 (27%)</td>
+<td style="text-align: left;">643 (25%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marital status</td>
+<td style="text-align: left;">Never</td>
+<td style="text-align: left;">1161 (47%)</td>
+<td style="text-align: left;">1222 (48%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Currently</td>
+<td style="text-align: left;">1167 (47%)</td>
+<td style="text-align: left;">1173 (47%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Previously</td>
+<td style="text-align: left;">146 (6%)</td>
+<td style="text-align: left;">127 (5%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Religion</td>
+<td style="text-align: left;">Catholic</td>
+<td style="text-align: left;">1649 (67%)</td>
+<td style="text-align: left;">1730 (69%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Protestant</td>
+<td style="text-align: left;">667 (27%)</td>
+<td style="text-align: left;">629 (25%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Saved/Pentecostal</td>
+<td style="text-align: left;">141 (6%)</td>
+<td style="text-align: left;">146 (6%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Muslim</td>
+<td style="text-align: left;">17 (0.7%)</td>
+<td style="text-align: left;">17 (0.7%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Education</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">141 (6%)</td>
+<td style="text-align: left;">147 (6%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Primary</td>
+<td style="text-align: left;">1631 (66%)</td>
+<td style="text-align: left;">1669 (66%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Secondary</td>
+<td style="text-align: left;">603 (24%)</td>
+<td style="text-align: left;">589 (23%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Post-secondary</td>
+<td style="text-align: left;">99 (4%)</td>
+<td style="text-align: left;">116 (5%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Past year sexual partners</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">468 (19%)</td>
+<td style="text-align: left;">494 (20%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1152 (47%)</td>
+<td style="text-align: left;">1168 (46%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">545 (22%)</td>
+<td style="text-align: left;">586 (23%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">3+</td>
+<td style="text-align: left;">309 (12%)</td>
+<td style="text-align: left;">274 (11%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Past year non-marital partners</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">1220 (49%)</td>
+<td style="text-align: left;">1238 (49%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">1254 (51%)</td>
+<td style="text-align: left;">1284 (51%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Past year condom use</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">978 (40%)</td>
+<td style="text-align: left;">941 (37%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Inconsistent</td>
+<td style="text-align: left;">689 (28%)</td>
+<td style="text-align: left;">732 (29%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Consistent</td>
+<td style="text-align: left;">339 (14%)</td>
+<td style="text-align: left;">355 (14%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alcohol use with sex</td>
+<td style="text-align: left;">past 6m</td>
+<td style="text-align: left;">938 (38%)</td>
+<td style="text-align: left;">966 (38%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sex for money/gifts</td>
+<td style="text-align: left;">any</td>
+<td style="text-align: left;">38 (2%)</td>
+<td style="text-align: left;">36 (1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Prior voluntary counselling/testing</td>
+<td style="text-align: left;">any</td>
+<td style="text-align: left;">648 (26%)</td>
+<td style="text-align: left;">574 (23%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Self-reported STI symptoms</td>
+<td style="text-align: left;">Genital ulcer disease</td>
+<td style="text-align: left;">179 (7%)</td>
+<td style="text-align: left;">176 (7%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Urethral discharge</td>
+<td style="text-align: left;">85 (3%)</td>
+<td style="text-align: left;">94 (4%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Dysuria</td>
+<td style="text-align: left;">138 (6%)</td>
+<td style="text-align: left;">162 (6%)</td>
+</tr>
+</tbody>
+</table>
+<p>Participants were tested for HIV at 6 month intervals during the trial. All HIV-positive screenees and participants were treated for HIV using Pepfar funds (Pres.&nbsp;George W Bush’s Presidential Emergency Fund for AIDS Relief). Here are the results:</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Treatment</th>
+<th style="text-align: left;">Control</th>
+<th style="text-align: left;">IRR (95% CI)</th>
+<th style="text-align: left;">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0–6 mos</td>
+<td style="text-align: left;">No.&nbsp;participants</td>
+<td style="text-align: left;">2263</td>
+<td style="text-align: left;">2319</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Incident HIV infections</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">19</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Person-years</td>
+<td style="text-align: left;">1172</td>
+<td style="text-align: left;">1207</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Incidence per 100 p-y</td>
+<td style="text-align: left;">1.19</td>
+<td style="text-align: left;">1.58</td>
+<td style="text-align: left;">0.76 (0.35, 1.60)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">6–12 mos</td>
+<td style="text-align: left;">No.&nbsp;participants</td>
+<td style="text-align: left;">2235</td>
+<td style="text-align: left;">2229</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Incident HIV infections</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Person-years</td>
+<td style="text-align: left;">1191</td>
+<td style="text-align: left;">1176</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Incidence per 100 p-y</td>
+<td style="text-align: left;">0.42</td>
+<td style="text-align: left;">1.19</td>
+<td style="text-align: left;">0.35 (0.10, 1.04)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">12–24 mos</td>
+<td style="text-align: left;">No.&nbsp;participants</td>
+<td style="text-align: left;">964</td>
+<td style="text-align: left;">980</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Incident HIV infections</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Person-years</td>
+<td style="text-align: left;">990</td>
+<td style="text-align: left;">1009</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Incidence per 100 p-y</td>
+<td style="text-align: left;">0.30</td>
+<td style="text-align: left;">1.19</td>
+<td style="text-align: left;">0.25 (0.05, 0.94)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total 0–24 mos</td>
+<td style="text-align: left;">No.&nbsp;participants</td>
+<td style="text-align: left;">2387</td>
+<td style="text-align: left;">2430</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Incident HIV infections</td>
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">45</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Person-years</td>
+<td style="text-align: left;">3352</td>
+<td style="text-align: left;">3392</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Incidence per 100 p-y</td>
+<td style="text-align: left;">0.66</td>
+<td style="text-align: left;">1.33</td>
+<td style="text-align: left;">0.49 (0.28, 0.84)</td>
+</tr>
+</tbody>
+</table>
+<p>The researchers also estimated incidence rate ratios within each of the baseline factors. The IRR was signficicant at the 0.05 level with those with no or primary education, 2+ sexual partners, non-marital sex partners, inconsistent condom use (but not no condom use), those who did not use alcohol with sex, both those who engaged and did not engage in transactional sex, those w/o uretrhral discharge, and those w/o dysuria.</p>
+<p><img src="images/Rakai-results.png" class="img-fluid"></p>
+</section>
+<section id="social-experiments" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="social-experiments"><span class="header-section-number">15.2</span> Social experiments</h2>
+<section id="first-social-experiment-new-jersey-income-maintenance-experiment" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="first-social-experiment-new-jersey-income-maintenance-experiment"><span class="header-section-number">15.2.1</span> First social experiment: New Jersey Income Maintenance Experiment</h3>
+<p>Tested guaranteed minimum income (negative income tax) in 1967: 1375 families in 4 NJ cities (Paterson, Jersey City, Trenton, and Passaic) with the addition of Scranton, PA to increase the representation of white families.</p>
+</section>
+<section id="rand-health-insurance-experiment" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="rand-health-insurance-experiment"><span class="header-section-number">15.2.2</span> RAND Health Insurance Experiment</h3>
+<p>RAND Health Insurance Experiment (RAND HIE, 1974–82): 7700 participants in 6 sites in the US assigned to 0% (free), 25%, 50%, and 95% coinsurance, and non-profit HMO with no coinsurance. Out of pocket expenditure capped as percentage of income (5, 10, 15%) or equivalent of $3800 today, whichever was lower. Cost-sharing and HMO predicted lower chance of initiating treatment than with no coinsurance. (Joseph P. Newhouse and the Insurance Experiment Group. Free for All? Lessons from the RAND Health Experiment. Cambridge, Mass.: Harvard University Press, 1993. Also http://www.rand.org/pubs/research briefs/RB9174/index1.html)</p>
+</section>
+<section id="seguro-popular-de-salud-the-mexican-universal-health-care-system" class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="seguro-popular-de-salud-the-mexican-universal-health-care-system"><span class="header-section-number">15.2.3</span> Seguro Popular de Salud: the Mexican universal health care system</h3>
+<p>The Mexican government implemented their 2005 universal health care system such that it could be tested with randomized experiment: 7100 health clusters (health facility cachement areas) in 13 states were identified, and researchers identified 74 matched pairs of clusters that included 119,000 households.</p>
+<p>King, Gary, Gakidou, Emmanuela, Imai, Kosuke, et al.&nbsp;2009. Public Policy for the Poor? A Randomised Assessment of the Mexican Universal Health Insurance Programme. The Lancet 373: 1447-1454. Copy at http://j.mp/lgZF4R, King, Gary, et al.&nbsp;2007. A “Politically Robust” Experimental Design for Public Policy Evaluation, with Application to the Mexican Universal Health Insurance Program. Journal of Policy Analysis and Management 26: 479-506. Copy at http://j.mp/lXnta2</p>
+</section>
+<section id="oregon-health-study" class="level3" data-number="15.2.4">
+<h3 data-number="15.2.4" class="anchored" data-anchor-id="oregon-health-study"><span class="header-section-number">15.2.4</span> Oregon Health Study</h3>
+<p>Oregon closed its Medicaid rolls in 2004 due to lack of funding, but it was later able to extend Medicaid, so held a lottery in 2008.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Stage</th>
+<th style="text-align: left;">Number</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Signed up for lottery</td>
+<td style="text-align: left;">89,824</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chosen in lottery</td>
+<td style="text-align: left;">30,000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Submitted applications</td>
+<td style="text-align: left;">18,300</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Accepted and enrolled in Medicaid</td>
+<td style="text-align: left;">8704</td>
+</tr>
+</tbody>
+</table>
+<p>Question: What should the treatment group be? The 30,000 people given applications, the people who submitted the application, or the 8704 who actually enrolled in Medicaid? K Baicker et al, The Oregon Experiment — Effects of Medicaid on Clinical Outcomes. N Engl J Med 2013; 368:1713–1722.</p>
+</section>
+<section id="moving-to-opportunity" class="level3" data-number="15.2.5">
+<h3 data-number="15.2.5" class="anchored" data-anchor-id="moving-to-opportunity"><span class="header-section-number">15.2.5</span> Moving to Opportunity</h3>
+<p>Low-poverty area vouchers and assistance (n=1788) Housing vouchers alone (n=1312) Control group (n=1398)</p>
+<p>Findings: - Children who moved to low-poverty neighborhoods had better mental and physical health than either control group. (Soc Sci Med. 2011 Sep;73(5):737-43.).</p>
+<ul>
+<li><p>10 years later, obesity and diabetes were less common among the parents who moved to the low-poverty neighborhoods. (N Engl J Med. 2011 Oct 20;365(16):1509-19.)</p></li>
+<li><p>10–15 years later, subjective well-being was higher among families who moved to the low-poverty neighborhoods (Science. 2012 Sep 21;337(6101):1505-10.)</p></li>
+<li><p>Children who moved to low-poverty neighborhoods had less exposure to danger, especially girls (Soc Sci Res. 2012 Jul;41(4):788-801.)</p></li>
+<li><p>Several studies found better outcomes for girls and worse outcomes for boys. One study found both boys and girls who moved to low-poverty neighborhoods had lower grades and school engagement after 5 years (Dev Psychol. 2005 Nov;41(6):933-52). J Ludwig et al, Neighborhoods, Obesity, and Diabetes — A Randomized Social Experiment, N Engl J Med. 2011 Oct 20;365(16):1509–19.</p></li>
+</ul>
+</section>
+<section id="post-diction-and-coincidences" class="level3" data-number="15.2.6">
+<h3 data-number="15.2.6" class="anchored" data-anchor-id="post-diction-and-coincidences"><span class="header-section-number">15.2.6</span> Post-diction and coincidences</h3>
+<p>RCTs need to establish their hypotheses before they are tested, or else they engage in “post- diction” and could be finding significant findings due to multiple comparisons. Postdiction is the scientific equivalent of coincidences. Many coincidences that seem im- probable are not that improbable. My first two boyfriends had birthdays within 2 days of each other, in different years, which sounds unlikely, but the probability of that event (two people having birthdays within 2 days of each other) is 5/365, or about 1.4%. It’s unlikely but not that unlikely. See Radio Lab and This American Life for coincidence stories. My favorite: a person asks his friend to email him a picture, and she sends a picture of herself as a 4 year old child at a tourist attraction; he notices his grandmother in the background of the photo. Another: an engaged couple discovers that her mother had been engaged to his deceased father in Korea. https://www.thisamericanlife.org/radio-archives/episode/489/transcript</p>
+</section>
+<section id="false-significance-due-to-multiple-comparisons" class="level3" data-number="15.2.7">
+<h3 data-number="15.2.7" class="anchored" data-anchor-id="false-significance-due-to-multiple-comparisons"><span class="header-section-number">15.2.7</span> False significance due to multiple comparisons</h3>
+<p>Illustrated by this comic: https://xkcd.com/882/</p>
+</section>
+<section id="publication-bias" class="level3" data-number="15.2.8">
+<h3 data-number="15.2.8" class="anchored" data-anchor-id="publication-bias"><span class="header-section-number">15.2.8</span> Publication bias</h3>
+<p>RCTs are the best way to learn about cause and effect, but does studying the published liter- ature of RCTs teach you whether a RCT works? E. J. Masicampoa &amp; Daniel R. Lalande, A peculiar prevalence of p values just below .05, The Quarterly Journal of Experimental Psychology, Volume 65, Issue 11, 2012. (Histogram from http://normaldeviate.wordpress.com)</p>
+<p>The International Committee of Medical Journal Editors and FDA required all clinical trials to be registered beforehand, to ensure that even negative results would be known. To reduce publication bias, clinical trial registries were developed to require all clinical trials to register prior to their starts, and to report all results within a year. Prayle, Hurley, Smyth, Compliance with mandatory reporting of clinical trial results on ClinicalTrials.gov: cross sectional study, BMJ 2012; 344</p>
+<p>(Source: BMJ 2012;344:d7373) A more recent study found trial registration increased with time, but was still below 50%. Anderson ML, Chiswell K, Peterson ED, Tasneem A, Topping J, Califf RM. Compliance with results reporting at ClinicalTrials.gov.N Engl J Med. 2015 Mar 12;372(11):1031-9. doi: 10.1056/NEJMsa1409364.</p>
+</section>
+<section id="a-study-designed-to-be-misleading-chocolate-for-dieting-rct" class="level3" data-number="15.2.9">
+<h3 data-number="15.2.9" class="anchored" data-anchor-id="a-study-designed-to-be-misleading-chocolate-for-dieting-rct"><span class="header-section-number">15.2.9</span> A study designed to be misleading: Chocolate for dieting RCT</h3>
+<p>A paper with the following abstract was published in the International Archives of Medicine and featured in the popular press (see the attached xerox from Shape magazine, June 2015: “Why you must eat Chocolate Daily.”) The full study is available here: http://www.scribd.com/doc/266969860/Chocolate-causes-weight-loss</p>
+<p>The study was a real study, but it was designed to be intentionally biased away from the null. http://io9.com/i-fooled-millions-into-thinking-chocolate-helps-weight-1707251800 What clues can you find that the study is biased away from the null?</p>
+</section>
+</section>
+<section id="quasi-experimental-designs" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="quasi-experimental-designs"><span class="header-section-number">15.3</span> Quasi experimental designs</h2>
+<section id="instrumental-variables" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="instrumental-variables"><span class="header-section-number">15.3.1</span> Instrumental variables</h3>
+</section>
+<section id="regression-discontinuity" class="level3" data-number="15.3.2">
+<h3 data-number="15.3.2" class="anchored" data-anchor-id="regression-discontinuity"><span class="header-section-number">15.3.2</span> Regression discontinuity</h3>
+<p>Regression discontinuity studies can evaluate programs where eligibility is determined by a cut-off value: people below the cut-off value do not qualify, and people above the cut-off value qualify. They compare people who are just below the cut-off value with those just above because cut-off points can be arbitrary. The following image3 shows four different outcomes of a regression discontinuity study where the outcome is continuous: (a) linear relationship with no treatment effect; (b) linear regression with treatment effect; (c) curvilinear relationship with no treatment effect; (d) linear relationship with treatment effect between 3 conditions. Ariel Linden, John L. Adams, Nancy Roberts. Evaluating disease management programme effectiveness: an introduction to the regression discontinuity design. Journal of Evaluation in Clinical Practice. 2006;12(2):124– 131.</p>
+<p>Similar analyses could be done with regression discontinuity design with dichotomous outcome. Regression discontinuity designs avoid the following threats to internal validity that are often present in observational studies: selection bias, maturation, and regression to the mean. Explain why these threats to internal validity would apply in many observational studies. Would they apply in a regression discontinuity design?</p>
+<p>Regression to the mean: see this illustration of health care costs for two consecutive years for continuously insured patients: coronary artery disease (CAD), congestive heart failure (CHF), and chronic obstructive pulmonary disease (COPD). Costs are quintiles numbered I (lowest cost) to V (highest cost).</p>
+<section id="example-disease-management-programs" class="level4" data-number="15.3.2.1">
+<h4 data-number="15.3.2.1" class="anchored" data-anchor-id="example-disease-management-programs"><span class="header-section-number">15.3.2.1</span> Example: Disease management programs</h4>
+<p>Disease management programs target individuals with health problems that can be dangerous and costly if uncontrolled, and give them additional counseling: e.g., pregnant women at risk for birth complications, people with diabetes and hypertension. Frequently, disease management programs are evaluated with a pre-post design with no control groups: researchers compare costs before versus after the disease management program was implemented. Disease management programs are often designed to admit people according to their results on medical test(s) with continuous or ordinal results — HbA1c or blood glucose (diabetes), blood pressure, cholesterol/lipids (coronary heart disease), ejection fraction (congestive heart failure), peak flow or forced expiratory volume (asthma) — so they are appropriate for regression discontinuity design evaluations.4 4Ariel Linden, John L. Adams, Nancy Roberts. Evaluating disease management programme effectiveness: an introduction to the regression discontinuity design. Journal of Evaluation in Clinical Practice. 2006;12(2):124– 131.</p>
+</section>
+<section id="example-medicaid-expansion" class="level4" data-number="15.3.2.2">
+<h4 data-number="15.3.2.2" class="anchored" data-anchor-id="example-medicaid-expansion"><span class="header-section-number">15.3.2.2</span> Example: Medicaid expansion</h4>
+<p>The State Children’s Health Insurance Program expanded Medicaid to cover many more chil- dren. Researchers used regression discontinuity study by birthdate to evaluate later life health problems. Laura R Wherry, Sarah Miller, Robert Kaestner, Bruce D Meyer, Childhood Medicaid Coverage and Later Life Health Care Utilization. NBER Working Paper No.&nbsp;20929 Issued in February 2015, Revised in October 2015. http://www.nber.org/papers/w20929 Many more Black children became eligible for SCHIP after the implementation:</p>
+<p>What do you notice about Medicaid receipt in 1992–96 and hospitalizations and hospital costs in 2009? (Caption: “Authors’ calculations from the National Health Interview Survey, 1992–1996. Cohorts born in 1983 are between the ages of 8 and 13 in these figures. The trend is estimated using children between the ages of 4 and 17.”)</p>
+</section>
+<section id="example-abortion-gestational-age-limits" class="level4" data-number="15.3.2.3">
+<h4 data-number="15.3.2.3" class="anchored" data-anchor-id="example-abortion-gestational-age-limits"><span class="header-section-number">15.3.2.3</span> Example: Abortion gestational age limits</h4>
+<p>First trimester abortion: n=273</p>
+<p>Less than 2 weeks within the limit (eligible for abortion): n=452</p>
+<p>No abortion: more than 3 w post-limit n=231</p>
+<p>At baseline, women who got abortions were equally likely to receive public assistance as women denied abortions (45%), but one year later, women denied abortions were more likely to receive public assistance (76%) than women who had abortions (44%). At baseline, the same number had household incomes below the federal poverty line (66%); one year later, women who got abortions were less likely to be below the federal poverty line (56%) than women who were denied abortions (67%) At baseline, 45% received public assistance, two thirds had household incomes below the federal poverty level (FPL) and the average household size was 3.7. One year later, 86% of women denied an abortion were living with the baby; 11% had placed the baby for adoption. Women denied abortion were more likely to be receiving public assistance (76% vs.&nbsp;44%) and have household income below the FPL (67% vs.&nbsp;56%) than women who received an abortion. The proportion of women denied an abortion who were working full time was lower than among women who received an abortion (48% vs.&nbsp;58%). “Turnaways who ultimately gave birth increased use of drugs other than marijuana compared to women in the Near Limit Abortion Group (p=.041), who did not increase use.” (Roberts SC, Rocca CH, Foster DG. Receiving versus being denied an abortion and subsequent drug use. Drug Alcohol Depend. 2013 Sep 23.)</p>
+</section>
+<section id="example-drinking-age-impact-on-mortality" class="level4" data-number="15.3.2.4">
+<h4 data-number="15.3.2.4" class="anchored" data-anchor-id="example-drinking-age-impact-on-mortality"><span class="header-section-number">15.3.2.4</span> Example: Drinking age impact on mortality</h4>
+<p>(Carpenter and Dobkin, The Effect of Alcohol Consumption on Mortality: Regression Discontinuity Evidence from the Minimum Drinking Age, American Economic Journal: Applied Economics 2009, 1:1, 164–182. Carpenter and Dobkin, The Minimum Legal Drinking Age and Public Health, JEP 2011)</p>
+</section>
+</section>
+<section id="interrupted-time-series" class="level3" data-number="15.3.3">
+<h3 data-number="15.3.3" class="anchored" data-anchor-id="interrupted-time-series"><span class="header-section-number">15.3.3</span> Interrupted time series</h3>
+<p>Example: Marijuana legalization and police stops Christopher Ingraham, Legalized marijuana is making it harder for police to search your car, June 26, 2017, Washington Post Wonkblog, https://www.washingtonpost.com/amphtml/news/wonk/wp/2017/06/26/legalized-marijuana-is-making-it-harder-for-poli based on data from Stanford Open Policing Project, https://openpolicing.stanford.edu/findings/ Similar decreases were not seen in states that did not legalize marijuana.</p>
+</section>
+<section id="differences-in-differences" class="level3" data-number="15.3.4">
+<h3 data-number="15.3.4" class="anchored" data-anchor-id="differences-in-differences"><span class="header-section-number">15.3.4</span> Differences in differences</h3>
+<p>Instruments and sudden discontinuities aren’t always available to answer a research question. When they aren’t, analysis of natural experiments uses a differences-in-differences framework. Often, when people use the term “quasi-experiment”, they mean differences-in-differences. The classic book Quasi-Experimentation: Design &amp; Analysis Issues for Field Settings by Thomas Cook and Donald Campbell (1979) uses the notation X to refer to an intervention and Oi to refer to an observation at time i. The subscript can be omitted if there is only one. The simplest form of a differences-in-differences study is a pre-post study with control group.</p>
+<p>Using Cook and Campbell’s notation, a pre-post with control study would look like this: O1 X O2 O1 O2 Or there may be multiple pre- and/or post- observations: Pre T1 Pre T2 …. Post T1 Post T2 Post T3 …. Treatment Control O1 O2 X O3 O4 O5 O1 O2 O3 O4 O5 Ideally, the pre-treatment observations for the treatment and control groups line up, and diverge after the treatment. When the pre-treatment observations do not line up, the synthetic matching method can be used. Example: Minimum wage and unemployment In April 1992, NJ increased its minimum wage from $4.25 to $5.05, and PA did not change its minimum wage. Card and Krueger compared employment and other outcomes at fast-food restaurants in New Jersey and eastern Pennsylvania (across the Delaware River from NJ) before versus after the increase: in February and November 1992.5 Their data came from a telephone survey of 410 fast-food restaurants listed in the telephone white pages in February 1992. They found no decrease in employment and no increase in meal costs, suggesting that moderate increases in the minimum wage does not have a negative economic impact on consumers or restaurant employees. 5David Card and Alan Kreuger, Minimum Wages and Employment: A Case Study of the Fast Food Industry in New Jersey and Pennsylvania, AER, September 1994.</p>
+<p>Neumark and Wascher 2000 did a similar analysis using payroll data and contend that NJ’s minimum wage increase resulted in declining employment. They claimed that the telephone survey data used in Card and Krueger caused errors.6 After the 1996 federal minimum wage increase to $4.75, which affected PA but not NJ, Card and Krueger updated their study using the Neumark and Wascher data. They also tested the sensitivity of their model to specifications, such as which regions of Pennsylvania .7 6Neumark, David, and William Wascher. 2000. Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania: Comment. American Economic Review, 90(5): 1362-1396. 7Card, David, and Alan B. Krueger. 2000. Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania: Reply. American Economic Review, 90(5): 1397-1420.</p>
+<section id="sidebar-alan-kreuger" class="level4" data-number="15.3.4.1">
+<h4 data-number="15.3.4.1" class="anchored" data-anchor-id="sidebar-alan-kreuger"><span class="header-section-number">15.3.4.1</span> Sidebar: Alan Kreuger</h4>
+<p>For this crucial empirical work testing an economic theory with empirical evidence, David Card was awarded the Nobel Memorial Prize in Economics in 2021 (https://www.nobelprize.org/prizes/economic-sciences/2021/card/facts/). If Alan Kreuger had been still alive in 2021, he would shared the Nobel Memorial Prize according to Card, but in 2019, Kreuger died by suicide at age 58 (Noah, Timothy. “Tragedy Kept Alan Krueger From Claiming a Nobel Prize, but He’s Not Forgotten”. The New Republic.October 14, 2021).</p>
+<p>President Obama’s eulogy: “Over the weekend, America lost a brilliant economist, and many of us lost a dear friend. When I asked Alan Krueger to serve as my chief economist in the White House, he’d already had a stellar career inside and outside of government. He spent the first two years of my administration helping to engineer our response to the worst financial crisis in 80 years, and to successfully prevent the chaos from spiraling into a second Great Depression. During his tenure as the Chair of my Council of Economic Advisors, he helped us return the economy to growth and sustained job creation, to bring down the deficit in a responsible way, and to set the stage for wages to rise again.</p>
+<p>But Alan was someone who was deeper than numbers on a screen and charts on a page. He saw economic policy not as a matter of abstract theories, but as a way to make people’s lives better. He believed that facts, reason, and evidence could make government more responsive, and his enthusiasm and curiosity was truly infectious. It’s part of what made him not only a great economist but a great teacher – someone who could make complicated subjects accessible and even fun. A landmark, real-world study on the positive impact of the minimum wage. His creation of the “Gatsby Curve” that illustrated the connection between concentrated wealth and social mobility between generations. A rollicking speech at the Rock and Roll Hall of Fame on how understanding the economics of rock and roll might help us solve one of his deepest concerns: rebuilding the middle class in a changing economy. Through it all, he had a perpetual smile and a gentle spirit – even when he was correcting you. That’s what made him Alan – a fundamentally good and decent man.</p>
+<p>My thoughts today are with his wife, Lisa, their kids, Ben and Sydney, his many students and colleagues, and everyone who loved and will miss Alan Krueger.”</p>
+</section>
+<section id="example-school-desegregation" class="level4" data-number="15.3.4.2">
+<h4 data-number="15.3.4.2" class="anchored" data-anchor-id="example-school-desegregation"><span class="header-section-number">15.3.4.2</span> Example: School desegregation</h4>
+<p>In 1952, US states took 4 stances towards racial segregation in schools: 17 states mandated racial segregation, 4 states allowed segregation, 16 states banned racial segregation, and 11 states had no law on the topic. After the 1954 case, Brown vs.&nbsp;Board of Ed, court orders to desegregate schools occurred in 1057 school districts on varying dates between 1954 and 1980. Legislation in 1964 (Civil Rights Act) and 1965 (Elementary &amp; Secondary Education Act) spurred desegregation. The timing of the court orders can be considered arbitrary/random. Children attended desegregated schools for varying numbers of years: if their local school district desegregated after they were age 17, they were assumed to have attended segregated schools. Rucker computed various outcomes by number of years of desegregation.</p>
+</section>
+</section>
+<section id="synthetic-matching" class="level3" data-number="15.3.5">
+<h3 data-number="15.3.5" class="anchored" data-anchor-id="synthetic-matching"><span class="header-section-number">15.3.5</span> Synthetic matching</h3>
+<p>Many times, a political unit will attempt a policy innovation that has never been tried elsewhere: e.g., Colorado and later Washington State legalizing marijuana, Oregon making pseudoephedrine only available by prescription to prevent methamphetamine manufacture (precursor laws). Researchers attempt to study these innovations with pre-post studies without control, but these studies are inconclusive.</p>
+<p>A Abadie, A Diamond, J Hainmueller. Synthetic control methods for comparative case studies: Estimating the effect of California’s Tobacco Control Program. Journal of the American Statistical Association. 2010; 105 (490), 493-505</p>
+<p>Synthetic matching is an attempt to add rigor to a differences in differences framework to allow causal inference from these situations. Abadie evaluated the impact of California’s Proposition 99 tobacco control program on smokingprevalence.8 Proposition99 increased cigarette taxes by 25 cents to fund antismoking projects and media campaigns, funded tobaco-related research, and triggered 140 clean air laws between 1989 and 2000 that banned smoking in workplaces, so that by 1994 more than 90% of workers were covered. Smoking rates and per capita cigarette smoking decreased.</p>
+<p>Without synthetic matching, the effects of the tobacco control initiative are unclear. How much of the decrease in smoking is attributable to Proposition 99?</p>
+<p><img src="images/pre-post-ca.jpg" class="img-fluid"></p>
+<p>It’s impossible to know in a pre-post study.</p>
+<p>However, the synthetic control method offers a way forward. State were included for synthetic California if they did not have statewide anti-tobacco laws (excludes MA, FL, AZ, OR) or tobacco tax increases greater than 50 cents from 1989–2000 (excludes AK, HI, MD, MI, NJ, NY, WA), so they considered 38 remaining states. Their outcome was cigarette packs sold per capita, which is available from state tax data and doesn’t rely on self-report. They matched on the following predictors of smoking prevalence averaged over 1980–88: average retail price of cigarettes, per capita state personal income (logged), the percentage of the population age 15–24, and per capita beer consumption. They also included smoking consumption in 1975, 1980, and 1988, prior to prop 99. Synthetic California is a combination of Colorado (0.164), Connecticut (0.069), Montana (0.199), Nevada (0.234), and Utah (0.334). This table compares synthetic and actual California on the matching variables.</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Real California</th>
+<th style="text-align: left;">Synthetic California</th>
+<th style="text-align: left;">Average of 38 control states</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Log (GDP per capita) (1980–88)</td>
+<td style="text-align: left;">10.08</td>
+<td style="text-align: left;">9.86</td>
+<td style="text-align: left;">9.86</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percent ages 15–24 (1980–88)</td>
+<td style="text-align: left;">17.40</td>
+<td style="text-align: left;">17.40</td>
+<td style="text-align: left;">17.29</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Retail price pack of cigarettes (1980–88)</td>
+<td style="text-align: left;">89.42</td>
+<td style="text-align: left;">89.42</td>
+<td style="text-align: left;">87.27</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Beer consumption per capita (1984–88)</td>
+<td style="text-align: left;">24.28</td>
+<td style="text-align: left;">24.20</td>
+<td style="text-align: left;">23.75</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cigarette sales packs per capita 1988</td>
+<td style="text-align: left;">90.10</td>
+<td style="text-align: left;">91.62</td>
+<td style="text-align: left;">114.20</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cigarette sales packs per capita 1980</td>
+<td style="text-align: left;">120.20</td>
+<td style="text-align: left;">120.43</td>
+<td style="text-align: left;">136.58</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cigarette sales packs per capita 1975</td>
+<td style="text-align: left;">127.10</td>
+<td style="text-align: left;">126.99</td>
+<td style="text-align: left;">132.81</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/synthetic-ca.png" class="img-fluid"></p>
+<p>To make sure that they didn’t just choose outliers, they also compared the gap between synthetic California with actual California, with the gap between synthetic California and all 38 control states.</p>
+<p><img src="images/ca-allstates.jpg" class="img-fluid"></p>
+</section>
+</section>
+<section id="exercise" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="exercise"><span class="header-section-number">15.4</span> Exercise</h2>
+<p>This exercise is based on the paper Ornstein KA, et al.&nbsp;“The Use of Life-Sustaining Procedures in the Last Month of Life Is Associated With More Depressive Symptoms in Surviving Spouses.” J Pain and Symptom Management. 2017;53(2):178–187.</p>
+<ol type="1">
+<li><p>What kind of data does the study use?</p></li>
+<li><p>What is the research question?</p></li>
+<li><p>What is the primary predictor of interest in this study? Define it briefly. If categorical or dichotomous, list the categories of the variable.</p></li>
+<li><p>Which are the primary outcome(s) in this study?</p></li>
+<li><p>Looking at the first 3 columns of Table 3, identify some potential confounders of the relationship between the predictor and the outcome(s)? Explain in detail how these variables could cause a spurious connection between receiving life-sustaining procedures and depressive symptoms in surviving spouses.</p></li>
+<li><p>Does matching balance the two groups: those who received life-sustaining procedures with those who did not?</p></li>
+<li><p>Do you think that the relationship is causal? Take a stance and support it.</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapt12.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapt14.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

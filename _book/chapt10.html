@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Epidemiology Methods lecture notes - 12&nbsp; Ecological studies</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapt11.html" rel="next">
+<link href="./chapt9.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Epidemiology Methods lecture notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chaptA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data displays</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Identifying research questions and data sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testing hypotheses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Associations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Causality vs association</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Excess risk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Measurement error and screening</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Confounding and linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt9.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt10.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt11.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Example data analysis in YRBS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt12.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt13.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt14.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt15.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case-control studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#when-ecological-studies-are-useful" id="toc-when-ecological-studies-are-useful" class="nav-link active" data-scroll-target="#when-ecological-studies-are-useful"><span class="toc-section-number">12.0.1</span>  When ecological studies are useful</a></li>
+  <li><a href="#measurements-in-ecological-studies" id="toc-measurements-in-ecological-studies" class="nav-link" data-scroll-target="#measurements-in-ecological-studies"><span class="toc-section-number">12.0.2</span>  Measurements in ecological studies</a></li>
+  <li><a href="#how-to-analyze-ecological-and-multi-level-studies" id="toc-how-to-analyze-ecological-and-multi-level-studies" class="nav-link" data-scroll-target="#how-to-analyze-ecological-and-multi-level-studies"><span class="toc-section-number">12.0.3</span>  How to analyze ecological and multi-level studies</a></li>
+  <li><a href="#ecological-fallacy" id="toc-ecological-fallacy" class="nav-link" data-scroll-target="#ecological-fallacy"><span class="toc-section-number">12.1</span>  Ecological fallacy</a>
+  <ul class="collapse">
+  <li><a href="#cross-level-bias" id="toc-cross-level-bias" class="nav-link" data-scroll-target="#cross-level-bias"><span class="toc-section-number">12.1.1</span>  Cross-level bias</a></li>
+  <li><a href="#flaws-of-ecological-studies" id="toc-flaws-of-ecological-studies" class="nav-link" data-scroll-target="#flaws-of-ecological-studies"><span class="toc-section-number">12.1.2</span>  Flaws of ecological studies</a></li>
+  </ul></li>
+  <li><a href="#application-to-ecological-datasets" id="toc-application-to-ecological-datasets" class="nav-link" data-scroll-target="#application-to-ecological-datasets"><span class="toc-section-number">12.2</span>  Application to ecological datasets</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="toc-section-number">12.3</span>  Exercise</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Ecological studies are a class of study designs, not a single design. The distinguishing feature of ecological study has the unit of analysis as an aggregate (e.g., country, county, school, hospital, census block), rather than the individual.</p>
+<p>Ecological studies include several designs:</p>
+<ul>
+<li><p>Group-randomized trial: Usually a randomized ecological study is not referred to as “ecological,” but the unit of analysis is at the group level.</p></li>
+<li><p>Cohort, cross-sectional, longitudinal.</p></li>
+</ul>
+<section id="when-ecological-studies-are-useful" class="level3" data-number="12.0.1">
+<h3 data-number="12.0.1" class="anchored" data-anchor-id="when-ecological-studies-are-useful"><span class="header-section-number">12.0.1</span> When ecological studies are useful</h3>
+<p>Ecological studies are useful when aggregate information is most readily available, especially for preliminary analysis before proceeding to an individual-level study.</p>
+<ul>
+<li><p>Killias study used International Crime Victimization Study (ICVS) data about gun ownership to estimate prevalence of gun ownership, and compared with homicide rate. Homicide is rare, and gun ownership of each victim is unknown.</p></li>
+<li><p>Gun studies have used individual-level data and found that individuals are at greater risk if there’s a gun in the home, guns are often used in intimate partner violence, etc., but first step was finding higher rates of violent crime in places with more guns.</p></li>
+<li><p>Other examples where ecological study was the first step: smoking and lung cancer, poverty and pellagra, fluoride and cavities.</p></li>
+</ul>
+<p>Ecological studues are also useful when an exposure occurs at the population level: e.g., evaluating the impacts of policies or other geographic-level qualities on disease.</p>
+<ul>
+<li><p>Laws in a particular country or state</p></li>
+<li><p>Hospital policy towards premature infants (as in chapter 1).</p></li>
+<li><p>To advocate policies: e.g., Swiss cantons that require gun storage in the central depots might have lower rates of accidental gun injuries.</p></li>
+</ul>
+<p>Ecological studues are also useful when exposure has high measurement error, so aggregate measures are more accurate than individual measures.</p>
+</section>
+<section id="measurements-in-ecological-studies" class="level3" data-number="12.0.2">
+<h3 data-number="12.0.2" class="anchored" data-anchor-id="measurements-in-ecological-studies"><span class="header-section-number">12.0.2</span> Measurements in ecological studies</h3>
+<p>• Aggregate measures (contextual factors): summary of many individual measures, e.g., % population with syphilis. • Inherently population-level measures (integral measures): e.g., population density, GDP. Multi-level studies use contextual factors and individual-level factors.</p>
+<p>• E.g., Individuals within regions. • Multi-level analysis captures the variation both across regions and across individuals.</p>
+</section>
+<section id="how-to-analyze-ecological-and-multi-level-studies" class="level3" data-number="12.0.3">
+<h3 data-number="12.0.3" class="anchored" data-anchor-id="how-to-analyze-ecological-and-multi-level-studies"><span class="header-section-number">12.0.3</span> How to analyze ecological and multi-level studies</h3>
+<p>If the data is continuous, start by plotting the data. Plots are particularly useful because the smaller number of units and lower measurement errors makes it more likely that you’ll see a trend. Nearly all data analysis is with a computer.</p>
+</section>
+<section id="ecological-fallacy" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="ecological-fallacy"><span class="header-section-number">12.1</span> Ecological fallacy</h2>
+<p>Inferences about individual behavior cannot be made from aggregate statistics. When people try to make such inferences anyhow, they have committed the ecological fallacy.</p>
+<p>Example: Mark Bittman published an oped in the NYT (“It’s the Sugar, Folks” Feb 27, 2013) with the ecological fallacy, and also inappropriate attribution of causality. http://opinionator.blogs.nytimes.com/2013/02/27/its-the-sugar-folks They had to issue the correction: “Correction: March 6, 2013 Mark Bittman’s column on Thursday incorrectly described findings from a recent epidemiological study of the relationship of sugar consumption to diabetes. The study found that increased sugar in a population’s food supply was linked to higher rates of diabetes — independent of obesity rates — but stopped short of stating that sugar caused diabetes. It did not find that”obesity doesn’t cause diabetes: sugar does.” Obesity is, in fact, a major risk factor for Type 2 diabetes, as the study noted.”</p>
+<section id="cross-level-bias" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="cross-level-bias"><span class="header-section-number">12.1.1</span> Cross-level bias</h3>
+<p>Cross-level bias is one reason to avoid committing the ecological fallacy.</p>
+<p>The following plots are an example of cross-level bias, which shows why that extra structure is useful for data analysis, both conceptually and statistically.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'mosaic':
+  method                           from   
+  fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+The 'mosaic' package masks several functions from core packages in order to add 
+additional features.  The original behavior of these functions should not be affected by this.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'mosaic'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:dplyr':
+
+    count, do, tally</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:Matrix':
+
+    mean</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggplot2':
+
+    stat</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+    quantile, sd, t.test, var</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    max, mean, min, prod, range, sample, sum</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">exposure =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">0.3</span>, <span class="fl">0.05</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">0.6</span>, <span class="fl">0.05</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">0.9</span>, <span class="fl">0.05</span>)), </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">outcome =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">0.3</span>, <span class="fl">0.1</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">0.6</span>, <span class="fl">0.1</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">0.9</span>, <span class="fl">0.1</span>)))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xyplot</span>(outcome <span class="sc">~</span> exposure, <span class="at">data=</span>DF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="chapt10_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>exposure <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">0.3</span>, <span class="fl">0.05</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">0.6</span>, <span class="fl">0.05</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">0.9</span>, <span class="fl">0.05</span>), <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">1.2</span>, <span class="fl">0.05</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>DF2 <span class="ot">=</span> <span class="fu">data.frame</span>(exposure,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">outcome =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>)<span class="sc">-</span>exposure[<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>], <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">1.2</span>, <span class="fl">0.05</span>)<span class="sc">-</span>exposure[<span class="dv">31</span><span class="sc">:</span><span class="dv">60</span>], <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">1.9</span>, <span class="fl">0.05</span>)<span class="sc">-</span>exposure[<span class="dv">61</span><span class="sc">:</span><span class="dv">90</span>], <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="fl">2.4</span>, <span class="fl">0.05</span>)<span class="sc">-</span>exposure[<span class="dv">91</span><span class="sc">:</span><span class="dv">120</span>]))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">xyplot</span>(outcome <span class="sc">~</span> exposure, <span class="at">data=</span>DF2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="chapt10_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Rich states are more likely to vote Democratic, but within each state, the chances that an individual votes Republican increases with their income.</p>
+<p><img src="images/red_state_blue_state1.jpg" class="img-fluid"></p>
+<p><img src="images/red_state_blue_state2.jpg" class="img-fluid"></p>
+<p><img src="images/red_state_blue_state3.png" class="img-fluid"></p>
+<p>Source: Andrew Gelman, Boris Shor, Joseph Bafumi, David Park, “Rich state, poor state, red state, blue state: What’s the matter with Connecticut?” Popularized in the book Red State, Blue State, Rich State, Poor State: Why Americans Vote the Way They Do. Subsequent analysis in Avi Feller, Andrew Gelman, Boris Shor, “Red State/Blue State Divisions in the 2012 Presidential Election.” The Forum 2012; 10(4): 127–131. DOI 10.1515/forum-2013-0014. The text discusses indications that there is a cross-level bias, but often these relationships are found empirically and explanations come after the fact.</p>
+</section>
+<section id="flaws-of-ecological-studies" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="flaws-of-ecological-studies"><span class="header-section-number">12.1.2</span> Flaws of ecological studies</h3>
+<p>Ecological fallacy.</p>
+<p>Geographical units may not be the most logical division: e.g., metro areas, especially east of the Mississippi, may go across states: DC and NY metro areas both include 3 states. Some exposures are spatial. Spatial data analysis might be more useful than considering ecological units.</p>
+</section>
+</section>
+<section id="application-to-ecological-datasets" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="application-to-ecological-datasets"><span class="header-section-number">12.2</span> Application to ecological datasets</h2>
+<p>The Gapminder dataset has data from (up to) 195 countries that can be used to conduct an analysis using a ecological research design. The codebook is available on the course website and lists each variable and the number of countries that each variable is available for. Notice that some variables are only available for a small number of countries, so they are not good candidates for variables to use, unless you are okay having only 20 datapoints.</p>
+<p>Load the mosaic library and the Gapminder dataset. Notice that the variable names in R are all small letters, but the codebook has capital letters in the variable names.</p>
+<p>You can use the provided file or download yourself here: https://www.gapminder.org/data/</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>G<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">"GapMinder.csv"</span>, <span class="at">header=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Say that we want to study whether per-capita GDP predicts all-cause child mortality (per 1000 births) before age 5.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(<span class="sc">~</span>childdeathall2008, <span class="at">data=</span>G)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="chapt10_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xyplot</span>(childdeathall2008 <span class="sc">~</span> gdp2008, <span class="at">data=</span>G)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="chapt10_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We notice that childhood death is right-skewed, so we take the log before continuing so that we have a relationship that looks linear.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>G<span class="sc">$</span>log.childdeath<span class="ot">=</span><span class="fu">log</span>(G<span class="sc">$</span>childdeathall2008)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>G<span class="sc">$</span>log.gdp<span class="ot">=</span><span class="fu">log</span>(G<span class="sc">$</span>gdp2008)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xyplot</span>(log.childdeath <span class="sc">~</span> gdp2008, <span class="at">data=</span>G, <span class="at">type=</span><span class="fu">c</span>(<span class="st">"p"</span>, <span class="st">"r"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="chapt10_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xyplot</span>(log.childdeath <span class="sc">~</span> log.gdp, <span class="at">data=</span>G, <span class="at">type=</span><span class="fu">c</span>(<span class="st">"p"</span>, <span class="st">"r"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="chapt10_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It looks like we can justify doing a linear regression between these variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model1<span class="ot">=</span><span class="fu">lm</span>(log.childdeath <span class="sc">~</span> log.gdp, <span class="at">data=</span>G)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log.childdeath ~ log.gdp, data = G)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.86287 -0.42523 -0.04222  0.40722  3.05096 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  8.45197    0.27989   30.20   &lt;2e-16 ***
+log.gdp     -0.76157    0.03549  -21.46   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.7007 on 158 degrees of freedom
+  (35 observations deleted due to missingness)
+Multiple R-squared:  0.7446,    Adjusted R-squared:  0.7429 
+F-statistic: 460.5 on 1 and 158 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="fu">exp</span>(<span class="fu">coef</span>(model1)), <span class="fu">exp</span>(<span class="fu">confint</span>(model1)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                               2.5 %       97.5 %
+(Intercept) 4684.2920504 2695.003473 8141.9531482
+log.gdp        0.4669339    0.435326    0.5008368</code></pre>
+</div>
+</div>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Intercept</td>
+<td style="text-align: left;">Log child death rate if log(GDP)=0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">p-value for intercept</td>
+<td style="text-align: left;">Is intercept different from 0?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log.gdp coefficient</td>
+<td style="text-align: left;">Change in log child death rate if log(GDP) increases by one unit</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">p-value for log.gdp coef</td>
+<td style="text-align: left;">Is coefficient on log.gdp different from 0?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R-squared</td>
+<td style="text-align: left;">Percentage of variation in log child death rate explained by log(GDP)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F-statistic and p-value</td>
+<td style="text-align: left;">Is the overall model significant?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I.e., does log(GDP) explain log child death rate?</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>Because we took the log of both the predictor and outcome variables, the interpretation of these coefficients are different than for regressions where we do not transform the variables.</p>
+<p>A $1 increase in per capita log(GDP) predicts 0.76 unit reduction in log child deaths: that is, if GDP increases by 1%, then child deaths decrease by 0.76%.</p>
+<p>Now we can think about other variables — are there any variables that may confound the relationship between per-capita GDP and childhood mortality, or is this model sufficient?</p>
+</section>
+<section id="exercise" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="exercise"><span class="header-section-number">12.3</span> Exercise</h2>
+<p>Work with a small group of classmates to analyze the Gapminder data. Download the Gapminder codebook from the course website on Dropbox. Load the data (and the mosaic package) using the above commands. Use the codebook to formuate a research question that you could answer with the Gapminder dataset is neither totally trivial/obvious nor totally arbitrary. The outcome variable should be a continuous variable rather than binary or categorical so that you can use linear regression tools.</p>
+<ol type="1">
+<li><p>Identify the research question, the outcome and predictor variables, and potential confounders.</p></li>
+<li><p>Do some basic plots with the outcome and predictor variables to explore the data.</p></li>
+<li><p>Perform a regression with one or more predictors.</p></li>
+<li><p>Prepare a 10 minute informal presentation to discuss your research question, your initial findings, and potential confounders. Make sure to address whether you were surprised by your findings or whether you just found what you expected.</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapt9.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapt11.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Example data analysis in YRBS</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

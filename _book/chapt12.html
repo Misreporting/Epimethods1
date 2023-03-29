@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Epidemiology Methods lecture notes - 14&nbsp; Survey data analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapt13.html" rel="next">
+<link href="./chapt11.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Epidemiology Methods lecture notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chaptA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data displays</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Identifying research questions and data sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testing hypotheses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Associations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Causality vs association</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Excess risk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Measurement error and screening</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Confounding and linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt9.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt10.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt11.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Example data analysis in YRBS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt12.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt13.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt14.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt15.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case-control studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#survey-types" id="toc-survey-types" class="nav-link active" data-scroll-target="#survey-types"><span class="toc-section-number">14.1</span>  Survey types</a></li>
+  <li><a href="#weighting" id="toc-weighting" class="nav-link" data-scroll-target="#weighting"><span class="toc-section-number">14.2</span>  Weighting</a></li>
+  <li><a href="#in-class-exercises" id="toc-in-class-exercises" class="nav-link" data-scroll-target="#in-class-exercises"><span class="toc-section-number">14.3</span>  In class exercises</a>
+  <ul class="collapse">
+  <li><a href="#suggested-answers" id="toc-suggested-answers" class="nav-link" data-scroll-target="#suggested-answers"><span class="toc-section-number">14.3.1</span>  Suggested answers</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="survey-types" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="survey-types"><span class="header-section-number">14.1</span> Survey types</h2>
+<p>Simple random survey: every unit in the population has an equal chance of being selected. When we analyze data without accounting for survey design, we treat data as if it were from a simple random sample.</p>
+<p>Cluster random sample: units are selected within clusters (primary sampling units), such as schools. Because people within a cluster are more similar to each other than to people outside the cluster, failing to account for the primary sampling unit will result in standard deviations that are too small.</p>
+<p>Stratified sample: the population is stratified before the sample is seleccted (strata), such as region of country (west, northeast, midwest, south).</p>
+<p>Simple random samples might be used in a case where the population of interest is small and there’s a well-defined dataframe. However, few surveys use simple random samples. Most surveys use all of the above techniques, so surveys come with 3 survey parameters (and sometimes 4). All major survey packages can use survey data.</p>
+</section>
+<section id="weighting" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="weighting"><span class="header-section-number">14.2</span> Weighting</h2>
+<p>Unequal probability of selection, such as for an oversample that chooses units from populations of interest are selected with greater probability in order to ensure sufficient power to understand these populations. (probability weights).</p>
+<p>Post-stratification weights: not everyone participates in the survey, and weights are estimated to account for the probability that people from each population of interest will participate. Also called non-response weights.</p>
+<p>Strata</p>
+<p>Primary sampling unit (PSU)</p>
+<p>Survey weights E.g., probability weights, poststratification weights.</p>
+<p>Finite population correction (FPC) Only used when the sample is large relative to the population</p>
+<p>PSUs and strata are linked to location, so to protect subjects’ privacy, sometimes replicate weights are used instead of PSU and strata. In this case, the PSU and strata are not available.</p>
+<p>To analyze data from surveys, you start out by telling the statistical package which variables identify the strata, PSU, and weights. Then, you analyze the data with commands that are designed to use the survey parameters. Not all commands have been adapted for use with survey data, or they may use arcane syntax. For instance, often it’s easier to do a single-variable survey-weighted regression rather than a t-test; these yield the same answer.</p>
+<p>In longitudinal dataset with several waves of data, multiple survey weights are available, and each estimate must use the appropriate survey weight.</p>
+<p>In sum, analyzing survey data with the survey parameters makes estimates representative of the population and ensures that associations are not falsely significant.</p>
+<p>Datasets generally come with a document that tells how to analyze the data using survey weights and the other survey features. The document generally gives the exact commands for setting the survey parameters. We use the R survey package to analyze data from the Youth Risk Behavior Survey 20`9 We use the document produced by YRBS called “Software for Analysis of YRBS Data”.</p>
+<p>We use the Stata format because it reliably keeps the labels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readstata13)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arm)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>yrbs<span class="ot">=</span><span class="fu">read.dta13</span>(<span class="st">"yrbs2019.dta"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(yrbs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13677   235</code></pre>
+</div>
+</div>
+<p>Here’s the example from the YRBS document. The I protects whatever is inside, so this example yields confidence intervals for frequency of each variable. The reason it’s necessary is because the YRBS data is coded 1 = yes and 2 = no. If it were coded 0 vs 1, you could just take the mean.</p>
+<p>Set the survey design</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>yrbsdes <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">id=</span><span class="sc">~</span>psu, <span class="at">weight=</span><span class="sc">~</span>weight, <span class="at">strata=</span><span class="sc">~</span>stratum,<span class="at">data=</span>yrbs, <span class="at">nest=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Storing returned value in a variable</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(eversex <span class="ot">&lt;-</span> <span class="fu">svyciprop</span>(<span class="sc">~</span><span class="fu">I</span>(QN58<span class="sc">==</span><span class="dv">1</span>), yrbsdes, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    2.5% 97.5%
+I(QN58 == 1) 0.384 0.354  0.42</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(heroin <span class="ot">&lt;-</span> <span class="fu">svyciprop</span>(<span class="sc">~</span><span class="fu">I</span>(QN52<span class="sc">==</span><span class="dv">1</span>), yrbsdes, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      2.5% 97.5%
+I(QN52 == 1) 0.0177 0.0125  0.02</code></pre>
+</div>
+</div>
+<p>Now let’s analyze the data from the Epi 5201 fall 2018 final exam. Evaluate the association between water consumption and BMI. I defined a binary variable for water drinking: the variable water3 is coded as 1 for those who drank at least 3 glasses of water per day and 0 for those who drank less than 3 glasses of water per day.</p>
+<p>In the R survey package, when new variables are added, you need to explicitly add the variable to the survey design object. You can do this with the update or transform function. You do not need to use both, only one of these.</p>
+<p>This procedure is a bit cumbersome, but it’s a consequence of R’s capability to have more than one dataframe in memory at a time. A package such as Stata that can only have one dataset in memory at a time.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">svyglm</span>(bmipct <span class="sc">~</span> Q93, yrbsdes, <span class="at">family=</span><span class="st">"gaussian"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+svyglm(formula = bmipct ~ Q93, design = yrbsdes, family = "gaussian")
+
+Survey design:
+svydesign(id = ~psu, weight = ~weight, strata = ~stratum, data = yrbs, 
+    nest = T)
+
+Coefficients:
+                           Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                 64.6984     2.0817  31.080   &lt;2e-16 ***
+Q931 to 3 times             -1.9263     2.7900  -0.690   0.4958    
+Q934 to 6 times             -0.3804     2.6769  -0.142   0.8880    
+Q931 time per day           -4.8332     2.8076  -1.721   0.0966 .  
+Q932 times per day          -4.4633     2.4652  -1.811   0.0814 .  
+Q933 times per day          -1.1793     2.3750  -0.497   0.6235    
+Q934 or more times per day   0.8222     2.3210   0.354   0.7259    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for gaussian family taken to be 929.5689)
+
+Number of Fisher Scoring iterations: 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>yrbsdes<span class="ot">=</span><span class="fu">update</span>(yrbsdes, <span class="at">water3=</span>qnwater3<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>yrbsdes<span class="ot">=</span><span class="fu">transform</span>(yrbsdes, <span class="at">water3=</span>qnwater3<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">svyglm</span>(bmipct <span class="sc">~</span> <span class="dv">0</span><span class="sc">+</span>water3, yrbsdes, <span class="at">family=</span><span class="st">"gaussian"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+svyglm(formula = bmipct ~ 0 + water3, design = yrbsdes, family = "gaussian")
+
+Survey design:
+update(`_data`, ...)
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+water3FALSE  61.9491     0.8839   70.09   &lt;2e-16 ***
+water3TRUE   64.8666     1.0337   62.75   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for gaussian family taken to be 931.9661)
+
+Number of Fisher Scoring iterations: 2</code></pre>
+</div>
+</div>
+<p>Alternatively, you can add the new variable to your dataframe and then define the survey design object again. I defined the following variables: age was defined as the number of years over age 11 (12 years old is 1, 13 years old is 2, etc.); male gender was 1 for males and 0 for females. Juice, soda, milk, and sports drink were ordered categorical variables with the same categories as water: none, 1-3 times per week, 4-6 times per week, 1 time per day, 2 times per day, 3 times per day, and 4+ times per day. I defined a variable for obese status and evaluated whether obesity was associated with water consumption. Obesity was coded as 1 for adolescents with a BMI percentile over 95, which is considered obese, and 0 for adolescents with BMI percentile under 95.</p>
+<p>If you are defining lots of variables, it’s more efficient to define them and then define the survey design object again. Note that we need to repeat the water3 variable definition because we didn’t do that one inside the yrbs dataset yet, only directly in the survey object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>yrbs<span class="sc">$</span>water3<span class="ot">=</span>yrbs<span class="sc">$</span>qnwater3<span class="sc">==</span><span class="dv">1</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    yrbs<span class="sc">$</span>age <span class="ot">=</span> <span class="fu">as.numeric</span>(yrbs<span class="sc">$</span>Q1)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    yrbs<span class="sc">$</span>male <span class="ot">=</span> yrbs<span class="sc">$</span>Q2<span class="sc">==</span><span class="st">"Male"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    yrbs<span class="sc">$</span>sportsdrink<span class="ot">=</span><span class="fu">as.numeric</span>(yrbs<span class="sc">$</span>Q92)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    yrbs<span class="sc">$</span>soda <span class="ot">=</span> <span class="fu">as.numeric</span>(yrbs<span class="sc">$</span>Q75)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    yrbs<span class="sc">$</span>milk <span class="ot">=</span> <span class="fu">as.numeric</span>(yrbs<span class="sc">$</span>Q76)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    yrbs<span class="sc">$</span>juice<span class="ot">=</span><span class="fu">as.numeric</span>(yrbs<span class="sc">$</span>Q69)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    yrbs<span class="sc">$</span>obese<span class="ot">=</span>yrbs<span class="sc">$</span>qnobese<span class="sc">==</span><span class="dv">1</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    yrbsdes <span class="ot">=</span> <span class="fu">svydesign</span>(<span class="at">id=</span><span class="sc">~</span>psu, <span class="at">weight=</span><span class="sc">~</span>weight, <span class="at">strata=</span><span class="sc">~</span>stratum,<span class="at">data=</span>yrbs, <span class="at">nest=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I conducted an analysis to predict BMI percentile from whether the respondent reported drinking water at least 3 times per day, adjusting for age; gender; and sports drink, soda, and milk consumption. Interpret the coefficient on water in a sentence: both the coefficient and its significance. Does this result suggest that drinking water at least 3 times per day could lead to weight gain? Explain your answer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">=</span> <span class="fu">svyglm</span> (bmipct <span class="sc">~</span> water3 <span class="sc">+</span> age <span class="sc">+</span> male <span class="sc">+</span> sportsdrink</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> soda<span class="sc">+</span> milk <span class="sc">+</span> juice, yrbsdes)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1, <span class="at">detail=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+svyglm(formula = bmipct ~ water3 + age + male + sportsdrink + 
+    soda + milk + juice, design = yrbsdes)
+
+Survey design:
+svydesign(id = ~psu, weight = ~weight, strata = ~stratum, data = yrbs, 
+    nest = TRUE)
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  65.4373     2.6686  24.521  &lt; 2e-16 ***
+water3TRUE    3.0491     0.8991   3.391  0.00241 ** 
+age          -1.0789     0.3323  -3.247  0.00343 ** 
+maleTRUE      0.4771     1.1225   0.425  0.67463    
+sportsdrink   0.4693     0.3295   1.425  0.16717    
+soda          0.2725     0.3271   0.833  0.41291    
+milk          0.3044     0.2874   1.059  0.30019    
+juice        -0.1647     0.3298  -0.499  0.62203    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for gaussian family taken to be 1022.418)
+
+Number of Fisher Scoring iterations: 2</code></pre>
+</div>
+</div>
+<p>Let’s calculate the associations in both directions and the statistical significance of the associations. Interpret the relevant percentages in both 2x2 tables to evaluate the associations between obesity and water consumption. We specify the total to be 100 because otherwise the weights make it add up. The sum of the 4 cells is 100%, so the entries are cell percentages. It takes some experimentation to figure out how to get what you want.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svytable</span>(<span class="sc">~</span>obese <span class="sc">+</span> water3, <span class="at">design=</span>yrbsdes, <span class="at">Ntotal=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       water3
+obese       FALSE      TRUE
+  FALSE 37.676869 46.696134
+  TRUE   6.769012  8.857985</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">svytable</span>(<span class="sc">~</span> water3 <span class="sc">+</span> obese, <span class="at">design=</span>yrbsdes))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       obese
+water3  FALSE TRUE
+  FALSE  3797  682
+  TRUE   4707  893
+
+    Pearson's X^2: Rao &amp; Scott adjustment
+
+data:  svychisq(~water3 + obese, design = yrbsdes, statistic = "F")
+F = 0.25264, ndf = 1, ddf = 37, p-value = 0.6182</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svyby</span>(<span class="sc">~</span>obese, <span class="sc">~</span>water3, <span class="at">design=</span>yrbsdes, svymean, <span class="at">na.rm=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      water3 obeseFALSE obeseTRUE se.obeseFALSE se.obeseTRUE
+FALSE  FALSE  0.8477021 0.1522979    0.01150558   0.01150558
+TRUE    TRUE  0.8405522 0.1594478    0.01287206   0.01287206</code></pre>
+</div>
+</div>
+<p>57% of adolescents with obesity drink water at least 3 times per day compared with 50% of adolescents without obesity, which is statistically significant with p &lt; 0.001. Among those who drink water at least 3 times per day, 16% are obese, versus 13% of those who drink water less than 3 times per day, which is statistically significant with p &lt; 0.001. Based on the above analysis, I evaluated whether adolescents with obesity are more likely to drink water at least 3 times per day, controlling for the same variables. What does this model suggest about the relationship between obesity and drinking water at least 3 times a day?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">=</span><span class="fu">svyglm</span> (water3 <span class="sc">~</span> obese  <span class="sc">+</span> age <span class="sc">+</span> male <span class="sc">+</span> sportsdrink</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> soda<span class="sc">+</span> milk <span class="sc">+</span> juice, <span class="at">design=</span>yrbsdes, <span class="at">family=</span>binomial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in eval(family$initialize): non-integer #successes in a binomial glm!</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+svyglm(formula = water3 ~ obese + age + male + sportsdrink + 
+    soda + milk + juice, design = yrbsdes, family = binomial)
+
+Survey design:
+svydesign(id = ~psu, weight = ~weight, strata = ~stratum, data = yrbs, 
+    nest = TRUE)
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.16636    0.20591   0.808  0.42706    
+obeseTRUE    0.08034    0.10833   0.742  0.46549    
+age          0.02742    0.02935   0.934  0.35938    
+maleTRUE    -0.07214    0.07554  -0.955  0.34909    
+sportsdrink  0.06991    0.02378   2.940  0.00716 ** 
+soda        -0.25789    0.02189 -11.783 1.82e-11 ***
+milk         0.08763    0.02478   3.537  0.00168 ** 
+juice        0.07316    0.02191   3.339  0.00274 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1.230958)
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="fu">exp</span>(<span class="fu">coef</span>(model2)), <span class="fu">exp</span>(<span class="fu">confint</span>(model2)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                          2.5 %    97.5 %
+(Intercept) 1.1809985 0.7721260 1.8063858
+obeseTRUE   1.0836588 0.8665506 1.3551620
+age         1.0278036 0.9673959 1.0919834
+maleTRUE    0.9303978 0.7960836 1.0873733
+sportsdrink 1.0724135 1.0210448 1.1263665
+soda        0.7726791 0.7385517 0.8083834
+milk        1.0915851 1.0371656 1.1488601
+juice       1.0759018 1.0283301 1.1256742</code></pre>
+</div>
+</div>
+<p>Adolescents with obesity have 40% greater odds of drinking water at least 3 times per day than adolescents without obesity, controlling for age, gender, and other fluid consumption (OR=1.40, 95% CI (1.19, 1.64)).</p>
+</section>
+<section id="in-class-exercises" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="in-class-exercises"><span class="header-section-number">14.3</span> In class exercises</h2>
+<ol type="1">
+<li>Use the Youth Risk Behavior Study (YRBS) and codebook on the course website to do the following analyses:</li>
+</ol>
+<!-- -->
+<ol type="a">
+<li>Read in the data.</li>
+<li>Define the survey design. (See page 49 of the codebook.) Note that you may have to do this again if you define more variables within the YRBS dataframe.</li>
+<li>Look at the variable for whether a student carried a gun to school at least once in the past 30 days. If the variable is not suitable for analysis, add a variable to the YRBS dataframe for whether a student carried a gun to school at least once in the past 30 days and look at the summary to make sure that you defined it properly. (table or tally command)</li>
+<li>Do the same thing for whether a student missed school at least once in the past 30 days because they felt unsafe.</li>
+<li>If you defined new variables, define the survey design (again — you need it to include any new variables.)</li>
+<li>Summarize the gun variable as mean and standard deviation, without accounting for survey characteristics. Summarize the gun variable as mean and standard deviation, accounting for survey characteristics. Describe the differences between the survey- adjusted and unadjusted.</li>
+<li>Predict whether someone who missed school due to feeling unsafe is more likely to carry a gun with and without accounting for survey characteristics. Interpret each finding. Describe the differences between the survey-adjusted and unadjusted.</li>
+<li>Using the codebook, add potential confounders to your model. Is the association still significant?</li>
+</ol>
+<section id="suggested-answers" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="suggested-answers"><span class="header-section-number">14.3.1</span> Suggested answers</h3>
+<p>Carry gun at least once in past 30 days</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>yrbs<span class="sc">$</span>gun30d<span class="ot">=</span>yrbs<span class="sc">$</span>QN12<span class="sc">==</span><span class="dv">1</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(gun30d<span class="sc">~</span>Q12, <span class="at">data=</span>yrbs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Q12
+gun30d  0 days 1 day 2 or 3 days 4 or 5 days 6 or more days &lt;NA&gt;
+  TRUE       0   310         356         148            589    0
+  FALSE   9141     0           0           0              0    0
+  &lt;NA&gt;       0     0           0           0              0 3133</code></pre>
+</div>
+</div>
+<p>Missed school at least once in 30 days because felt unsafe Not go to school because felt unsafe</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>yrbs<span class="sc">$</span>unsafe.missed.school30d<span class="ot">=</span>yrbs<span class="sc">$</span>QN15<span class="sc">==</span><span class="dv">1</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(unsafe.missed.school30d<span class="sc">~</span>Q15, <span class="at">data=</span>yrbs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       Q15
+unsafe.missed.school30d 0 days 1 day 2 or 3 days 4 or 5 days 6 or more days
+                  TRUE       0   615         402         102            151
+                  FALSE  12331     0           0           0              0
+                  &lt;NA&gt;       0     0           0           0              0
+                       Q15
+unsafe.missed.school30d  &lt;NA&gt;
+                  TRUE      0
+                  FALSE     0
+                  &lt;NA&gt;     76</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>yrbs.design <span class="ot">=</span><span class="fu">svydesign</span>(<span class="at">id=</span><span class="sc">~</span>psu, <span class="at">strata=</span><span class="sc">~</span>stratum, <span class="at">weights=</span><span class="sc">~</span>weight, <span class="at">data=</span>yrbs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svymean</span>(<span class="sc">~</span>gun30d, yrbs.design, <span class="at">na.rm=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               mean     SE
+gun30dFALSE 0.86841 0.0065
+gun30dTRUE  0.13159 0.0065</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(yrbs<span class="sc">$</span>gun30d, <span class="at">na.rm=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1330615</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(yrbs<span class="sc">$</span>gun30d, <span class="at">na.rm=</span>T)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(yrbs<span class="sc">$</span>gun30d))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.002904327</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">svyglm</span>(gun30d<span class="sc">~</span>unsafe.missed.school30d, yrbs.design, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in eval(family$initialize): non-integer #successes in a binomial glm!</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+svyglm(formula = gun30d ~ unsafe.missed.school30d, design = yrbs.design, 
+    family = binomial(link = "logit"))
+
+Survey design:
+svydesign(id = ~psu, strata = ~stratum, weights = ~weight, data = yrbs)
+
+Coefficients:
+                            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                 -1.95515    0.05942 -32.906  &lt; 2e-16 ***
+unsafe.missed.school30dTRUE  0.66206    0.14748   4.489 8.71e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1.119776)
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glm</span>(gun30d<span class="sc">~</span>unsafe.missed.school30d, <span class="at">data=</span>yrbs, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = gun30d ~ unsafe.missed.school30d, family = binomial(link = "logit"), 
+    data = yrbs)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-0.7421  -0.5107  -0.5107  -0.5107   2.0502  
+
+Coefficients:
+                            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                 -1.97133    0.03119 -63.201   &lt;2e-16 ***
+unsafe.missed.school30dTRUE  0.82260    0.08231   9.994   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 8245.0  on 10521  degrees of freedom
+Residual deviance: 8155.7  on 10520  degrees of freedom
+  (3155 observations deleted due to missingness)
+AIC: 8159.7
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapt11.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Example data analysis in YRBS</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapt13.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
