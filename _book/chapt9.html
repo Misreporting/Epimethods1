@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Epidemiology Methods lecture notes - 11&nbsp; Confounding and causal graphs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapt10.html" rel="next">
+<link href="./chapt8.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="site_libs/viz-1.8.2/viz.js"></script>
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="site_libs/grViz-binding-1.0.9/grViz.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Epidemiology Methods lecture notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chaptA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data displays</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Identifying research questions and data sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testing hypotheses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Associations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Causality vs association</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Excess risk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Measurement error and screening</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Confounding and linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt9.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt10.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt11.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Example data analysis in YRBS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt12.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt13.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt14.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt15.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case-control studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#causal-graphs" id="toc-causal-graphs" class="nav-link active" data-scroll-target="#causal-graphs"><span class="toc-section-number">11.1</span>  Causal graphs</a>
+  <ul class="collapse">
+  <li><a href="#graph-terminology" id="toc-graph-terminology" class="nav-link" data-scroll-target="#graph-terminology"><span class="toc-section-number">11.1.1</span>  Graph terminology</a></li>
+  </ul></li>
+  <li><a href="#directed-acyclic-graphs" id="toc-directed-acyclic-graphs" class="nav-link" data-scroll-target="#directed-acyclic-graphs"><span class="toc-section-number">11.2</span>  Directed acyclic graphs</a>
+  <ul class="collapse">
+  <li><a href="#backdoor-paths" id="toc-backdoor-paths" class="nav-link" data-scroll-target="#backdoor-paths"><span class="toc-section-number">11.2.1</span>  Backdoor paths</a></li>
+  <li><a href="#collider" id="toc-collider" class="nav-link" data-scroll-target="#collider"><span class="toc-section-number">11.2.2</span>  Collider</a></li>
+  <li><a href="#mediator" id="toc-mediator" class="nav-link" data-scroll-target="#mediator"><span class="toc-section-number">11.2.3</span>  Mediator</a></li>
+  </ul></li>
+  <li><a href="#instrumental-variables-analysis" id="toc-instrumental-variables-analysis" class="nav-link" data-scroll-target="#instrumental-variables-analysis"><span class="toc-section-number">11.3</span>  Instrumental variables analysis</a>
+  <ul class="collapse">
+  <li><a href="#instrumental-variables-definition" id="toc-instrumental-variables-definition" class="nav-link" data-scroll-target="#instrumental-variables-definition"><span class="toc-section-number">11.3.1</span>  Instrumental variables definition</a></li>
+  <li><a href="#instrumental-variables-example-vietnam-draft-lottery" id="toc-instrumental-variables-example-vietnam-draft-lottery" class="nav-link" data-scroll-target="#instrumental-variables-example-vietnam-draft-lottery"><span class="toc-section-number">11.3.2</span>  Instrumental variables example: Vietnam draft lottery</a></li>
+  <li><a href="#example-distance-to-hospital-and-health-outcomes" id="toc-example-distance-to-hospital-and-health-outcomes" class="nav-link" data-scroll-target="#example-distance-to-hospital-and-health-outcomes"><span class="toc-section-number">11.3.3</span>  Example: Distance to hospital and health outcomes</a></li>
+  <li><a href="#causal-graphs-resources" id="toc-causal-graphs-resources" class="nav-link" data-scroll-target="#causal-graphs-resources"><span class="toc-section-number">11.3.4</span>  Causal graphs resources</a></li>
+  </ul></li>
+  <li><a href="#propensity-score-matching-methods" id="toc-propensity-score-matching-methods" class="nav-link" data-scroll-target="#propensity-score-matching-methods"><span class="toc-section-number">11.4</span>  Propensity score matching methods</a>
+  <ul class="collapse">
+  <li><a href="#example-cardiologists-and-generalists-who-provides-better-care" id="toc-example-cardiologists-and-generalists-who-provides-better-care" class="nav-link" data-scroll-target="#example-cardiologists-and-generalists-who-provides-better-care"><span class="toc-section-number">11.4.1</span>  Example: Cardiologists and generalists: who provides better care?</a></li>
+  <li><a href="#example-hospice-and-surviving-relative" id="toc-example-hospice-and-surviving-relative" class="nav-link" data-scroll-target="#example-hospice-and-surviving-relative"><span class="toc-section-number">11.4.2</span>  Example: Hospice and surviving relative</a></li>
+  <li><a href="#example-evaluation-of-cardiac-catheterization" id="toc-example-evaluation-of-cardiac-catheterization" class="nav-link" data-scroll-target="#example-evaluation-of-cardiac-catheterization"><span class="toc-section-number">11.4.3</span>  Example: Evaluation of cardiac catheterization</a></li>
+  </ul></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="toc-section-number">11.5</span>  Exercise</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="causal-graphs" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="causal-graphs"><span class="header-section-number">11.1</span> Causal graphs</h2>
+<section id="graph-terminology" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="graph-terminology"><span class="header-section-number">11.1.1</span> Graph terminology</h3>
+<p>In discrete math, a graph is a set of vertices and edges. Edges may be either directed or undirected. Undirected edges can be used to depict connections between nodes without regard to order, such as in a social network where all connections are mutual.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DiagrammeR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here’s an undirected graph.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">    digraph {</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">      # Nodes</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">      node [shape = plaintext]</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">     </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">      # Edges</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">      edge [color = black,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">            arrowhead = none]</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">      rankdir = LR</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">      A-&gt;B</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">      B-&gt;C</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">      C-&gt;A</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">      </span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">      # Graph</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">      graph [overlap = true, fontsize = 6]</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="st">    }"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-7bfa8bd3d8564676ad46" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-7bfa8bd3d8564676ad46">{"x":{"diagram":"\n\tdigraph {\n\t\n\t  # Nodes\n\t  node [shape = plaintext]\n\t \n\t  # Edges\n\t  edge [color = black,\n\t        arrowhead = none]\n\t  rankdir = LR\n\t  A->B\n\t  B->C\n\t  C->A\n\t  \n\t  # Graph\n\t  graph [overlap = true, fontsize = 6]\n\t}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>A cycle is a graph where the edges go in a circle, as here:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">    digraph {</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">      # Nodes</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">      node [shape = plaintext]</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">     </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">      # Edges</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">      edge [color = black,</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">            arrowhead = vee]</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">      rankdir = LR</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">      A-&gt;B</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">      B-&gt;C</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">      C-&gt;A</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">      </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">      # Graph</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">      graph [overlap = true, fontsize = 6]</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">    }"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-d2cf30ab04aefd585062" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-d2cf30ab04aefd585062">{"x":{"diagram":"\n\tdigraph {\n\t\n\t  # Nodes\n\t  node [shape = plaintext]\n\t \n\t  # Edges\n\t  edge [color = black,\n\t        arrowhead = vee]\n\t  rankdir = LR\n\t  A->B\n\t  B->C\n\t  C->A\n\t  \n\t  # Graph\n\t  graph [overlap = true, fontsize = 6]\n\t}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+</section>
+<section id="directed-acyclic-graphs" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="directed-acyclic-graphs"><span class="header-section-number">11.2</span> Directed acyclic graphs</h2>
+<p>Epidemiology uses Directed Acyclic Graphs (DAGs). Analysis that preserves the order of events does not use graphs with cycles.</p>
+<section id="backdoor-paths" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="backdoor-paths"><span class="header-section-number">11.2.1</span> Backdoor paths</h3>
+<p>The simplest backdoor path is confounding. Here’s a DAG showing confounding:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">    digraph causal {</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">      # Nodes</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">      node [shape = plaintext]</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">      E [label = 'Exposure']</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">      C [label = 'Confounder']</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">        D [label = 'Outcome']</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">      </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">      # Edges</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="st">      edge [color = black,</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">            arrowhead = normal]</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">      rankdir = LR</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">      E-&gt;D</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">      C-&gt;E</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">      C-&gt;D</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">      </span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="st">      # Graph</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">      graph [overlap = true, fontsize = 6]</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">    }"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-85ad1dc43562e643afd9" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-85ad1dc43562e643afd9">{"x":{"diagram":"\n\tdigraph causal {\n\t\n\t  # Nodes\n\t  node [shape = plaintext]\n\t  E [label = \"Exposure\"]\n\t  C [label = \"Confounder\"]\n\t\tD [label = \"Outcome\"]\n\t  \n\t  # Edges\n\t  edge [color = black,\n\t        arrowhead = normal]\n\t  rankdir = LR\n\t  E->D\n\t  C->E\n\t  C->D\n\t  \n\t  # Graph\n\t  graph [overlap = true, fontsize = 6]\n\t}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="collider" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="collider"><span class="header-section-number">11.2.2</span> Collider</h3>
+<p>Here’s a graph showing a collider <span class="math inline">\(A → B ← C\)</span>, where both A and B may cause C.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">    digraph {</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">      # Nodes</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">      node [shape = plaintext]</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">     </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">      # Edges</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">      edge [color = black,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">            arrowhead = vee]</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">      rankdir = LR</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="st">      A-&gt;B</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">      C-&gt;B</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="st">      </span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="st">      # Graph</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="st">      graph [overlap = true, fontsize = 6]</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="st">    }"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-dd64d8ff42ad40b37c63" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-dd64d8ff42ad40b37c63">{"x":{"diagram":"\n\tdigraph {\n\t\n\t  # Nodes\n\t  node [shape = plaintext]\n\t \n\t  # Edges\n\t  edge [color = black,\n\t        arrowhead = vee]\n\t  rankdir = LR\n\t  A->B\n\t  C->B\n\t  \n\t  # Graph\n\t  graph [overlap = true, fontsize = 6]\n\t}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="mediator" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="mediator"><span class="header-section-number">11.2.3</span> Mediator</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">    digraph causal {</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">      # Nodes</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">      node [shape = plaintext]</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">      E [label = 'Exposure']</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">      M [label = 'Mediator']</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">        D [label = 'Outcome']</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">      </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">      # Edges</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="st">      edge [color = black,</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">            arrowhead = normal]</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">      rankdir = LR</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="st">      E-&gt;M</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="st">      M-&gt;D</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">      E-&gt;D</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="st">      # Graph</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="st">      graph [overlap = true, fontsize = 6]</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="st">    }"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1c788668c4aee8ffec63" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-1c788668c4aee8ffec63">{"x":{"diagram":"\n\tdigraph causal {\n\t\n\t  # Nodes\n\t  node [shape = plaintext]\n\t  E [label = \"Exposure\"]\n\t  M [label = \"Mediator\"]\n\t\tD [label = \"Outcome\"]\n\t  \n\t  # Edges\n\t  edge [color = black,\n\t        arrowhead = normal]\n\t  rankdir = LR\n\t  E->M\n\t  M->D\n\t  E->D\n\n\t  # Graph\n\t  graph [overlap = true, fontsize = 6]\n\t}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+</section>
+<section id="instrumental-variables-analysis" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="instrumental-variables-analysis"><span class="header-section-number">11.3</span> Instrumental variables analysis</h2>
+<section id="instrumental-variables-definition" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="instrumental-variables-definition"><span class="header-section-number">11.3.1</span> Instrumental variables definition</h3>
+<p>Instrumental variables are factors that are associated with the treatment but not the outcome.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">    digraph causal {</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">      # Nodes</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">      node [shape = plaintext]</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="st">      E [label = 'Exposure']</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="st">      I [label = 'Instrument']</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="st">        D [label = 'Outcome']</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="st">      </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="st">      # Edges</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="st">      edge [color = black,</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="st">            arrowhead = normal]</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="st">      rankdir = LR</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="st">      E-&gt;D</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="st">      I-&gt;E</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="st">      # Graph</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="st">      graph [overlap = true, fontsize = 6]</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="st">    }"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2c442b5c178db4c3e24b" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-2c442b5c178db4c3e24b">{"x":{"diagram":"\n\tdigraph causal {\n\t\n\t  # Nodes\n\t  node [shape = plaintext]\n\t  E [label = \"Exposure\"]\n\t  I [label = \"Instrument\"]\n\t\tD [label = \"Outcome\"]\n\t  \n\t  # Edges\n\t  edge [color = black,\n\t        arrowhead = normal]\n\t  rankdir = LR\n\t  E->D\n\t  I->E\n\n\t  # Graph\n\t  graph [overlap = true, fontsize = 6]\n\t}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="instrumental-variables-example-vietnam-draft-lottery" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="instrumental-variables-example-vietnam-draft-lottery"><span class="header-section-number">11.3.2</span> Instrumental variables example: Vietnam draft lottery</h3>
+<p>Quasi experiments for policy evaluation Instrumental variables Ads for military service claim that it gives people skills and opportunities that they can transfer to the civilian sector, and increase their earnings. If we compared people who entered the military voluntarily, they might be self-selected: only people who feel like they have poor job prospects , or people who are more motivated, might enter the military. The Vietnam draft chose birthdays at random, so it’s similar to a randomized experiment, but it’s not a randomlzed experiment. Most of those who fought in Vietnam had volunteered. Men whose lottery numbers were chosen were more likely to enlist, but might not enlist due to occupation or educational defer- ment, poor health, or low test scores: white men of the appropriate ages selected in the lottery were 18 percentage points more likely to enlist, and non-white men were 8.5 percentage points more likely to enlist. Using a technique called instrumental variables — using birthday as an instrument for military enrollment — Josh Angrist found that military service caused 15% lower lifetime earnings. (Josh Angrist, “Lifetime Earnings and the Vietnam Era Draft Lottery: Evidence From Social Security Administrative Records”, American Economic Review, 1990) Many other studies have looked at Vietnam service and other outcomes: e.g., suicide/accident mortality.</p>
+<p>Ads for military service claim that it gives people skills and opportunities that they can transfer to the civilian sector, and increase their earnings. If we compared people who entered the military voluntarily, they might be self-selected: only people who feel like they have poor job prospects , or people who are more motivated, might enter the military. The Vietnam draft chose birthdays at random, so it’s similar to a randomized experiment.</p>
+<p>Not actually a randomized experiment, though: the majority of those who fought in Vietnam had volunteered. Men whose lottery numbers were chosen were more likely to enlist, but might not enlist due to occupation or educational deferment, poor health, or low test scores: white men of the appropriate ages selected in the lottery were 18 percentage points more likely to enlist, and non-white men were 8.5 percentage points more likely to enlist.</p>
+<p>Using a technique called instrumental variables — using birthday as an instrument for military enrollment — Josh Angrist found that military service caused 15% lower lifetime earnings. (Josh Angrist, “Lifetime Earnings and the Vietnam Era Draft Lottery: Evidence From Social Security Administrative Records”, American Economic Review, 1990). Angrist did another study of military enlistment and mortality.</p>
+<p>If you were to draw a causal graph, it would look like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">    digraph causal {</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">      # Nodes</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">      node [shape = plaintext]</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">      E [label = 'Military enlistment']</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">      I [label = 'Birth date']</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">        D [label = 'Mortality']</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="st">      </span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="st">      # Edges</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="st">      edge [color = black,</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="st">            arrowhead = normal]</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="st">      rankdir = LR</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="st">      E-&gt;D</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="st">      I-&gt;E</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="st">      # Graph</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="st">      graph [overlap = true, fontsize = 6]</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="st">    }"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2a92fabb34d88344ea07" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-2a92fabb34d88344ea07">{"x":{"diagram":"\n\tdigraph causal {\n\t\n\t  # Nodes\n\t  node [shape = plaintext]\n\t  E [label = \"Military enlistment\"]\n\t  I [label = \"Birth date\"]\n\t\tD [label = \"Mortality\"]\n\t  \n\t  # Edges\n\t  edge [color = black,\n\t        arrowhead = normal]\n\t  rankdir = LR\n\t  E->D\n\t  I->E\n\n\t  # Graph\n\t  graph [overlap = true, fontsize = 6]\n\t}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Why is birthday an instrument for the effect of military service on mortality?</p>
+</section>
+<section id="example-distance-to-hospital-and-health-outcomes" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="example-distance-to-hospital-and-health-outcomes"><span class="header-section-number">11.3.3</span> Example: Distance to hospital and health outcomes</h3>
+<p>Distance to hospitals or health care facilities with certain characteristics is a common instrument in many cases:</p>
+<p>Distance to nearest hospital with cardiac catheterization used as an instrument to study the effect of intensive treatment on acute myocardial infarction compared with less invasive treatment. (McClellan M, McNeil BJ, Newhouse JP. Does more intensive treatment of acute myocardial infarction in the elderly reduce mortality? Analysis using instrumental variables. JAMA. 1994 Sep 21;272(11):859-66.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="st">    digraph causal {</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="st">      # Nodes</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="st">      node [shape = plaintext]</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="st">      E [label = 'Cardiac catheterization']</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="st">      I [label = 'Distance to nearest hospital with catheterizaation']</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="st">        D [label = 'Mortality']</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="st">      </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="st">      # Edges</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="st">      edge [color = black,</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="st">            arrowhead = normal]</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="st">      rankdir = LR</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="st">      E-&gt;D</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="st">      I-&gt;E</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="st">      # Graph</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="st">      graph [overlap = true, fontsize = 6]</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="st">    }"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-da531b4558ef70a1e47b" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-da531b4558ef70a1e47b">{"x":{"diagram":"\n\tdigraph causal {\n\t\n\t  # Nodes\n\t  node [shape = plaintext]\n\t  E [label = \"Cardiac catheterization\"]\n\t  I [label = \"Distance to nearest hospital with catheterizaation\"]\n\t\tD [label = \"Mortality\"]\n\t  \n\t  # Edges\n\t  edge [color = black,\n\t        arrowhead = normal]\n\t  rankdir = LR\n\t  E->D\n\t  I->E\n\n\t  # Graph\n\t  graph [overlap = true, fontsize = 6]\n\t}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Why is distance to the nearest hospital with cardiac catheterization an instrument for the effect of cardiac catheterization on mortality after AMI?</p>
+<p>Another example: Distance to continuing care retirement communities used as an instrument to study whether these retirement communities provide higher quality. (John R. Bowblis, Heather S. McHone, An instrumental variables approach to post-acute care nursing home quality: Is there a dime’s worth of evidence that continuing care retirement communities provide higher quality? Journal of Health Economics Volume 32, Issue 5, September 2013, Pages 980–996)</p>
+<p>Another example: Distance to Cedars-Sinai Hospital in LA to estimate hospital quality of pneumonia care in S California. (Estimating the quality of care in hospitals using instrumental variables. Journal of Health Economics, Volume 18, Issue 6, December 1999, Pages 747-767 Gautam Gowrisankaran, Robert J. Town)</p>
+</section>
+<section id="causal-graphs-resources" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="causal-graphs-resources"><span class="header-section-number">11.3.4</span> Causal graphs resources</h3>
+<p>For more about causal graphs, see the following resources presented in no particular order: • http://dagitty.net/</p>
+<p>• https://cran.r-project.org/web/packages/ggdag/vignettes/intro-to-dags.html</p>
+<p>• Morgan and Winship, Counterfactuals and Causal Inference, 2nd edition, Cambridge University Press.</p>
+<p>• Modern Epidemiology, 4th edition.</p>
+<p>• Coursera course: https://www.coursera.org/lecture/crash-course-in-causality/causal-graphs</p>
+</section>
+</section>
+<section id="propensity-score-matching-methods" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="propensity-score-matching-methods"><span class="header-section-number">11.4</span> Propensity score matching methods</h2>
+<p>Propensity score matching methods simulate a randomized experiment within observational data by balancing two or more groups on all important observed factors other than the factor of interest. Propensity score matching methods can also be used to fix a randomized experiment with severe flaws, such as if many participants did not adhere to their assigned treatment or dropped out. Propensity score matching methods are a family of over a dozen methods, including:</p>
+<ul>
+<li><p>Propensity score stratification: make quintiles by propensity score, and compute treatment effect within each quintile.</p></li>
+<li><p>Nearest-neighbor propensity score matching</p></li>
+<li><p>Nearest neighbor matching on several variables, often within propensity score calipers, using exact matching and distance matching with the Mahanobis (correlation-adjusted) distance measure</p></li>
+<li><p>Exact matching: often not possible but it is possible with large datasets like all US birth certificates.</p></li>
+<li><p>Coarsened exact matching (CEM)</p></li>
+</ul>
+<p>Statistical research finds that there is no single superior matched sampling method, and there is also no way to know in advance which method to use. The best matching method is the one that balances the treatment and control groups, and allows you to compare them without concern about confounding on the specified variables.</p>
+<p>Further reading: Gelman and Hill, Data Analysis using regression and multilevel/hierarchical models Rubin “Estimating causal effects from large data sets using propensity scores” Annals of Internal Medicine 1997; 127(8):757–63 Morgan and Winship, Counterfactuals and causal inference: Methods and principles for social research MatchIt software can implement the above methods.</p>
+<section id="example-cardiologists-and-generalists-who-provides-better-care" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="example-cardiologists-and-generalists-who-provides-better-care"><span class="header-section-number">11.4.1</span> Example: Cardiologists and generalists: who provides better care?</h3>
+<p>“Causal Effect of Ambulatory Specialty Care on Mortality Following Myocardial Infarction: A Comparison of Propensity Score and Instrumental Variable Analyses.” Specialists charge more than generalists. Are the extra costs worth it?</p>
+<p>This paper evaluated whether the type of cardiology care impacted survival from heart attacks. They compared the groups under care of cardiologists versus generalists, and created a comparison group of those treated by generalists such that the two groups were similar.</p>
+<p><img src="images/landrum2001-table3.png" class="img-fluid"></p>
+<p><img src="images/landrum2001-table3b.png" class="img-fluid"></p>
+<p>Can you identify potential confounders in the full sample (first three columns of this table)? That is, what are some differences between the patient groups treated by cardiologists versus generalists that might impact survival?</p>
+<p>Did the matching procedure address some of your concerns?</p>
+<p>They predicted who was most likely to be treated by a cardiologist and divided the groups into quintiles. The lowest propensity score were predicted to have the lowest probability of being treated by a cardiologist: based on the above table, what characteristics are most true of the lowest propensity score quintile?</p>
+<p>Then they estimated the mortality rate in each quintile. Which group in each quintile had lower mortality rates? Which patients does treatment by cardiologists appear to make the biggest difference? Overall, do patients seeing cardiologists have lower mortality rates than patients seeing generalists, after matching?</p>
+<p><img src="images/landrum2001-propscoreest.png" class="img-fluid"></p>
+</section>
+<section id="example-hospice-and-surviving-relative" class="level3" data-number="11.4.2">
+<h3 data-number="11.4.2" class="anchored" data-anchor-id="example-hospice-and-surviving-relative"><span class="header-section-number">11.4.2</span> Example: Hospice and surviving relative</h3>
+<p>Nicholas A. Christakis, Theodore J. Iwashyna. The health impact of health care on families: a matched cohort study of hospice use by decedents and mortality outcomes in surviving, widowed spouses. Social Science &amp; Medicine 57 (2003) 465–475.</p>
+<p>Study of 195,553 elderly couples, of whom 30,838 used hospice. Data is extracted from Medicare claims data, and they named their dataset Care after the Onset of Serious Illness (COSI). COSI has 1.2 million patients diagnosed in 1993 with 13 leading causes of death.</p>
+<p>Used propensity score matching to identify 30,838 similar elderly couples who did not use hospice. Diagram misuses terms cases and controls.</p>
+<p><img src="images/christakis-sample.png" class="img-fluid"></p>
+<p>Matching variables were determinants of hospice use from the literature. They used a separate propensity score model for men and women but the same covariates.</p>
+<ul>
+<li><p>Decedents’ attributes: age, race, Medicaid, average income in zip code, diagnosis, comor- bidity score, duration</p></li>
+<li><p>hospital attributes: technology available and teaching hospital status</p></li>
+</ul>
+<p>The researchers checked the match of the adequacy of the model using a “recommended method of testing for differences in covariates” between the groups (hospice vs.&nbsp;non-hospice bereaved spouses, stratifying by quintiles of estimated propensity score. They did not display the balance of the groups, and they did not explain this method, other than citing a paper (Rosenbaum and Rubin 1984.) They give a table comparing the characteristics before and after matching.</p>
+<p>They used exact matching on gender and nearest-neighbor estimated propensity score (within 0.005 on scale of 0–1). The procedure identifed matches for 99.92% of surviving wives and 99.04% of surviving husbands.</p>
+<p><img src="images/christakis-page4.jpg" class="img-fluid"></p>
+<p>After matching, the researchers evaluated the outcomes for the bereaved spouses of people who used hospice versus matched bereaved spouses of people who did not use hospice.</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Hospice (n=30,838)</th>
+<th style="text-align: left;">No hospice (n=30,838)</th>
+<th style="text-align: left;">Odds ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Wife died within 18 months</td>
+<td style="text-align: left;">4.9</td>
+<td style="text-align: left;">5.4</td>
+<td style="text-align: left;">0.92 (0.84, 0.99)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Husband died within 18 months</td>
+<td style="text-align: left;">13.2</td>
+<td style="text-align: left;">13.7</td>
+<td style="text-align: left;">0.95 (0.84, 1.06)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-evaluation-of-cardiac-catheterization" class="level3" data-number="11.4.3">
+<h3 data-number="11.4.3" class="anchored" data-anchor-id="example-evaluation-of-cardiac-catheterization"><span class="header-section-number">11.4.3</span> Example: Evaluation of cardiac catheterization</h3>
+<p>“Analysis of Observational Studies in the Presence of Treatment Selection Bias: Effects of Inva- sive Cardiac Management on AMI Survival Using Propensity Score and Instrumental Variable Methods”</p>
+<p>This study evaluates whether receipt of invasive cardiac care (cardiac catheterization) predicts mortality over 1 and 4 years. As before, they looked at differences between those receiving cardiac catheterization and less invasive care in their full sample.</p>
+<p><img src="images/cardiac-cath2.png" class="img-fluid"></p>
+<p>Can you identify potential confounders in the full sample (first three columns of this table)? That is, what are some differences between the patient groups who received cardiac catheterization within 30 days versus not that might impact survival? Did the matching procedure address some of your concerns?</p>
+<p>This table shows the distribution of certain variables by propensity score decile.</p>
+<p><img src="images/cardiac-cath-table2.png" class="img-fluid"></p>
+<p>How can you summarize the characteristics of those most likely versus least likely to receive cardiac catheterization?</p>
+<p><img src="images/cardiac-cath-table3.png" class="img-fluid"></p>
+<p>Does the method of data analysis impact whether cardiac catheterization appears to reduce mortality?</p>
+</section>
+</section>
+<section id="exercise" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="exercise"><span class="header-section-number">11.5</span> Exercise</h2>
+<p>This exercise is based on the paper “Vegetarian Dietary Patterns and Mortality in Adventist Health Study 2.” JAMA Internal Medicine, June 3, 2013, available here (free to public): http://archinte.jamanetwork.com/article.aspx?articleid=1710093</p>
+<ol type="1">
+<li><p>What type of study is this?</p></li>
+<li><p>What is the research question?</p></li>
+<li><p>What is the primary predictor of interest in this study? Define it briefly. If categorical or dichotomous, list the categories of the variable.</p></li>
+<li><p>Which are the primary outcome(s) in this study?</p></li>
+<li><p>Looking at Table 2, identify some potential confounders of the relationship between the predictor and the outcome(s)? Explain in detail how that variable could cause a spurious connection between vegetarianism and lower mortality.</p></li>
+<li><p>Which data analysis methods do the researchers use to adjust for confounding?</p></li>
+<li><p>Do you observe any effect modifiers in this study? List the potential effect modifiers and the relationships that they modify. How did you identify them?</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapt8.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Confounding and linear regression</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapt10.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

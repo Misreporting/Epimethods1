@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Epidemiology Methods lecture notes - 6&nbsp; Associations</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapt5.html" rel="next">
+<link href="./chapt3.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Associations</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Epidemiology Methods lecture notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chaptA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data displays</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Identifying research questions and data sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testing hypotheses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt4.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Associations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Causality vs association</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Excess risk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Measurement error and screening</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Confounding and linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt9.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt10.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt11.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Example data analysis in YRBS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt12.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt13.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt14.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt15.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case-control studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#person" id="toc-person" class="nav-link active" data-scroll-target="#person"><span class="toc-section-number">6.1</span>  Person</a></li>
+  <li><a href="#place" id="toc-place" class="nav-link" data-scroll-target="#place"><span class="toc-section-number">6.2</span>  Place</a>
+  <ul class="collapse">
+  <li><a href="#example-of-person-and-place-john-snow" id="toc-example-of-person-and-place-john-snow" class="nav-link" data-scroll-target="#example-of-person-and-place-john-snow"><span class="toc-section-number">6.2.1</span>  Example of person and place: John Snow</a></li>
+  </ul></li>
+  <li><a href="#time" id="toc-time" class="nav-link" data-scroll-target="#time"><span class="toc-section-number">6.3</span>  Time</a></li>
+  <li><a href="#non-identifiability" id="toc-non-identifiability" class="nav-link" data-scroll-target="#non-identifiability"><span class="toc-section-number">6.4</span>  Non-identifiability</a></li>
+  <li><a href="#bias" id="toc-bias" class="nav-link" data-scroll-target="#bias"><span class="toc-section-number">6.5</span>  Bias</a>
+  <ul class="collapse">
+  <li><a href="#selection-bias" id="toc-selection-bias" class="nav-link" data-scroll-target="#selection-bias"><span class="toc-section-number">6.5.1</span>  Selection bias</a></li>
+  <li><a href="#information-bias" id="toc-information-bias" class="nav-link" data-scroll-target="#information-bias"><span class="toc-section-number">6.5.2</span>  Information bias</a></li>
+  <li><a href="#potential-confounding" id="toc-potential-confounding" class="nav-link" data-scroll-target="#potential-confounding"><span class="toc-section-number">6.5.3</span>  Potential Confounding</a></li>
+  <li><a href="#adding-a-third-variable-to-uncover-bias" id="toc-adding-a-third-variable-to-uncover-bias" class="nav-link" data-scroll-target="#adding-a-third-variable-to-uncover-bias"><span class="toc-section-number">6.5.4</span>  Adding a third variable to uncover bias</a></li>
+  </ul></li>
+  <li><a href="#cohort-effects" id="toc-cohort-effects" class="nav-link" data-scroll-target="#cohort-effects"><span class="toc-section-number">6.6</span>  Cohort effects</a></li>
+  <li><a href="#simpsons-paradox" id="toc-simpsons-paradox" class="nav-link" data-scroll-target="#simpsons-paradox"><span class="toc-section-number">6.7</span>  Simpson’s paradox</a>
+  <ul class="collapse">
+  <li><a href="#berkeley-graduate-admissions-data" id="toc-berkeley-graduate-admissions-data" class="nav-link" data-scroll-target="#berkeley-graduate-admissions-data"><span class="toc-section-number">6.7.1</span>  Berkeley graduate admissions data</a></li>
+  <li><a href="#discrimination-in-dds" id="toc-discrimination-in-dds" class="nav-link" data-scroll-target="#discrimination-in-dds"><span class="toc-section-number">6.7.2</span>  Discrimination in DDS</a></li>
+  <li><a href="#new-zealand-jury-pools" id="toc-new-zealand-jury-pools" class="nav-link" data-scroll-target="#new-zealand-jury-pools"><span class="toc-section-number">6.7.3</span>  New Zealand Jury Pools</a></li>
+  </ul></li>
+  <li><a href="#exercise-coffee-and-cancer-of-the-pancreas" id="toc-exercise-coffee-and-cancer-of-the-pancreas" class="nav-link" data-scroll-target="#exercise-coffee-and-cancer-of-the-pancreas"><span class="toc-section-number">6.8</span>  Exercise: Coffee and cancer of the pancreas</a>
+  <ul class="collapse">
+  <li><a href="#suggested-answers" id="toc-suggested-answers" class="nav-link" data-scroll-target="#suggested-answers"><span class="toc-section-number">6.8.1</span>  Suggested answers</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Associations</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="person" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="person"><span class="header-section-number">6.1</span> Person</h2>
+<p>Personal characteristics: age, gender, race/ethnicity, SES, marital status.</p>
+</section>
+<section id="place" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="place"><span class="header-section-number">6.2</span> Place</h2>
+<p>Place characteristics: Geographic dispersion: location in neighborhood, country, hospital.</p>
+<section id="example-of-person-and-place-john-snow" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="example-of-person-and-place-john-snow"><span class="header-section-number">6.2.1</span> Example of person and place: John Snow</h3>
+<p>In 1855, John Snow made the following cross-tabulation showing the rate of cholera among customers of 2 different London water providers. In 1852, Lambeth changed its intake pipe on the Thames to be upstream to avoid sewage contamination of the water. Southwark and Vauxhall kept the same intake pipe. John Snow evaluated whether there were any systematic differences between houses getting water from one company versus the other.</p>
+<p>“The mixing of the [water] supply is of the most intimate kind. The pipes of each Company go down all the streets, and into nearly all the courts and alleys. A few houses are supplied by one Company and a few by the other, according to the decision of the owner or occupier at the time when the Water Companies were in active competition. In many cases, a single house has a supply different from that on either side. Each company supplies both rich and poor, both large houses and small; there is no difference either in the condition or occupation of the persons receiving the water of the different Companies. … It is obvious that no experiment could have been devised which would more thoroughly test the effect of water supply on the progress of cholera than this…. [The new intake pipe] divided into two groups without their choice, and, in most cases, without their knowledge; one group being supplied with water containing the sewage of London, and, amongst it, whatever might have come from the cholera patients, the other group having water quite free from such impurity.” (John Snow, 1855, On the Mode of Communication of Cholera London: John Churchill, 2nd edition. Reprinted in Snow on Cholera, London: Humphrey Milford; Oxford University Press, 1965)</p>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Company</th>
+<th style="text-align: left;">Number of houses</th>
+<th style="text-align: left;">Cholera deaths</th>
+<th style="text-align: left;">Death rate per 10,000</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Southwark and Vauxhall</td>
+<td style="text-align: left;">40,046</td>
+<td style="text-align: left;">1263</td>
+<td style="text-align: left;">315</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lambeth</td>
+<td style="text-align: left;">26,107</td>
+<td style="text-align: left;">98</td>
+<td style="text-align: left;">37</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="time" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="time"><span class="header-section-number">6.3</span> Time</h2>
+<p>Time variation: secular trends, cyclical variation (season/month/day of week/time of day), birth cohorts.</p>
+<p>Example: A study in a children’s hospital emergency department in Colorado from 2005–2011 compared the proportion of marijuana ingestions by young children before and after medical marijuana legalization in October 2009. They looked at 1378 patients below age 12 evalu- ated for unintentional ingestions: 790 patients until September 30, 2009, and 588 patients on or after October 1, 2009. Out of 790 patients evaluated for unintentional ingestions before 9/30/09, none were related to marijuana exposure (0%; 95% CI, 0%–0.6%). Out of 588 patients evaluated for unintentional ingestions on or after 10/1/09, 14 were related to marijuana exposure (2.4%; 95% CI, 1.4%–4.0%), a significant increase (P &lt;.001). Out of 14 unintentional marijuana exposures, 8 involved medical marijauana, and 7 were from food products. (Wang GS, Roosevelt G, Heard K., Pediatric Marijuana Exposures in a Medical Marijuana State. JAMA Pediatr. 2013 May 27:1–4.)</p>
+<p>What’s the research question? What’s the study design? Is the study design valid for answering their research question?</p>
+<p>A small number of sick people are generally responsible for a large proportion of health care spending. Employers try to reduce their health care costs by reducing the costs of the sickest members of their insurance pools. A medication therapy management (MTM) program invited high-risk members in a large employer group. The MTM treatment group comprised 2250 members who accepted, and the control group comprised 2250 members who decliend the invitation but were matched to the treatment group on unspecified characteristics. The MTM and control groups were compared for the year before versus after the MTM program invitations. The researchers assessed several measures of health care usage and spending, as well as medication possession ratios (MPRs) for 5 chronic conditions. Results: “MTM members significantly reduced their plan-paid health care costs by 10.3% or $977, compared with an increase of 0.7% or $62 in the control group (P=0.048). Inpa- tient visits in the MTM group decreased by 18.6%, while the control group experienced an increase of 24.2% (P &lt; 0.001). While both groups had decreases in ER visits, the groups were not significantly different (P=0.399). Average days supply for the MTM group increased by 72.7 days over baseline; for the control group, it decreased by 111.1 days (P&lt;0.001). MTM members with hypertension and dyslipidemia had pre-post in- creases in MPR of 2.29% and 2.10%, respectively, while the control group had decreases of 2.31% and 2.61% (both P &lt; 0.001). The mean MPRs for members with diabetes, depression, and asthma did not change in either group. Program costs per patient in 2009 were estimated to be $478. The program had a return on investment (ROI) of 2.0 in 2009.” Moore JM, Shartle D, Faudskar L, Matlin OS, Brennan TA. Impact of a patient-centered pharmacy program and intervention in a high-risk group. J Manag Care Pharm. 2013 Apr;19(3):228–36. (a) What’s the research question? (b) What’s the study design? (c) Is the study design valid for answering their research question? (d) Compare this study with the above study.</p>
+</section>
+<section id="non-identifiability" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="non-identifiability"><span class="header-section-number">6.4</span> Non-identifiability</h2>
+<p>Non-identifiability is a statistical term relating to the inability to separate the impact of many different inter-related factors. The extreme of non-identifiability: two factors completely deter- mine the third. Example from the book: calendar year, age, and year of birth. Also true for inter-related factors such as race/ethnicity, income, and education.</p>
+</section>
+<section id="bias" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="bias"><span class="header-section-number">6.5</span> Bias</h2>
+<p>Bias arises whenever there are systematic differences between the two groups (e.g., cases vs.&nbsp;controls, exposed vs unexposed, treatment vs.&nbsp;controls) that could explain or conceal differences between groups. - Bias towards the null - Bias away from the null</p>
+<p>When proposing potential biases, specify the type of bias (e.g., information, selection), how and in what direction the bias would impact the findings, and, if possible, how the researchers could prevent the bias. The term “bias” without further elaboration is meaningless.</p>
+<section id="selection-bias" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="selection-bias"><span class="header-section-number">6.5.1</span> Selection bias</h3>
+<p>Selection bias may partially explain research findings, if the two groups (cases vs.&nbsp;controls, exposed vs unexposed, treatment vs.&nbsp;controls) are selected in different ways, or if there is differential attrition.</p>
+</section>
+<section id="information-bias" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="information-bias"><span class="header-section-number">6.5.2</span> Information bias</h3>
+<p>Information bias includes many types of bias, including observer, responder, instrument, and recall bias.</p>
+<p>If measurement in the two groups have systematic differences, that could explain the research findings. Observer and responder bias can be addressed through blinding.</p>
+</section>
+<section id="potential-confounding" class="level3" data-number="6.5.3">
+<h3 data-number="6.5.3" class="anchored" data-anchor-id="potential-confounding"><span class="header-section-number">6.5.3</span> Potential Confounding</h3>
+<p>Confounders are associated with both the outcome and the predictor and not an intermediate variable, so observed effect may instead be entirely attributable to the confounder’s relationship with both factors. Explain how you know that a potential confounder is associated with both outcome and the predictor. Limit your discussion to a relatively small number of factors that are likely to have large impacts.</p>
+<p>Lack of a control group or a poor choice of a control group are threats to internal validity, but they are not confounders. Explain why it’s important to have a control group, and how the lack of a (good) control group may explain the results.</p>
+</section>
+<section id="adding-a-third-variable-to-uncover-bias" class="level3" data-number="6.5.4">
+<h3 data-number="6.5.4" class="anchored" data-anchor-id="adding-a-third-variable-to-uncover-bias"><span class="header-section-number">6.5.4</span> Adding a third variable to uncover bias</h3>
+<p>We can reveal bias by stratifying data. Estimating associations after stratifying data can reveal important patterns: cohort effects and Simpson’s paradox.</p>
+</section>
+</section>
+<section id="cohort-effects" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="cohort-effects"><span class="header-section-number">6.6</span> Cohort effects</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://imgs.xkcd.com/comics/cohort_and_age_effects.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Cohort and age effects, Randall Munroe, XKCD</figcaption><p></p>
+</figure>
+</div>
+<p>Source: Randall Munroe, XKCD.org https://xkcd.com/2080/</p>
+<p>Hysterectomy changes by age cohort</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Age on day of interview</th>
+<th style="text-align: left;">40-49</th>
+<th style="text-align: left;">50-59</th>
+<th style="text-align: left;">60-69</th>
+<th style="text-align: left;">70-79</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">45</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">19</td>
+<td style="text-align: left;">17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">26</td>
+<td style="text-align: left;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">55</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">33</td>
+<td style="text-align: left;">26</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">60</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">37</td>
+<td style="text-align: left;">27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">65</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">70</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">35</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">40</span>), <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">18</span>), <span class="at">type=</span><span class="st">"b"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">70</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>), <span class="at">xlab=</span><span class="st">""</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">""</span>, <span class="at">lty=</span><span class="dv">1</span>, <span class="at">axes=</span>F)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span>T)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">40</span>, <span class="dv">45</span>, <span class="dv">50</span>), <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">22</span>, <span class="dv">35</span>), <span class="at">type=</span><span class="st">"b"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">70</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">""</span>,  <span class="at">ylab=</span><span class="st">""</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">axes=</span>F)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span>T)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">40</span>, <span class="dv">45</span>, <span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">60</span>), <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">11</span>, <span class="dv">19</span>, <span class="dv">26</span>, <span class="dv">33</span>, <span class="dv">37</span>), <span class="at">type=</span><span class="st">"b"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">70</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>),  <span class="at">xlab=</span><span class="st">""</span>, <span class="at">ylab=</span><span class="st">""</span>, <span class="at">lty=</span><span class="dv">3</span>, <span class="at">axes=</span>F)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span>T)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">40</span>, <span class="dv">45</span>, <span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>), <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">11</span>, <span class="dv">17</span>, <span class="dv">23</span>, <span class="dv">26</span>, <span class="dv">27</span>, <span class="dv">31</span>, <span class="dv">35</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">type=</span><span class="st">"b"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">70</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>), <span class="at">xlab=</span><span class="st">"Age in years"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab=</span><span class="st">"Percent with hysterectomy"</span>, <span class="at">lty=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="chapt4_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="simpsons-paradox" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="simpsons-paradox"><span class="header-section-number">6.7</span> Simpson’s paradox</h2>
+<p>Simpson’s paradox refers to the situation where an apparent relationship between two variables reverses after stratifying on a third variable.</p>
+<section id="berkeley-graduate-admissions-data" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="berkeley-graduate-admissions-data"><span class="header-section-number">6.7.1</span> Berkeley graduate admissions data</h3>
+<p>Berkeley gender bias case is a classic example of Simpson’s paradox. (Bickel, P. J., Hammel, E. A., and O’Connell, J. W. (1975) Sex bias in graduate admissions: Data from Berkeley. Science, 187, 398–403)</p>
+<p>Here are the admission rates from fall 1973 for graduate school at UC Berkeley. Men seem to be more likely to be admitted, so Berkeley was afraid of being sued. They were never sued, however.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Applicants</th>
+<th style="text-align: left;">Admitted</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Men</td>
+<td style="text-align: left;">8442</td>
+<td style="text-align: left;">44%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Women</td>
+<td style="text-align: left;">4321</td>
+<td style="text-align: left;">35%</td>
+</tr>
+</tbody>
+</table>
+<p>After stratifying by department, here are the admission rates:</p>
+<table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 18%">
+<col style="width: 23%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Department</th>
+<th style="text-align: left;">Men applicants</th>
+<th style="text-align: left;">Men admitted</th>
+<th style="text-align: left;">Women applicants</th>
+<th style="text-align: left;">Women admitted</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">825</td>
+<td style="text-align: left;">62%</td>
+<td style="text-align: left;">108</td>
+<td style="text-align: left;">82%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">560</td>
+<td style="text-align: left;">63%</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">68%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">325</td>
+<td style="text-align: left;">37%</td>
+<td style="text-align: left;">593</td>
+<td style="text-align: left;">34%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">417</td>
+<td style="text-align: left;">33%</td>
+<td style="text-align: left;">375</td>
+<td style="text-align: left;">35%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E</td>
+<td style="text-align: left;">191</td>
+<td style="text-align: left;">28%</td>
+<td style="text-align: left;">393</td>
+<td style="text-align: left;">24%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">272</td>
+<td style="text-align: left;">6%</td>
+<td style="text-align: left;">341</td>
+<td style="text-align: left;">7%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">2590</td>
+<td style="text-align: left;">46%</td>
+<td style="text-align: left;">1835</td>
+<td style="text-align: left;">30%</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/plot-sex-bias-berkeley.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Bickel, P. J., Hammel, E. A., and O’Connell, J. W. (1975) Sex bias in graduate admissions: Data from Berkeley. Science, 187, 398--403</figcaption><p></p>
+</figure>
+</div>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Men applicants</th>
+<th style="text-align: left;">Men admitted</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Women applicants</th>
+<th style="text-align: left;">Women admitted</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Arts</td>
+<td style="text-align: left;">4100</td>
+<td style="text-align: left;">1300</td>
+<td style="text-align: left;">32%</td>
+<td style="text-align: left;">8250</td>
+<td style="text-align: left;">3150</td>
+<td style="text-align: left;">38%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sciences</td>
+<td style="text-align: left;">8200</td>
+<td style="text-align: left;">5100</td>
+<td style="text-align: left;">62%</td>
+<td style="text-align: left;">2900</td>
+<td style="text-align: left;">1900</td>
+<td style="text-align: left;">66%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">12300</td>
+<td style="text-align: left;">6400</td>
+<td style="text-align: left;">52%</td>
+<td style="text-align: left;">11150</td>
+<td style="text-align: left;">5050</td>
+<td style="text-align: left;">45%</td>
+</tr>
+</tbody>
+</table>
+<p>The reason that Simpson’s paradox occurred here is that more women apply to more competitive departments (e.g., the humanities) than men do, so women experience lower overall admissions rates than men due to their preference for these more competitive departments. Disaggregated by department, we see that women do not experience a lower admissions rate. The reason that the science departments are less competitive is that the applicants tend to be self-selected, having had more attrition at the undergraduate level, so the applicant pool is overall probably more suitable for graduate school than the applicant pool for non-science departments which have less attrition among undergraduates.</p>
+<p>I’ve looked for the source of the above plot to reproduce it, but the most detailed data are here (https://discovery.cs.illinois.edu/dataset/berkeley/). It seems Berkeley doesn’t release the full set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"berkeley.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span>Admission <span class="sc">+</span> Major <span class="sc">+</span> Gender, <span class="at">data=</span>B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , Gender = F
+
+          Major
+Admission     A    B    C    D    E    F Other
+  Accepted   89   17  201  131   94   25   937
+  Rejected   19    8  392  244  299  316  1549
+
+, , Gender = M
+
+          Major
+Admission     A    B    C    D    E    F Other
+  Accepted  825  353  120  138   53   22  2227
+  Rejected  313  207  205  279  138  351  3211</code></pre>
+</div>
+</div>
+<p>We can reproduce these numerical results in R using the version from the datasets package. Sum up all the values for males and females separately.</p>
+<p>This is what the dataset looks like. It’s a cross-tabulation in 3 dimensions: admission status, gender, and department.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>UCBAdmissions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , Dept = A
+
+          Gender
+Admit      Male Female
+  Admitted  512     89
+  Rejected  313     19
+
+, , Dept = B
+
+          Gender
+Admit      Male Female
+  Admitted  353     17
+  Rejected  207      8
+
+, , Dept = C
+
+          Gender
+Admit      Male Female
+  Admitted  120    202
+  Rejected  205    391
+
+, , Dept = D
+
+          Gender
+Admit      Male Female
+  Admitted  138    131
+  Rejected  279    244
+
+, , Dept = E
+
+          Gender
+Admit      Male Female
+  Admitted   53     94
+  Rejected  138    299
+
+, , Dept = F
+
+          Gender
+Admit      Male Female
+  Admitted   22     24
+  Rejected  351    317</code></pre>
+</div>
+</div>
+<p>We can use the apply function to sum up across the first two dimensions of the cross-tabulation: the rows (admits) and columns (gender), so we have just a 2x2 table with admission numbers (rows) by gender (columns).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">all=</span><span class="fu">apply</span>(UCBAdmissions, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Gender
+Admit      Male Female
+  Admitted 1198    557
+  Rejected 1493   1278</code></pre>
+</div>
+</div>
+<p>Use these data to estimate the acceptance rates by gender, using apply to sum over the columns (gender).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>all[<span class="dv">1</span>,]<span class="sc">/</span><span class="fu">apply</span>(all, <span class="dv">2</span>, sum), <span class="at">digits=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Male Female 
+  44.5   30.4 </code></pre>
+</div>
+</div>
+<p>Get the acceptance rates for each department. Because this is a cross-tabulation in three dimensions, we use 1,, to refer to the first row and 2,, to refer to the second row.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">acceptancerates =</span> <span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>UCBAdmissions[<span class="dv">1</span>,,]<span class="sc">/</span>(UCBAdmissions[<span class="dv">1</span>,,]<span class="sc">+</span>UCBAdmissions[<span class="dv">2</span>,,]), <span class="at">digits=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Dept
+Gender      A    B    C    D    E    F
+  Male   62.1 63.0 36.9 33.1 27.7  5.9
+  Female 82.4 68.0 34.1 34.9 23.9  7.0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(acceptancerates, <span class="at">beside=</span>T, <span class="at">col=</span><span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">"Acceptance rate (%)"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="at">xlab=</span><span class="st">"Department"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="chapt4_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here’s the bar plot.</p>
+</section>
+<section id="discrimination-in-dds" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="discrimination-in-dds"><span class="header-section-number">6.7.2</span> Discrimination in DDS</h3>
+<p>CA Department of Developmental Services allocates funds to over 250,000 developmentally- disabled individuals. There appears to less spending on Hispanics than non-Hispanic whites when aggregate spending is examined, but the difference reverses after stratifying on age cohort.1</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'mosaic':
+  method                           from   
+  fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+The 'mosaic' package masks several functions from core packages in order to add 
+additional features.  The original behavior of these functions should not be affected by this.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'mosaic'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:dplyr':
+
+    count, do, tally</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:Matrix':
+
+    mean</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggplot2':
+
+    stat</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+    quantile, sd, t.test, var</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    max, mean, min, prod, range, sample, sum</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>disability_spending<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">"paradox_data.csv"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Expenditures <span class="sc">~</span> Ethnicity, <span class="at">data=</span>disability_spending)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Ethnicity   min       Q1  median       Q3   max      mean        sd
+1    American Indian  3726 22085.25 41817.5 56170.50 58392 36438.250 25693.912
+2              Asian   374  3382.00  9369.0 34274.00 75098 18392.372 19209.225
+3              Black   240  3870.00  8687.0 41857.00 60808 20884.593 20549.274
+4           Hispanic   222  2331.25  3952.0 10292.50 65581 11065.569 15629.847
+5         Multi Race   669  1689.75  2622.0  3749.50 38619  4456.731  7332.135
+6    Native Hawaiian 37479 39103.00 40727.0 45434.00 50141 42782.333  6576.462
+7              Other  2018  2667.25  3316.5  3965.75  4615  3316.500  1836.356
+8 White not Hispanic   340  3977.00 15718.0 43134.00 68890 24697.549 20604.376
+    n missing
+1   4       0
+2 129       0
+3  59       0
+4 376       0
+5  26       0
+6   3       0
+7   2       0
+8 401       0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Expenditures <span class="sc">~</span> Age.Cohort, <span class="at">data=</span>disability_spending)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Age.Cohort   min       Q1  median       Q3   max      mean        sd   n
+1      0 - 5   222  1034.25  1380.5  1739.25  2750  1415.280  612.6143  82
+2       51 + 33110 49515.00 53509.0 57745.50 75098 53521.896 6283.7671 106
+3      13-17   386  3306.50  3952.0  4665.50  6798  3922.613 1012.6525 212
+4      18-21  3153  7588.00  9979.0 11806.50 18435  9888.538 2940.6088 199
+5      22-50 25348 36447.25 40455.5 44720.75 56716 40209.283 6287.3119 226
+6       6-12   620  1601.50  2191.0  2846.50  4163  2226.863  830.9430 175
+  missing
+1       0
+2       0
+3       0
+4       0
+5       0
+6       0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>disability_spending<span class="ot">=</span><span class="fu">transform</span>(disability_spending, <span class="at">hispanic=</span><span class="fu">ifelse</span>(Ethnicity<span class="sc">==</span><span class="st">"Hispanic"</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>disability_smaller<span class="ot">=</span><span class="fu">subset</span>(<span class="fu">subset</span>(disability_spending, Ethnicity<span class="sc">==</span><span class="st">"White not Hispanic"</span> <span class="sc">|</span> Ethnicity<span class="sc">==</span><span class="st">"Hispanic"</span>), <span class="fu">is.na</span>(Ethnicity)<span class="sc">==</span><span class="dv">0</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(Expenditures <span class="sc">~</span> Age.Cohort <span class="sc">+</span> hispanic, <span class="at">data=</span>disability_smaller)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Age.Cohort.hispanic   min       Q1  median       Q3   max      mean
+1              0 - 5.0   340   875.75  1100.5  1777.25  2750  1366.900
+2               51 +.0 33110 48673.00 52652.5 57556.25 68890 52670.424
+3              13-17.0  1195  3076.00  3977.0  4586.00  6798  3904.358
+4              18-21.0  3157  8299.00 10068.0 11775.00 16133 10133.058
+5              22-50.0 26702 36279.00 40587.0 44002.00 56716 40187.624
+6               6-12.0   620  1344.25  2155.5  2659.75  3572  2052.261
+7              0 - 5.1   222  1025.00  1423.0  1704.75  2549  1393.205
+8               51 +.1 47420 51777.00 54875.0 59926.00 65581 55585.000
+9              13-17.1  1597  3394.50  3945.0  4675.00  5920  3955.282
+10             18-21.1  3225  7521.75 10009.5 11995.00 16677  9959.846
+11             22-50.1 26178 36782.50 40277.0 46504.00 52222 40924.116
+12              6-12.1   776  1675.00  2247.0  2899.50  4163  2312.187
+          sd   n missing
+1   716.2439  20       0
+2  6424.6686  66       0
+3  1071.0216  67       0
+4  2705.7115  69       0
+5  6081.3319 133       0
+6   842.7642  46       0
+7   533.4011  44       0
+8  5389.9663  17       0
+9   938.8189 103       0
+10 3230.9162  78       0
+11 6467.0946  43       0
+12  823.3743  91       0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(Age.Cohort<span class="sc">~</span>hispanic, <span class="at">data=</span>disability_smaller)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          hispanic
+Age.Cohort   0   1
+     0 - 5  20  44
+     51 +   66  17
+    13-17   67 103
+    18-21   69  78
+    22-50  133  43
+    6-12    46  91</code></pre>
+</div>
+</div>
+</section>
+<section id="new-zealand-jury-pools" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="new-zealand-jury-pools"><span class="header-section-number">6.7.3</span> New Zealand Jury Pools</h3>
+<p>In 1993, the Department of Justice in New Zealand investigated whether Maori tribespeople were underrepresented on juries. Overall, Maori were 9.5% of the eligible population, but 10.1% of jury pools, but decomposed by district of residence, the results looked different. They found the following percentages of Maori Ethnic Group in the jury pools:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Eligible population (%)</th>
+<th style="text-align: left;">Jury pool (%)</th>
+<th style="text-align: left;">Shortfall (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">9.5</td>
+<td style="text-align: left;">10.1</td>
+<td style="text-align: left;">-0.6</td>
+</tr>
+</tbody>
+</table>
+<p>Decomposed by district of residence compared with results from the 1991 Census, they found the following percentages of Maori Ethnic Group in the jury pools.</p>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 34%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">District</th>
+<th style="text-align: left;">Eligible population (%)</th>
+<th style="text-align: left;">Jury pool (%)</th>
+<th style="text-align: left;">Shortfall (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Whangarei</td>
+<td style="text-align: left;">17.0</td>
+<td style="text-align: left;">16.8</td>
+<td style="text-align: left;">0.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Auckland</td>
+<td style="text-align: left;">9.2</td>
+<td style="text-align: left;">9.0</td>
+<td style="text-align: left;">0.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hamilton</td>
+<td style="text-align: left;">13.5</td>
+<td style="text-align: left;">11.5</td>
+<td style="text-align: left;">2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rotorua</td>
+<td style="text-align: left;">27.0</td>
+<td style="text-align: left;">23.4</td>
+<td style="text-align: left;">3.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gisborne</td>
+<td style="text-align: left;">32.2</td>
+<td style="text-align: left;">29.5</td>
+<td style="text-align: left;">2.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Napier</td>
+<td style="text-align: left;">15.5</td>
+<td style="text-align: left;">12.4</td>
+<td style="text-align: left;">3.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New Plymouth</td>
+<td style="text-align: left;">8.9</td>
+<td style="text-align: left;">4.1</td>
+<td style="text-align: left;">4.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Palmerston North</td>
+<td style="text-align: left;">8.9</td>
+<td style="text-align: left;">4.3</td>
+<td style="text-align: left;">4.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wellington</td>
+<td style="text-align: left;">8.7</td>
+<td style="text-align: left;">7.5</td>
+<td style="text-align: left;">1.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nelson</td>
+<td style="text-align: left;">3.9</td>
+<td style="text-align: left;">1.7</td>
+<td style="text-align: left;">2.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Christchurch</td>
+<td style="text-align: left;">4.5</td>
+<td style="text-align: left;">3.3</td>
+<td style="text-align: left;">1.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dunedin</td>
+<td style="text-align: left;">3.3</td>
+<td style="text-align: left;">2.4</td>
+<td style="text-align: left;">0.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Invercargill</td>
+<td style="text-align: left;">8.4</td>
+<td style="text-align: left;">4.8</td>
+<td style="text-align: left;">3.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">All districts</td>
+<td style="text-align: left;">9.5</td>
+<td style="text-align: left;">10.1</td>
+<td style="text-align: left;">-0.6</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="exercise-coffee-and-cancer-of-the-pancreas" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="exercise-coffee-and-cancer-of-the-pancreas"><span class="header-section-number">6.8</span> Exercise: Coffee and cancer of the pancreas</h2>
+<p>Answer the following questions about the attached paper: “Coffee and cancer of the pancreas” in New England Journal of Medicine 1981. 1. What research question is the paper trying to answer? 2. Is there a clear background and rationale for this study? Do the researchers explain why is it important to study this research question? Explain. 3. What is the study’s research design? Is the design adequate to answer the major research questions? Explain. 4. What is the study’s sample and source of data? Are the descriptions of the study settings and subjects adequate? Are there limitations of the study samples that might cause problems with internal validity? Are there limitations of the study samples that might cause problems with external validity? Explain your answers. 5. What is the primary outcome variable (also known as dependent variable)? Can you tell whether the outcome variable is likely to be measured accurately? If you think that the outcome is not measured accurately, how might that affect the study’s results? 6. What is the main predictor variable (also known as independent variable)? Can you tell whether the predictor variable is likely to be measured accurately? If you think that the predictor is not measured accurately, how might that affect the study’s results? 7. What were the results, and what did the study conclude from the results? Assess how well the researchers justified the study’s main conclusions in the abstract and discussion. Explain your answer in view of the study’s research design. 8. Are there any research designs that would allow a more useful or better study? If so, explain briefly this overall design and how it would be more useful or better. 9. What has happened in the literature since this paper was published? Find a recent meta-analysis, if possible. Has the literature supported this paper’s finding?</p>
+<section id="suggested-answers" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="suggested-answers"><span class="header-section-number">6.8.1</span> Suggested answers</h3>
+<ol type="1">
+<li><p>What research question is the paper trying to answer? What causes pancreatic cancer? Specifically, using PICO acronym: are people (in New England) who drink tea or coffee or who smoke more likely to get pancreatic cancer than people who don’t?</p></li>
+<li><p>Is there a clear background and rationale for this study? Do the researchers explain why is it important to study this research question? Explain. Yes, the researchers explain why is it important to study pancreatic cancer. Pancreatic cancer kills 20,000 people per year and treatments were not effective, making primary prevention particularly important. At the time of writing, cigarettes were the only cause identified so far, and only weakly. Alcohol, coffee, and tea were not adequately explored.</p></li>
+<li><p>What is the study’s research design? Is the design adequate to answer the major research questions? Explain. The study used a case-control design, comparing patients with pancreatic cancer with hospitalized patients with the same doctors, excluding those with diseases associated with smoking and alcohol. A case-control research design cannot address causal question of which factors cause pancreatic cancer, but it is sufficient to determine whether pancreatic cancer is associated with the factors.</p></li>
+<li><p>What is the study’s sample and source of data? Are the descriptions of the study settings and subjects adequate? Are there limitations of the study samples that might cause problems with internal validity? Are there limitations of the study samples that might cause problems with external validity? Explain your answers. Patients at 11 Boston and Rhode Island hospitals: 369 cases and 644 controls. Cases had pancreatic cancer, excluding some varieties. Controls were patients of the same doctors in the same hospitals, excluding those treated for diseases known to be caused by alcohol and smoking. Yes, description was adequate. They listed most of the diagnoses of the controls, and exclusion criteria, and they noted that there was over-representation of GI illnesses. The samples could cause problems with internal validity. Over-representation of GI ill- nesses in control group could cause selection bias away from the null; coffee drinking may be lower than expected in the control group because many people with GI illnesses may drink less coffee due to their conditions. Exclusion of those treated for diseases known to be caused by alcohol and smoking could cause selection bias away from null because smokers and alcohol drinkers are also more likely to drink coffee, so the control group may have less coffee drinking than average, even among those without GI diseases. The samples could cause problems with external validity. The researchers excluded non- whites and non-residents of the US. The study only generalizes to white patients with certain forms of pancreatic cancer who are likely to go to hospitals where nearly all the patients are white. Excluding non-whites limits external validity, and is unethical and would not be permitted under current research review rules. The study also excluded people too sick to interview, patients who died, and patients who were discharged. Without additional analysis of the background factors — comparing excluded versus included patients — we can’t know whether these factors limit the external validity. For instance, patients who were discharged may have been more healthy than other pancreatic cancer patients, whereas patients who were too sick or died may have been less healthy than other pancreatic cancer patients.</p></li>
+<li><p>What is the primary outcome? Can you tell whether the outcome is likely to be measured accurately? If you think that the outcome is not measured accurately, how might that affect the study’s results? Pancreatic cancer is the primary outcome, and it was measured as a clinical diagnosis with or without pancreatic cancer. The cases were hospitalized for pancreatic cancer, so their diagnosis is likely to be accurate. The controls were hospitalized for other conditions, and their doctors likely ruled out pancreatic cancer. Thus, the outcome of pancreatic cancer is likely to be measured accurately for both cases and controls.</p></li>
+<li><p>What are the main predictor(s)? Can you tell whether the predictor(s) are likely to be measured accurately? If you think that one or more predictor(s) are not measured accurately, how might that affect the study’s results? Consumption of coffee, tea, alcohol, and cigarettes are the main predictors. Coffee drink- ing may not have been measured accurately because the researchers in this study did not specify that they wanted to know participants’ pre-illness coffee drinking. As mentioned above, people with GI conditions that were over-represented in the control group may have reduced coffee drinking due to their illnesses, and the researchers did not specify that they were interested in pre-illness coffee drinking. If they had specified pre-illness coffee drinking, there may have been recall bias if people with conditions thought to be associated with coffee drinking (GI conditions) recalled more or less coffee than they actually drank, which would cause bias towards the null if they recalled more coffee drinking, or away from the null if they recalled less coffee drinking.</p></li>
+<li><p>What were the results, and what did the study conclude from the results? Assess how well the researchers justified the study’s main conclusions in the abstract and discussion. Explain your answer in view of the study’s research design. Patients who reported drinking up to 2 cups of coffee had 1.8 times the odds (80% greater odds) of pancreatic cancer, and patients who reported drinking 3 or more cups of coffee had 2.7 times the odds of pancreatic cancer, adjusted for cigarette smoking. The risk of pancreatic cancer increased monotonically with coffee intake, which is convincing because it suggests a dose-response relationship. Given the available information, the researchers justified the main conclusions, but further investigation has suggested selection bias may explain the findings.</p></li>
+<li><p>Are there any research designs that would allow a more useful or better study? If so, explain briefly this overall design and how it would be more useful or better. The case-control research design is reasonable because the researchers were still trying to identify causes of pancreatic cancer. Altering the design to reduce the chances of selection bias, such as by excluding people with diseases thought to be associated with coffee drinking (e.g., GI illnesses), could improve the case-control design. Including people of all races and ethnicities would meet modern ethical standards and improve the study’s external validity.</p></li>
+<li><p>What has happened in the literature since this paper was published? Find a recent meta-analysis, if possible. Has the literature supported this paper’s finding? There have been at least 37 case-control and 17 cohort studies, and the literature has not supported this paper’s finding of such a large association between coffee and pan- creatic cancer; the meta-analysis by Turati et al suggests not even a small association is supported. The research suggests that this study may have had selection bias and information bias because the study did not measure pre-illness coffee drinking.</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapt3.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testing hypotheses</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapt5.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Causality vs association</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

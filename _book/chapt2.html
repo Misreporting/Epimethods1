@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Epidemiology Methods lecture notes - 4&nbsp; Identifying research questions and data sources</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapt3.html" rel="next">
+<link href="./chapt1.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Identifying research questions and data sources</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Epidemiology Methods lecture notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chaptA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data displays</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Identifying research questions and data sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testing hypotheses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Associations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Causality vs association</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Excess risk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Measurement error and screening</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Confounding and linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt9.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt10.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt11.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Example data analysis in YRBS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt12.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt13.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt14.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt15.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case-control studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#formulating-research-questions" id="toc-formulating-research-questions" class="nav-link active" data-scroll-target="#formulating-research-questions"><span class="toc-section-number">4.1</span>  Formulating research questions</a></li>
+  <li><a href="#summarizing-research-and-evaluating-research-quality" id="toc-summarizing-research-and-evaluating-research-quality" class="nav-link" data-scroll-target="#summarizing-research-and-evaluating-research-quality"><span class="toc-section-number">4.2</span>  Summarizing research and evaluating research quality</a>
+  <ul class="collapse">
+  <li><a href="#systematic-reviews-in-public-health" id="toc-systematic-reviews-in-public-health" class="nav-link" data-scroll-target="#systematic-reviews-in-public-health"><span class="toc-section-number">4.2.1</span>  Systematic reviews in public health</a></li>
+  <li><a href="#systematic-reviews-in-epidemiology" id="toc-systematic-reviews-in-epidemiology" class="nav-link" data-scroll-target="#systematic-reviews-in-epidemiology"><span class="toc-section-number">4.2.2</span>  Systematic reviews in epidemiology</a></li>
+  <li><a href="#systematic-reviews-in-health-services-research" id="toc-systematic-reviews-in-health-services-research" class="nav-link" data-scroll-target="#systematic-reviews-in-health-services-research"><span class="toc-section-number">4.2.3</span>  Systematic reviews in health services research</a></li>
+  </ul></li>
+  <li><a href="#identifying-sources" id="toc-identifying-sources" class="nav-link" data-scroll-target="#identifying-sources"><span class="toc-section-number">4.3</span>  Identifying sources</a>
+  <ul class="collapse">
+  <li><a href="#peer-reviewed-sources" id="toc-peer-reviewed-sources" class="nav-link" data-scroll-target="#peer-reviewed-sources"><span class="toc-section-number">4.3.1</span>  Peer-reviewed sources</a></li>
+  <li><a href="#grey-literature" id="toc-grey-literature" class="nav-link" data-scroll-target="#grey-literature"><span class="toc-section-number">4.3.2</span>  Grey literature</a></li>
+  <li><a href="#hierarchy-of-evidence" id="toc-hierarchy-of-evidence" class="nav-link" data-scroll-target="#hierarchy-of-evidence"><span class="toc-section-number">4.3.3</span>  Hierarchy of evidence</a></li>
+  <li><a href="#us-preventive-services-task-force-guidelines" id="toc-us-preventive-services-task-force-guidelines" class="nav-link" data-scroll-target="#us-preventive-services-task-force-guidelines"><span class="toc-section-number">4.3.4</span>  US Preventive Services Task Force guidelines</a></li>
+  <li><a href="#pcori-guidelines" id="toc-pcori-guidelines" class="nav-link" data-scroll-target="#pcori-guidelines"><span class="toc-section-number">4.3.5</span>  PCORI guidelines</a></li>
+  </ul></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="toc-section-number">4.4</span>  Data types</a>
+  <ul class="collapse">
+  <li><a href="#survey-datasets" id="toc-survey-datasets" class="nav-link" data-scroll-target="#survey-datasets"><span class="toc-section-number">4.4.1</span>  Survey datasets</a></li>
+  <li><a href="#three-types-of-validity" id="toc-three-types-of-validity" class="nav-link" data-scroll-target="#three-types-of-validity"><span class="toc-section-number">4.4.2</span>  Three+ types of validity:</a></li>
+  </ul></li>
+  <li><a href="#survey-question-development" id="toc-survey-question-development" class="nav-link" data-scroll-target="#survey-question-development"><span class="toc-section-number">4.5</span>  Survey question development</a>
+  <ul class="collapse">
+  <li><a href="#capture-recapture-estimates-of-populations" id="toc-capture-recapture-estimates-of-populations" class="nav-link" data-scroll-target="#capture-recapture-estimates-of-populations"><span class="toc-section-number">4.5.1</span>  Capture recapture estimates of populations</a></li>
+  </ul></li>
+  <li><a href="#using-data" id="toc-using-data" class="nav-link" data-scroll-target="#using-data"><span class="toc-section-number">4.6</span>  Using data</a>
+  <ul class="collapse">
+  <li><a href="#youth-risk-behavior-survey" id="toc-youth-risk-behavior-survey" class="nav-link" data-scroll-target="#youth-risk-behavior-survey"><span class="toc-section-number">4.6.1</span>  Youth Risk Behavior Survey</a></li>
+  </ul></li>
+  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations"><span class="toc-section-number">4.7</span>  Citations</a>
+  <ul class="collapse">
+  <li><a href="#national-health-interview-survey-nhis" id="toc-national-health-interview-survey-nhis" class="nav-link" data-scroll-target="#national-health-interview-survey-nhis"><span class="toc-section-number">4.7.1</span>  National Health Interview Survey (NHIS)</a></li>
+  </ul></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="toc-section-number">4.8</span>  Exercise</a>
+  <ul class="collapse">
+  <li><a href="#project-research-question" id="toc-project-research-question" class="nav-link" data-scroll-target="#project-research-question"><span class="toc-section-number">4.8.1</span>  Project research question</a></li>
+  <li><a href="#identify-elements-of-published-papers" id="toc-identify-elements-of-published-papers" class="nav-link" data-scroll-target="#identify-elements-of-published-papers"><span class="toc-section-number">4.8.2</span>  Identify elements of published papers</a></li>
+  <li><a href="#data-scavenger-hunt" id="toc-data-scavenger-hunt" class="nav-link" data-scroll-target="#data-scavenger-hunt"><span class="toc-section-number">4.8.3</span>  Data scavenger hunt</a></li>
+  <li><a href="#data-set-exercise" id="toc-data-set-exercise" class="nav-link" data-scroll-target="#data-set-exercise"><span class="toc-section-number">4.8.4</span>  Data set exercise</a></li>
+  <li><a href="#data-set-exercise-1" id="toc-data-set-exercise-1" class="nav-link" data-scroll-target="#data-set-exercise-1"><span class="toc-section-number">4.8.5</span>  Data set exercise</a></li>
+  <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review"><span class="toc-section-number">4.8.6</span>  Literature review</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Identifying research questions and data sources</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="formulating-research-questions" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="formulating-research-questions"><span class="header-section-number">4.1</span> Formulating research questions</h2>
+<p>Research questions have the following elements, which can be remembered by the acronym PICO.</p>
+<table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 35%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Letter</th>
+<th style="text-align: left;">Meaning</th>
+<th style="text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">P</td>
+<td style="text-align: left;">Patient or population</td>
+<td style="text-align: left;">Adolescents</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I</td>
+<td style="text-align: left;">Intervention or exposure</td>
+<td style="text-align: left;">smoke cigarettes daily</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">Comparison group</td>
+<td style="text-align: left;">do not smoke cigarettes daily</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">O</td>
+<td style="text-align: left;">Outcome</td>
+<td style="text-align: left;">wear a seat belt in a car consistently</td>
+</tr>
+</tbody>
+</table>
+<p>Example question: Are adolescents who smoke cigarettes daily less likely to wear a seat belt in a car consistently than adolescents who do not smoke cigarettes daily?</p>
+<p>Comparison groups are sometimes left unstated, but that leads to ambiguities because often more than one comparison group is possible.</p>
+<p>E.g., Are adolescents who smoke cigarettes daily less likely to wear a seat belt in a car than adults who smoke cigarettes daily?</p>
+</section>
+<section id="summarizing-research-and-evaluating-research-quality" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="summarizing-research-and-evaluating-research-quality"><span class="header-section-number">4.2</span> Summarizing research and evaluating research quality</h2>
+<p>Literature review versus systematic review versus meta-analysis: in all cases, the papers are all about the exact research question.</p>
+<p>A paper may include additional background information. In the case of our example: the number of adolescents who are injured or killed by inconsistent seatbelt use, and a theory linking various risk-seeking behavior such as cigarette smoking and inconsistent seatbelt use. This background information is useful, but it isn’t considered part of the literature review.</p>
+<section id="systematic-reviews-in-public-health" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="systematic-reviews-in-public-health"><span class="header-section-number">4.2.1</span> Systematic reviews in public health</h3>
+<p>In systematic reviews, researchers say how they found the papers that they are using. This flow diagram uses the PRISMA style source: Reporting Guidelines and the American Journal of Public Health’s Adoption of Preferred Reporting Items for Systematic Reviews and Meta-Analyses, Am J Public Health. 2012 May; 102(5): 780–784. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3483925/</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/CONSORT-style-diagram.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">PRISMA diagram for systematic review</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="systematic-reviews-in-epidemiology" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="systematic-reviews-in-epidemiology"><span class="header-section-number">4.2.2</span> Systematic reviews in epidemiology</h3>
+<p>CDC’s Human Genome Epidemiologic Network has guidelines for how to conduct reviews. http://www.cdc.gov/genomics/hugenet/publications/index.htm#Guidelines</p>
+<p>Epidemiology has not established formal procedures for systematic reviews beyond those published in isolated peer-reviewed journal articles. Denison HJ, Dodds RM, Ntani G, et al.&nbsp;How to get started with a systematic review in epidemiology: an introductory guide for early career researchers. Archives of Public Health 2013, 71:21 http://www.archpublichealth.com/content/71/1/21 Systematic reviews in epidemiology: why are we so far behind? Int. J. Epidemiol. 2002; 31 (1): 6–12. http://ije.oxfordjournals.org/content/31/1/6.full</p>
+</section>
+<section id="systematic-reviews-in-health-services-research" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="systematic-reviews-in-health-services-research"><span class="header-section-number">4.2.3</span> Systematic reviews in health services research</h3>
+</section>
+</section>
+<section id="identifying-sources" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="identifying-sources"><span class="header-section-number">4.3</span> Identifying sources</h2>
+<section id="peer-reviewed-sources" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="peer-reviewed-sources"><span class="header-section-number">4.3.1</span> Peer-reviewed sources</h3>
+<p>Search database with free text or medical subject heading terms. Pubmed http://pubmed.gov</p>
+<p>The library system is new, and the library is still working out problems. Contact the library right away if you have problems so they can help you before the assignment is due.</p>
+<p>If your university does not give you free access to a paper and if the paper is not available for free via Pubmed, please write to the paper’s author to request it. An example email:</p>
+<p>Dear Dr.&nbsp;Jones, I’m interested in citing your paper titled, XXX but unfortunately my university library does not subscribe. Could you please send me a copy? Thank you,<br>
+Your name, MPH candidate</p>
+</section>
+<section id="grey-literature" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="grey-literature"><span class="header-section-number">4.3.2</span> Grey literature</h3>
+<p>Non-peer-reviewed papers from government agencies and reputable think tanks.</p>
+</section>
+<section id="hierarchy-of-evidence" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="hierarchy-of-evidence"><span class="header-section-number">4.3.3</span> Hierarchy of evidence</h3>
+<p>Evidence can be evaluated both by the study type and the quality of the study.<br>
+Literature reviews must attempt to resolve conflicts between studies, and also show flaws and openings in existing studies. Many people have tried to create a hierarchy of evidence.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/evidence-pyramid.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Evidence pyramid</figcaption><p></p>
+</figure>
+</div>
+<p>We’re most concerned with the analytic studies, the top 4 levels of this diagram. The diagram is a good start, but it leaves out several study types (e.g., cross-sectional data, non-blinded RCTs, natural experiments), doesn’t deal with study quality (e.g., how much weight to give a RCT with high drop-out?), and it gives more space to the types of data that it deems less rigorous.</p>
+<p>There are also rubrics for evaluating studies using prompts. Rubrics prompt reviewers to identify all important issues in the study, as well as to think about factors that were omitted from consideration, such as potential confounders. These rubrics are similar to the guide questions that students use in study evaluations.</p>
+<p>Study quality is difficult to define comprehensively. To aid reviewers in assessing the quality of research, research organizations have established rubrics for evaluating studies. These rubrics are similar to the guide questions that you have used in your study evaluations in for the past 2 assignments. Ideally, rubrics prompt reviewers to identify all important issues in the study, as well as to think about factors that were omitted from consideration, such as potential confounders.</p>
+<p>Epidemiology has few bodies defining research quality.<br>
+In the field of health services research, at least 5 prominent bodies have established criteria for producing systematic reviews, including evaluating research quality.</p>
+<ul>
+<li><p>Institute for Medicine (IOM), Finding What Works in Health Care: Standards for Systematic Reviews http://iom.nationalacademies.org/Reports/2011/Finding-What-Works-in-Health-Care-Standards-for-Systematic-Reviews.aspx</p></li>
+<li><p>Patient Centered Outcomes Research Institute (PCORI) methodology report Standards for Causal Inference Methods in Analyses of Data from Observational and Experimental Studies in Patient-Centered Outcomes Research, Final Technical Report, March 15, 2012, available from: http://www.pcori.org/research-results/research-methodology/pcori-methodology-report</p></li>
+<li><p>Agency for Healthcare Research and Quality (AHRQ)</p></li>
+<li><p>Cochrane Collaboration: http://handbook.cochrane.org/</p></li>
+<li><p>U.S. Preventive Services Task Force (USPSTF): http://www.uspreventiveservicestaskforce.org/Page/Name/methods-and-processes</p></li>
+</ul>
+<p>Other fields have their own standards, such as education: Institute of Education Sciences (IES, in the federal Department of Education) WWC Procedures and Standards Handbook, http://ies.ed.gov/ncee/wwc/documentsum.aspx?sid=19, American Educational Research Association (AERA, a national research organization) (Schneider et al, Estimating Causal Effects: Using Experimental and Observational Methods, http://www.aera.net/Portals/38/docs/Causal%20Effects.pdf IES produced this diagram for evaluating RCTs:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ies-rct-evaluation.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">IES RCT evaluation criteria</figcaption><p></p>
+</figure>
+</div>
+<p>All of these rubrics — including the rubric for evaluating studies that you will use in class — are just tools for evaluating research. Ultimately, reviewers must use their own judgement in evaluating studies and find balance between the ideal and the feasible.</p>
+</section>
+<section id="us-preventive-services-task-force-guidelines" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="us-preventive-services-task-force-guidelines"><span class="header-section-number">4.3.4</span> US Preventive Services Task Force guidelines</h3>
+<p>US Preventive Services Task Force defines studies as good, fair, or poor: “In general, a <code>good'' study is one that meets all criteria well. A</code>fair’’ study is one that does not meet (or it is not clear that it meets) at least one criterion but has no known <code>fatal flaw.''</code>Poor’’ studies have at least one fatal flaw.” http://www.uspreventiveservicestaskforce.org/uspstf08/methods/procmanualap7.htm</p>
+<p>They give criteria that characterize a good study, e.g., for RCTs and cohort studies, the USPSTF says (continued quote from above webpage): ” Initial assembly of comparable groups: - For RCTs: adequate randomization, including first concealment and whether potential confounders were distributed equally among groups. - For cohort studies: consideration of potential confounders with either restriction or measurement for adjustment in the analysis; consideration of inception cohorts.</p>
+<ul>
+<li><p>Maintenance of comparable groups (includes attrition, cross-overs, adherence, contamination).</p></li>
+<li><p>Important differential loss to follow-up or overall high loss to follow-up.</p></li>
+<li><p>Measurements: equal, reliable, and valid (includes masking of outcome assessment).</p></li>
+<li><p>Clear definition of interventions.</p></li>
+<li><p>All important outcomes considered.</p></li>
+<li><p>Analysis: adjustment for potential confounders for cohort studies, or intention to treat analysis for RCTs.”</p></li>
+</ul>
+</section>
+<section id="pcori-guidelines" class="level3" data-number="4.3.5">
+<h3 data-number="4.3.5" class="anchored" data-anchor-id="pcori-guidelines"><span class="header-section-number">4.3.5</span> PCORI guidelines</h3>
+<p>PCORI has 2 preliminary requirements:</p>
+<ul>
+<li><p>clearly articulate a specific causal hypothesis;</p></li>
+<li><p>precisely define relevant exposures and outcomes</p></li>
+</ul>
+<p>and 8 causal inference requirements:</p>
+<ul>
+<li><p>Assess data source adequacy: In selecting variables for confounding adjustment, assess the suitability of the data source in terms of its capture of needed covariates.</p></li>
+<li><p>Define analysis population using information available at study entry: Inclusion in an analysis should be based on information available at the time of study entry and not based on future information.</p></li>
+<li><p>Describe population that gave rise to the effect estimate(s): As many design and analytic strategies impose restrictions on the study population, the actual population that gave rise to the effect estimate(s) should be described.</p></li>
+<li><p>Define effect period of interest: Precisely define the timing of the outcome assessment relative to the initiation and duration of therapy</p></li>
+<li><p>Select appropriate comparators: When evaluating an intervention, the comparator treatment(s) should be chosen to enable accurate evaluation of effectiveness or safety.</p></li>
+<li><p>Measure confounders before start of exposure: In general, variables measured for use in adjusting for confounding should be ascertained prior to the first exposure to the therapy (or therapies) under study.</p></li>
+<li><p>Assess propensity score balance: When propensity scores are used, assess the balance achieved across compared groups with respect to potential confounding variables.</p></li>
+<li><p>Assess instrumental variable assumptions: If an instrumental variable approach is used, then empirical evidence should be presented describing how the variable chosen as an IV satisfies the three key properties of a valid instrument.</p></li>
+</ul>
+</section>
+</section>
+<section id="data-types" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="data-types"><span class="header-section-number">4.4</span> Data types</h2>
+<p>Administrative data: anything created for official purposes: birth, death certificates, tax forms, transcripts, medical records, crime records, voting records, medical billing.</p>
+<p>Survey data: self-reported responses from a sample of participants.</p>
+<p>Biomarkers: Medical tests conducted by researchers</p>
+<p>Registry data</p>
+<p>Standardized tests as part of a survey</p>
+<p>Screening test results (e.g., CES-D) as part of a survey</p>
+<p>Self-report items (e.g., survey items about attitudes, behaviors, demographics)</p>
+<section id="survey-datasets" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="survey-datasets"><span class="header-section-number">4.4.1</span> Survey datasets</h3>
+<p>People refer to survey datasets, but surveys often have multiple components.</p>
+<p>The National Longitudinal Study of Adolescent Health (Add Health)</p>
+<ul>
+<li><p>surveys of adolescent participants: in school (1994–95), in home waves 1–5+ (1995, 1996, 2001, 2008, unspecified future year).</p></li>
+<li><p>survey of parents (1995)</p></li>
+<li><p>survey of school administrators for 125/128 schools</p></li>
+<li><p>administrative data: students’ high school transcripts in 2001</p></li>
+<li><p>biomarker data: measured height, weight in all waves. STI (urine) tests in 2001; measured waist, blood pressure, blood tests in 2008.</p></li>
+</ul>
+<p>Survey design is a craft as much as a science. People who research how to improve surveys are centered at a small number of universities (e.g., Michigan and Maryland’s Joint Program in Survey Research is the oldest), a small number of research institutes (e.g., RAND and Mathematica Policy Research), and the 13 federal government statistics agencies, but especially at Census and Bureau of Labor Statistics. Unlike some areas of research methods, in many cases, the field has not changed much in the past 30–40 years, so many book editions as early as the 1970s or 1980s are still relevant.</p>
+<p>Classic texts in survey research include Floyd (Jack) Fowler, Survey Research Methods and Improving Survey Questions, (SAGE). Related texts include: Peter Rossi, Evaluation: a systematic approach; Richard Krueger and Mary Ann Casey, Focus Groups; Creswell Research Design; Nunnally and Bernstein, Psychometric Theory.</p>
+<p>Same information can be collected in multiple ways. E.g., crime information. Each type of data yields different estimates due to differential reporting.</p>
+<ul>
+<li><p>NCVS/ICVS: National/international crime victimization surveys: household-based surveys.</p></li>
+<li><p>Administrative crime data.</p></li>
+<li><p>Other nationally representative surveys for particular issues: e.g., lifetime forced sex is collected on sexual health surveys, such as Add Health.</p></li>
+</ul>
+</section>
+<section id="three-types-of-validity" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="three-types-of-validity"><span class="header-section-number">4.4.2</span> Three+ types of validity:</h3>
+<p>Internal validity: causal inference</p>
+<p>external validity: generalizability</p>
+<p>measurement validity: whether a measure assesses what it claims to assess. E.g., whether an IQ test measures intelligence.</p>
+<p>Reliability is distinct.</p>
+<p>Survey data concepts:</p>
+<p>Census (entire population) vs.&nbsp;survey (subsample of population).</p>
+<p>Sampling frame: list of potential participants</p>
+<p>Sampling unit: participants</p>
+<p>Types of samples</p>
+<ul>
+<li><p>Stratified sample: divide the population into strata and sample from each stratum. e.g., divide the country into 4 regions (NE, W, S, MW) and choose samples from each region.</p></li>
+<li><p>Cluster sample: sample groups of participants in logical groupings such as schools or households, rather than as individuals.</p></li>
+<li><p>Multi-level survey designs: Any combination of above sampling methods. E.g, sample schools from each region, sample individuals within each school.</p></li>
+</ul>
+<p>Oversample: sampling more from target populations to ensure sufficient sample size.</p>
+<p>Sampling method: systematic, random, convenience. Influences how representative the sample is of the population.</p>
+<p>Questionnaire administration: Self-administered, interview (in person or over phone).</p>
+<p>Types of self-administered surveys: (audio) computer-administered survey `interview (ACASI), pen and paper (e.g., Scantron).</p>
+<p>Researchers use power calculations to estimate necessary population for desired inferences.</p>
+<p>``Too small to be nationally representative’’ is impossible.</p>
+<p>Nationally representative is a construct: representativeness is always in reference to a specific population (e.g., noninstitutionalized population, people with phone numbers.) Some of these populations are close to the same thing as nationally representative, but not identical.</p>
+<p>High participation rates and retention rates require a great deal of attention: e.g., paying participants $20 cash up front before they do anything.</p>
+</section>
+</section>
+<section id="survey-question-development" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="survey-question-development"><span class="header-section-number">4.5</span> Survey question development</h2>
+<p>Good survey questions minimize ambiguity.</p>
+<p>Survey questions go through extensive testing: e.g, cognitive interviews.</p>
+<p>Questions that have a distribution of answers gives the most useful information: if nearly all respondents give a single answer, that question isn’t as useful as if the answers were more spread out.</p>
+<p>Ask questions one at a time. Avoid double-barreled questions.<br>
+- Double-barreled question: Have you been diagnosed with herpes and/or syphilis in the past year?</p>
+<p>-Better: divide into two questions: (1) Have you been diagnosed with herpes in the past year?; (2) Have you been diagnosed with syphilis in the last year?</p>
+<p>Avoid biased/leading questions.</p>
+<ul>
+<li><p>Biased/Leading: Community organizing is hard. Do leadership trainings help you feel prepared for community organizing?</p></li>
+<li><p>Better: Do you feel prepared for community organizing after attending the leadership training sessions?</p></li>
+</ul>
+<p>Avoid awkward constructions, such as the double negative.</p>
+<ul>
+<li><p>Bad: Do you agree or disagree with the following statement? I have never felt excluded by my classmates during recess.</p></li>
+<li><p>Better: Do you agree or disagree with the following statement? I have felt excluded by my classmates during recess.</p></li>
+</ul>
+<p>Avoid jargon.</p>
+<ul>
+<li>Jargon example: Have you used hormonal contraception in the past year?</li>
+<li>Better: Indicate which of the following forms of contraception that you have used in the past year by filling in the <code>yes'' bubble next to it.  Otherwise mark</code>no’‘. Oral contraception (<code>the pill''),</code>the patch’‘, depo-provera (<code>the shot''), Norplant,</code>the ring’’.</li>
+</ul>
+<p>Include a time-frame in your questions.</p>
+<ul>
+<li><p>Lack of time-frame: Do you use oral contraception (``the pill’’)?</p></li>
+<li><p>Clear time-frame: Have you used oral contraception in the past month?</p></li>
+</ul>
+<p>Answers to close-ended questions must be exhaustive and mutually exclusive.</p>
+<ul>
+<li><p>Bad: Question to adolescents: What is your current age?<br>
+Answer choices: &lt;12, 13, 14, 15, 16, 17, 18, 19+</p></li>
+<li><p>Better: Question to adolescents: What is your current age? Answer choices: &lt;12, 12, 13, 14, 15, 16, 17, 18, 19+</p></li>
+<li><p>Bad: What is your marital status? Answer choices: married, never married, divorced.</p></li>
+<li><p>Better: What is your marital status? Answer choices: married, never married, divorced, legally separated, in a civil union, widowed.</p></li>
+</ul>
+<p>Don’t throw away information before you begin collecting data. Don’t group answers until you get your data, unless it makes a huge difference to the survey’s response burden.</p>
+<ul>
+<li><p>Bad: Question to adolescents: What is your current age? Answer choices: 12–14, 15–16, 17–18, 19+</p></li>
+<li><p>Better: Question to adolescents: What is your current age? Answer choices: &lt;12, 12, 13, 14, 15, 16, 17, 18, 19+</p></li>
+<li><p>Bad: Were you threatened by a gun or knife in school?</p></li>
+<li><p>Better: either decouple as per double-barreled example, or ask which of the following weapons you were threatened with in school.</p></li>
+</ul>
+<p>To minimize social desirability bias, some questions are phrased in somewhat leading way, ``How many times in the past 12 months have you used marijuana?’’</p>
+<p>Income questions are less likely to be answered, so usually at the end.</p>
+<p>Branching is confusing, so used mostly for interviewer- or computer- administered surveys.</p>
+<section id="capture-recapture-estimates-of-populations" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="capture-recapture-estimates-of-populations"><span class="header-section-number">4.5.1</span> Capture recapture estimates of populations</h3>
+<p>Reporting systems seem as though they would be complete, but they are not accurate for non-urgent diseases. E.g., it’s estimated that among 100 cases of shigella, 76 will be symptomatic, 28 go to doctor, 9 had stool culture, 7 had positive stool culture (Rosenberg et al 1977).</p>
+<p>Music manuscripts example</p>
+<p>Epidemiologists use capture-recapture method to determine under-reporting.</p>
+</section>
+</section>
+<section id="using-data" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="using-data"><span class="header-section-number">4.6</span> Using data</h2>
+<section id="youth-risk-behavior-survey" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="youth-risk-behavior-survey"><span class="header-section-number">4.6.1</span> Youth Risk Behavior Survey</h3>
+<p>Youth Risk Behavior Survey YRBS data are available here for the public. https://www.cdc.gov/healthyyouth/data/yrbs/index.htm</p>
+<p>I’ve converted and put it on our courses’s Sharepoint.</p>
+<p>Navigating the codebook</p>
+<p>Codebooks list the variable name, question wording, possible answers, coding, and often the variable frequencies. In the YRBS codebook, the variable name, the question wording, and possible answers appear in the initial part of the codebook. The next part of the codebook lists the frequencies of all variables and number of missing cases.</p>
+<p>Each question is coded with two versions: the raw data with all possible answers and a dichotomous coded variable. The codebook shows which answer choices were coded yes, no, and (sometimes) not applicable with a note about the numerator and denominator. For instance, the dichotomous version of the question about number of sexual partners excludes teens who have never had sex.</p>
+<p>Race/ethnicity allows multiple answers, so use the coded variables rather than the original question.</p>
+</section>
+</section>
+<section id="citations" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="citations"><span class="header-section-number">4.7</span> Citations</h2>
+<p>For papers, please use American Medical Association (AMA) citation style. Many libraries have made their citation guides available on the internet.</p>
+<ul>
+<li><p>Last name first followed by initials. No periods after initials, no comma between last name and first name.</p></li>
+<li><p>Periods used to separate most elements.</p></li>
+<li><p>Title of journal article is written in title case. Only the first word of each title is capitalized. Sometimes the first word after a colon is capitalized.</p></li>
+<li><p>Journal title is all capitalized and italicized.</p></li>
+<li><p>Year;Volume(Number):Page range.</p></li>
+<li><p>Books, chapters in books, websites, and technical reports are cited similarly.</p></li>
+</ul>
+<p>Example:</p>
+<p>Rosenbaum JE. Reborn a virgin: adolescents’ retracting of virginity pledges and sexual histories.American Journal of Public Health. 2006; 96(6):1098–1103.</p>
+<section id="national-health-interview-survey-nhis" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="national-health-interview-survey-nhis"><span class="header-section-number">4.7.1</span> National Health Interview Survey (NHIS)</h3>
+<p>NHIS data is available here: https://www.ipums.org/healthsurveys.shtml</p>
+</section>
+</section>
+<section id="exercise" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="exercise"><span class="header-section-number">4.8</span> Exercise</h2>
+<section id="project-research-question" class="level3" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="project-research-question"><span class="header-section-number">4.8.1</span> Project research question</h3>
+<p>You will be doing a semester-long project using the Youth Risk Behavior Survey or another dataset that the instructor has approved. If you are interested in using a dataset other than YRBS, discuss with the instructor as soon as possible. Review the codebook for YRBS or the other dataset and identify an item that particularly interests you that will be an outcome for a study that you will conduct. Identify a second item that may be an important and interesting predictor of your item of interest; the second item should not be a demographic factor. Later you will add demographic factors and test for differences by these factors.</p>
+<p>State the items that you chose from YRBS and the research question that you plan to answer using YRBS. Make sure that your research question includes all necessary components of a research question: Population, Intervention, Comparison group, and Outcome (PICO). Email instructor with your proposed research question and obtain approval before proceeding.</p>
+</section>
+<section id="identify-elements-of-published-papers" class="level3" data-number="4.8.2">
+<h3 data-number="4.8.2" class="anchored" data-anchor-id="identify-elements-of-published-papers"><span class="header-section-number">4.8.2</span> Identify elements of published papers</h3>
+<p>Prepare summaries of 2 papers, using past issues of the American Journal of Epidemiology or any other public health journal. http://aje.oxfordjournals.org/content/current</p>
+<ul>
+<li><p>Population of interest</p></li>
+<li><p>Sample</p></li>
+<li><p>Data source and brief description</p></li>
+<li><p>Who collected this data? If you wanted to analyze this dataset, could you access it? How?</p></li>
+<li><p>Outcome</p></li>
+<li><p>Main predictor</p></li>
+<li><p>Type of study, and how you know:</p></li>
+<li><p>Summary of findings:</p></li>
+<li><p>Research question:</p></li>
+</ul>
+</section>
+<section id="data-scavenger-hunt" class="level3" data-number="4.8.3">
+<h3 data-number="4.8.3" class="anchored" data-anchor-id="data-scavenger-hunt"><span class="header-section-number">4.8.3</span> Data scavenger hunt</h3>
+<p>Find one or more examples of datasets with each of the following characteristics. If possible, say if the data would be accessible to general researchers. Try to find more than the obvious examples for each.</p>
+<ul>
+<li><p>Uses death certificates</p></li>
+<li><p>Uses birth certificates</p></li>
+<li><p>A dataset that samples individuals from multiple US states, or compiles data from multiple US state surveys.</p></li>
+<li><p>As above, but the dataset identifies the states.</p></li>
+<li><p>A dataset that samples individuals from multiple countries. %, or compiles data from multiple country surveys.</p></li>
+<li><p>Identify datasets for studying health disparities. %Some large datasets in existence include one that focuses on Asian-Americans, one that focuses on Blacks including an over-sample of foreign-born Blacks.</p></li>
+<li><p>Collects sexual minority status from a nationally representative sample of adolescents, such as lesbian/gay/bisexual identity or sexual activity with same-sex partners.</p></li>
+<li><p>Collects opinions of a nationally representative sample of Americans about social issues for many decades.</p></li>
+<li><p>A dataset that includes all US income tax returns (hint: search for papers that use this data.)</p></li>
+<li><p>Collects information on whether individuals own guns.</p></li>
+<li><p>Includes actual voter participation records</p></li>
+<li><p>Includes information on individuals’ diet choices</p></li>
+<li><p>Longitudinal data that follows children for long periods.</p></li>
+<li><p>Longitudinal data that follows teenagers from just before high school graduation for several years.</p></li>
+<li><p>Data that includes individuals’ driving risk behavior</p></li>
+<li><p>Longitudinal data from a large nationally representive sample of middle-aged US adults.</p></li>
+<li><p>Data that tests a large sample of participants for STIs (other than Add Health)</p></li>
+<li><p>Data that include reported cases of vector-borne diseases</p></li>
+<li><p>Data that includes tobacco tax levels in different countries or states.</p></li>
+<li><p>Data that includes public attitudes about social issues, such as attitudes towards inter-racial relationships or same-sex marriage.</p></li>
+<li><p>Data that collects information about respondents’ sexual behavior, such as number of sex partners or extramarital relationships.</p></li>
+<li><p>Includes a wide variety of data from Americans diagnosed with cancer.</p></li>
+<li><p>Data from all birth certificates for children born in the US in a recent year</p></li>
+<li><p>Data to study health issues for different populations in NYC</p></li>
+<li><p>Health data from early adolescents in many countries around the world</p></li>
+<li><p>Data that can be used to answer a question that you are interested in.</p></li>
+</ul>
+</section>
+<section id="data-set-exercise" class="level3" data-number="4.8.4">
+<h3 data-number="4.8.4" class="anchored" data-anchor-id="data-set-exercise"><span class="header-section-number">4.8.4</span> Data set exercise</h3>
+<p>For each of the below papers, identify the research question, making sure that you have identified all elements of the PICO acronym: Population, Intervention or Exposure, Comparison group, and Outcomes of intervention/exposure. Then, find the datasets used by the following papers and figure out how one could access and use the dataset, and whether it would be feasible for an MPH or DrPH student to use this data for research. Which datasets were collected primarily for health purposes, and which were collected primarily for other purposes?</p>
+<p>For each dataset, answer the following questions: - What type(s) of data is it? If the dataset uses more than one type of data, state that. - Can you find anything out about the history or purpose of the data?</p>
+<ul>
+<li><p>Who may access it?</p></li>
+<li><p>How is it accessed? E.g., costs, application procedure. Would it be feasible for a student to use this data for their ILE?</p></li>
+</ul>
+</section>
+<section id="data-set-exercise-1" class="level3" data-number="4.8.5">
+<h3 data-number="4.8.5" class="anchored" data-anchor-id="data-set-exercise-1"><span class="header-section-number">4.8.5</span> Data set exercise</h3>
+<p>Develop a research question and identify dataset(s) to address one of the following grant requirements:</p>
+<ul>
+<li><p>Identify data from RCTs of early life interventions, link them together, and follow-up using existing data.</p></li>
+<li><p>Study the effects of recent changes in public policy towards marijuana on substance use. - Analyze existing data about alcohol use (i.e., identify a dataset that collects information about alcohol use and identify research question.)</p></li>
+</ul>
+</section>
+<section id="literature-review" class="level3" data-number="4.8.6">
+<h3 data-number="4.8.6" class="anchored" data-anchor-id="literature-review"><span class="header-section-number">4.8.6</span> Literature review</h3>
+<p>Write an annotated bibliography for the research question involving the 2 constructs that you chose. You must use at least 5 papers from the peer-reviewed medical literature with analytic designs, not qualitative or descriptive. They must be about both constructs, not just one: e.g., if you are studying TV watching and obesity, studies of diet and obesity are off-topic.</p>
+<p>Populate a table with the following headers to ensure that your papers are all on topic and relevant to the population of US adolescents:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Reference</th>
+<th style="text-align: left;">Exposure</th>
+<th style="text-align: left;">Outcome</th>
+<th style="text-align: left;">Study design</th>
+<th style="text-align: left;">Population</th>
+<th style="text-align: left;">Results</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>After populating the table, identify at least 5 papers in the peer-reviewed medical literature about the research question involving the 2 constructs that you have chosen. They must be about the exact same topic, not a slightly related topic. Use these papers to write a literature review. A literature review should have the following elements:</p>
+<ul>
+<li><p>Brief background explaining why the topic is important, and why you expect that the two chosen variables may be related (1–3 sentences.) Any citations in this section do not count towards the 5 papers.</p></li>
+<li><p>Statement of the research question in the form of a statement.</p></li>
+<li><p>Synthesis of the 5 papers. Synthesis of the evidence, including explaining why the research may contradict, and speculate about what your research may be able to add. Explain why there may be differences and what causes them, rather than listing superficial or obvious differences.</p></li>
+<li><p>List of references. References should be in AMA format or another valid format, such as APA.</p></li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li><p>Paper summaries should not mention the paper’s title, journal, and usually do not mention the author or year.</p></li>
+<li><p>Avoid jargon. If you use a technical term that a non-specialist might not understand, explain it, and explain how it relates to the topic (e.g., if it’s a statistical method, explain why it’s helpful to use that method.)</p></li>
+<li><p>If a paper comes from a different population than your sample (e.g., for YRBS, a country other than the US, a non-Western country, or non-adolescent age group), address whether their findings might differ from what you are likely to find in YRBS and explain whether it makes a difference.</p></li>
+<li><p>Use academic writing style. Avoid using colloquial style.</p></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapt1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data displays</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapt3.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testing hypotheses</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

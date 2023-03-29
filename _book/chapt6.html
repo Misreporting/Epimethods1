@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Epidemiology Methods lecture notes - 8&nbsp; Excess risk</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapt7.html" rel="next">
+<link href="./chapt5.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Excess risk</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Epidemiology Methods lecture notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Types of studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chaptA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data displays</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Identifying research questions and data sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Testing hypotheses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Associations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Causality vs association</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt6.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Excess risk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Measurement error and screening</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Confounding and linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt9.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Confounding and causal graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt10.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ecological studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt11.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Example data analysis in YRBS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt12.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Survey data analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt13.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Randomized experiments and quasi-experiments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt14.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Cohort studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapt15.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case-control studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#estimating-the-relative-risk-from-a-case-control-study" id="toc-estimating-the-relative-risk-from-a-case-control-study" class="nav-link active" data-scroll-target="#estimating-the-relative-risk-from-a-case-control-study"><span class="toc-section-number">8.1</span>  Estimating the relative risk from a case-control study</a>
+  <ul class="collapse">
+  <li><a href="#estimating-the-attributable-risk-from-a-case-control-study" id="toc-estimating-the-attributable-risk-from-a-case-control-study" class="nav-link" data-scroll-target="#estimating-the-attributable-risk-from-a-case-control-study"><span class="toc-section-number">8.1.1</span>  Estimating the attributable risk from a case-control study</a></li>
+  <li><a href="#odds-ratios-versus-risk-ratios" id="toc-odds-ratios-versus-risk-ratios" class="nav-link" data-scroll-target="#odds-ratios-versus-risk-ratios"><span class="toc-section-number">8.1.2</span>  Odds ratios versus risk ratios</a></li>
+  </ul></li>
+  <li><a href="#exercise-smoking-and-lung-cancer" id="toc-exercise-smoking-and-lung-cancer" class="nav-link" data-scroll-target="#exercise-smoking-and-lung-cancer"><span class="toc-section-number">8.2</span>  Exercise: smoking and lung cancer</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Excess risk</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>A cohort study with n subjects produces data in exposed versus unexposed participants, as in the following 2x2 table:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Disease</th>
+<th style="text-align: left;">No disease</th>
+<th style="text-align: left;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Exposed</td>
+<td style="text-align: left;">a</td>
+<td style="text-align: left;">b</td>
+<td style="text-align: left;">a+b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Unexposed</td>
+<td style="text-align: left;">c</td>
+<td style="text-align: left;">d</td>
+<td style="text-align: left;">c+d</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">a+c</td>
+<td style="text-align: left;">b+d</td>
+<td style="text-align: left;">n</td>
+</tr>
+</tbody>
+</table>
+<p>We calculate the following basic measures from the table:</p>
+<p><span class="math inline">\(I_1\)</span> = incidence of disease in exposed = a/(a+b)</p>
+<p><span class="math inline">\(I_0\)</span> = incidence of disease in unexposed= c/(c+d)</p>
+<p><span class="math inline">\(I_t\)</span> = incidence of disease in all persons, exposed and unexposed = (a+c)/n</p>
+<table class="table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 25%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Measure</th>
+<th style="text-align: left;">Formula</th>
+<th style="text-align: left;">Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Relative risk (RR)</td>
+<td style="text-align: left;"><span class="math inline">\(I_1 /I_0\)</span></td>
+<td style="text-align: left;">How much more likely is disease in exposed versus unexposed?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Risk difference (RD)= Attributable risk to the exposed (AR)</td>
+<td style="text-align: left;"><span class="math inline">\(I_1 - I_0 = I_0(RR−1)\)</span></td>
+<td style="text-align: left;">Among exposed, how much of the incidence of disease is attributable to the exposure?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Attributable risk (AR%)</td>
+<td style="text-align: left;"><span class="math inline">\((RR − 1)/RR =(I_1 − I_0)/I_1\)</span></td>
+<td style="text-align: left;">What proportion of the disease in exposed individuals is attributable to the exposure?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Population attributable risk (PAR)</td>
+<td style="text-align: left;"><span class="math inline">\(I_t − I_0\)</span></td>
+<td style="text-align: left;">How much of the disease in the population is attributable to the exposure?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Population attributable risk % (PAR%)</td>
+<td style="text-align: left;"><span class="math inline">\((I_t − I_0)/I_t\)</span></td>
+<td style="text-align: left;">What proportion of the disease in the population is attributable to the exposure?</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Case | Control | |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Disease | No disease | Total |</p>
+<p>|:———-|:——–|:———–|:——| | Exposed | a | b | a+b | | Unexposed | c | d | c+d |</p>
+<section id="estimating-the-relative-risk-from-a-case-control-study" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="estimating-the-relative-risk-from-a-case-control-study"><span class="header-section-number">8.1</span> Estimating the relative risk from a case-control study</h2>
+<p>If incidence rates cannot be calculated, we can calculate cumulative incidence among the treated and control as <span class="math inline">\(CI_1= a/(a+b)\)</span> and <span class="math inline">\(CI_0= c/(c+d)\)</span></p>
+<p>We calculate the relative risk as the ratio of these cumulative incidences $RR = CI_1/CI_0 = = $</p>
+<p>If an event is rare, a + b ≈ b and c + d ≈ d, so</p>
+<p>$RR = = OR $</p>
+<p>Note that a/c = Odds of exposure among people who develop disease, and b/d = odds of exposure among people who do not develop disease.</p>
+<p>If an event is not rare, the odds ratio does not approximate the relative risk.</p>
+<section id="estimating-the-attributable-risk-from-a-case-control-study" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="estimating-the-attributable-risk-from-a-case-control-study"><span class="header-section-number">8.1.1</span> Estimating the attributable risk from a case-control study</h3>
+<p>Define the following quantities:</p>
+<p><span class="math inline">\(p_1\)</span> = frequency of exposure among cases of disease <span class="math inline">\(= a/(a+b)\)</span></p>
+<p><span class="math inline">\(p_0\)</span> = frequency of exposure among controls = <span class="math inline">\(b/(b+d)\)</span></p>
+<p>If frequency of exposure is approximately equal in both controls and cases (<span class="math inline">\(p_1 ≈ p_0\)</span>).</p>
+<p>If incidence in overall population <span class="math inline">\(I_t\)</span> is known (or can be estimated), you can estimate <span class="math inline">\(I_0\)</span>. By definition, the incidence in the full population is the sum of incidence among each population times the frequency of exposure:</p>
+<p><span class="math inline">\(I_t =I_1p_1 +I_0p_0 =I_1p_1 +I_0(1−p_1)=RR·I_0p_1 +I_0(1−p_1)=I_0(p_1(RR−1)+1)\)</span></p>
+<p><span class="math inline">\(I_0 = \frac{I_t}{p_1(RR−1)+1}\)</span></p>
+<p>That allows you to estimate AR using the following formula: <span class="math inline">\(AR = I_0(RR − 1)= \frac{I_t}{p_1(RR−1)+1}(RR − 1)= \frac{I_t}{p_1+\frac{1}{(RR−1)}}\)</span></p>
+</section>
+<section id="odds-ratios-versus-risk-ratios" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="odds-ratios-versus-risk-ratios"><span class="header-section-number">8.1.2</span> Odds ratios versus risk ratios</h3>
+<p>Note that odds ratios are normally larger than risk ratios.</p>
+<p>EIS case: Wendell Ames, Stafford Wheeler, and Alexander Langmuir, “Oswego – An Outbreak of Gastrointestinal Illness Following a Church Supper”, Centers for Disease Control and Prevention Epidemiology Program Office Case Studies in Applied Epidemiology No.&nbsp;401-303. https://www.cdc.gov/eis/casestudies/xoswego.401-303.student.pdf</p>
+<p>Gross M. Oswego County revisited. Public Health Rep.&nbsp;1976 Mar-Apr;91(2):168-70.</p>
+<p>Here is a 2x2 table of gastoenteritis (ill = yes) versus eating vanilla ice cream.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epitools)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'mosaic':
+  method                           from   
+  fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+The 'mosaic' package masks several functions from core packages in order to add 
+additional features.  The original behavior of these functions should not be affected by this.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'mosaic'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:dplyr':
+
+    count, do, tally</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:Matrix':
+
+    mean</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggplot2':
+
+    stat</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+    quantile, sd, t.test, var</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    max, mean, min, prod, range, sample, sum</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(oswego)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(ill<span class="sc">~</span>vanilla.ice.cream, <span class="at">data=</span>oswego, <span class="at">margins=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       vanilla.ice.cream
+ill      N  Y
+  N     18 11
+  Y      3 43
+  Total 21 54</code></pre>
+</div>
+</div>
+<p>The odds ratio is 23.5 = <span class="math inline">\(43*18/(3*11)\)</span>. We can also calculate this in R. Note that we have to take the reciprocol because the upper left corner is not exposed and no disease.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fu">orrr</span>(<span class="fu">tally</span>(ill<span class="sc">~</span>vanilla.ice.cream, <span class="at">data=</span>oswego))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23.45455</code></pre>
+</div>
+</div>
+<p>The relative risk = (43/54)/(3/21) = 5.6</p>
+</section>
+</section>
+<section id="exercise-smoking-and-lung-cancer" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="exercise-smoking-and-lung-cancer"><span class="header-section-number">8.2</span> Exercise: smoking and lung cancer</h2>
+<p>This EIS exercise shows how scientists discovered smoking was linked to lung cancer.</p>
+<p>A causal relationship between cigarette smoking and lung cancer was first suspected in the 1920s on the basis of clinical observations. To test this apparent association, numerous epidemiologic studies were undertaken between 1930 and 1960. Two studies were conducted by Doll and Hill in Great Britain. The first was a case-control study begun in 1947 comparing the smoking habits of lung cancer patients with the smoking habits of other patients. The second was a cohort study begun in 1951 recording causes of death among British physicians in relation to smoking habits. This exercise — developed by the CDC’s Epidemic Intelligence Service (EIS) to train officers — deals first with the case-control study, then with the cohort study.</p>
+<p>Data for the case-control study were obtained from hospitalized patients in London and vicinity over a 4-year period (4 April 1948 – February 1952). Initially, 20 hospitals, and later more, were asked to notify the investigators of all patients admitted with a new diagnosis of lung cancer. These patients were then interviewed concerning smoking habits, as were controls selected from patients with other disorders (primarily non-malignant) hospitalized in the same hospitals at the same time. Data for the cohort study were obtained from the population of all physicians listed in the British Medical Register who resided in England and Wales as of October 1951. Information about present and past smoking habits was obtained by questionnaire. Information about lung cancer came from death certificates and other mortality data recorded during ensuing years.</p>
+<ol type="1">
+<li><p>What makes the second study a cohort study?</p></li>
+<li><p>What makes the first study a case-control study?</p></li>
+</ol>
+<p>The following questions apply to the case-control study. 3. Why were hospitals chosen as the setting for the case-control study?</p>
+<ol start="4" type="1">
+<li><p>What are the advantages of selecting controls from the same hospitals as cases?</p></li>
+<li><p>How representative of all persons with lung cancer are hospitalized patients with lung cancer? What other sources of cases might have been used?</p></li>
+<li><p>How representative of all persons without lung cancer are hospitalized patients without lung cancer? What other sources of controls might have been used?</p></li>
+<li><p>How may these representativeness issues affect interpretation of the study results?</p></li>
+<li><p>Over 1700 cases of lung cancer, all under age 75, were eligible for the case-control study. About 15% were not interviewed because of death, discharge from hospital, severity of illness, or inability to speak English. In addition, some patients were interviewed but later excluded when initial lung cancer diagnosis proved mistaken. The final study group included 1465 cases (1357 males and 108 females).</p></li>
+</ol>
+<p>The following table shows the relationship between cigarette smoking and lung cancer among male cases and controls.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Cases</th>
+<th style="text-align: left;">Controls</th>
+<th style="text-align: left;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Cigarette smoker</td>
+<td style="text-align: left;">1350</td>
+<td style="text-align: left;">1296</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Non-smoker</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">61</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">1357</td>
+<td style="text-align: left;">1357</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<ol type="a">
+<li><p>From this table, calculate the proportion of cases and controls who smoked. What do you infer from these proportions?</p></li>
+<li><p>Calculate the odds of smoking for cases and controls. Calculate the odds ratio. Interpret these data.</p></li>
+</ol>
+<ol start="9" type="1">
+<li>The following table shows the frequency distribution of male cases and controls by average number of cigarettes smoked per day.</li>
+</ol>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Daily # cigarettes</th>
+<th style="text-align: left;">Cases</th>
+<th style="text-align: left;">Controls</th>
+<th style="text-align: left;">Odds ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0 (non-smokers)</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">61</td>
+<td style="text-align: left;">Referent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1-14</td>
+<td style="text-align: left;">565</td>
+<td style="text-align: left;">706</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">15-24</td>
+<td style="text-align: left;">445</td>
+<td style="text-align: left;">408</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">25+</td>
+<td style="text-align: left;">340</td>
+<td style="text-align: left;">182</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All smokers</td>
+<td style="text-align: left;">1350</td>
+<td style="text-align: left;">1296</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>Calculate the odds ratio by category of daily cigarette consumption, comparing each smoking category to non-smokers. Interpret these results in words.</p>
+<ol start="10" type="1">
+<li>While the study appears to demonstrate a clear association between smoking and lung cancer, cause-and-effect is not the only explanation. What are the other possible explanations for the apparent association?</li>
+</ol>
+<p>The following questions apply to the cohort study.</p>
+<p>As you may recall, data for the cohort study were obtained from the population of all physicians listed in the British Medical Register who resided in England and Wales as of October 1951. Questionnaires were mailed in October 1951, to 59,600 physicians. The questionnaire asked the physician to classify him/herself into one of three categories: 1) current smoker, 2) ex-smoker, or 3) nonsmoker. Smokers and ex-smokers were asked the amount they smoked, their method of smoking, the age they started to smoke, and, if they had stopped smoking, how long it had been since they last smoked. Nonsmokers were defined as persons who had never consistently smoked. This was defined as smoking as much as one cigarette a day for up to one year. Usable responses to the questionnaire were received from 68% or 40,637 physicians, of whom 34,445 were males and 6,192 were females.</p>
+<ol start="11" type="1">
+<li>How might the response rate of 68% have affected the study’s results?</li>
+</ol>
+<p>The remainder of this exercise is concerned exclusively with male physician respondents, 35 years of age or older. The occurrence of lung cancer in physicians responding to the questionnaire was docu- mented over the period of 10 years (November, 1951 through October, 1961) from death certificates filed with the Registrar General of the United Kingdom and from lists of physician deaths provided by the British Medical Association. All certificates indicating that the decedent was a physician were obtained. For each lung cancer case, medical records were reviewed to confirm the diagnosis. Diagnoses of lung cancer were based upon the best evidence available; about 70% were from biopsy, autopsy, or sputum cytology (combined with bronchoscopy or X-ray evidence); 29% from cytology, bronchoscopy, or X-ray alone; and only 1% from just case history, physical examination, or death certificate. Of 4,597 deaths in the cohort over the 10-year period, 157 were reported to have been due to lung cancer; in 4 of the 157 cases this diagnosis could not be documented, leaving a net total of 153 cases of lung cancer.</p>
+<p>The following table shows numbers of lung cancer deaths by daily number of cigarettes smoked at the time of the 1951 questionnaire (for male physician nonsmokers and current smokers only). Person-years at risk are given for each smoking category. The number of cigarettes smoked was available for 136 of the lung cancer cases.</p>
+<table class="table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Daily # cigarettes</th>
+<th style="text-align: left;"># deaths from lung cancer</th>
+<th style="text-align: left;">Person-years at risk</th>
+<th style="text-align: left;">Death rate per 1000 person-years</th>
+<th style="text-align: left;">Rate ratio</th>
+<th style="text-align: left;">Rate difference per 1000 person-years</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0 (non-smokers)</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">42,800</td>
+<td style="text-align: left;">0.07</td>
+<td style="text-align: left;">reference</td>
+<td style="text-align: left;">reference</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1-14</td>
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">38,600</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">15-24</td>
+<td style="text-align: left;">54</td>
+<td style="text-align: left;">38,900</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">25+</td>
+<td style="text-align: left;">57</td>
+<td style="text-align: left;">25,100</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All smokers</td>
+<td style="text-align: left;">133</td>
+<td style="text-align: left;">102,600</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">136</td>
+<td style="text-align: left;">145,400</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<ol start="12" type="1">
+<li><p>What does it mean that the person-years at risk were age-standardized? Why was that done?</p></li>
+<li><p>Calculate lung cancer death rates, rate ratios, and rate differences for each smoking category. What does each of these measures mean?</p></li>
+<li><p>Why was the rate ratio the correct measure of association to calculate for this study?</p></li>
+<li><p>What proportion of lung cancer cases among all smokers can be attributed to smoking? What is this proportion called? What assumption must be made about the relationship between smoking and lung cancer to interpret this?</p></li>
+<li><p>If none of the smokers had smoked, how many cases of lung cancer would have been averted?</p></li>
+</ol>
+<p>The following table shows the relationship between smoking and lung cancer mortality in terms of the effects of stopping smoking.</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Smoking status</th>
+<th style="text-align: left;"># deaths from lung cancer</th>
+<th style="text-align: left;">Death rate per 1000 person-years</th>
+<th style="text-align: left;">Rate ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Current smokers</td>
+<td style="text-align: left;">133</td>
+<td style="text-align: left;">1.3</td>
+<td style="text-align: left;">18.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ex-smokers, quit &lt;5 years</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">0.67</td>
+<td style="text-align: left;">9.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ex-smokers, quit 5-9 years</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">0.49</td>
+<td style="text-align: left;">7.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ex-smokers, quit 10-19 years</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">0.18</td>
+<td style="text-align: left;">2.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ex-smokers, quit 20+ years</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">0.19</td>
+<td style="text-align: left;">2.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Non-smokers</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">0.07</td>
+<td style="text-align: left;">1.0 (referent)</td>
+</tr>
+</tbody>
+</table>
+<ol start="17" type="1">
+<li><p>What do these data imply for the practice of public health and preventive medicine?</p></li>
+<li><p>The cohort also provided mortality rates for cardiovascular disease among smokers and non-smokers. The following table presents data on lung cancer mortality and comparable cardiovascular disease mortality.</p></li>
+</ol>
+<p>/1000 p-y = per 1000 person-years</p>
+<p>MR = Mortality rate per 1000 person-years</p>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">MR Smokers</th>
+<th style="text-align: left;">MR Non-smokers</th>
+<th style="text-align: left;">MR All</th>
+<th style="text-align: left;">Rate ratio</th>
+<th style="text-align: left;">Excess deaths /1000 p-y</th>
+<th style="text-align: left;">Attributable risk %</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Lung cancer</td>
+<td style="text-align: left;">1.3</td>
+<td style="text-align: left;">0.07</td>
+<td style="text-align: left;">0.94</td>
+<td style="text-align: left;">1.3/0.07 = 18.6</td>
+<td style="text-align: left;">1.23</td>
+<td style="text-align: left;">95%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cardiovascular disease</td>
+<td style="text-align: left;">9.51</td>
+<td style="text-align: left;">7.52</td>
+<td style="text-align: left;">8.87</td>
+<td style="text-align: left;">1.3</td>
+<td style="text-align: left;">2.19</td>
+<td style="text-align: left;">23%</td>
+</tr>
+</tbody>
+</table>
+<p>Which disease has a stronger association with smoking? Which measure gives information?</p>
+<ol start="19" type="1">
+<li><p>What proportion of each disease in the entire population can be attributed to smoking? What is this proportion called? How does this proportion differ from the one that you calculated above?</p></li>
+<li><p>Doll and Hill began their case-control study in 1947. They began their cohort study in 1951. Which type of study — case-control or cohort — would you have done first? Why? Why do a second study? Why do the other type of study?</p></li>
+<li><p>The odds ratios and rate ratios from the two studies by numbers of cigarettes smoked are given in the table below.</p></li>
+</ol>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"># cigarettes per day</th>
+<th style="text-align: left;">Rate ratio cohort study</th>
+<th style="text-align: left;">Odds ratio case-control study</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1.0 (Referent)</td>
+<td style="text-align: left;">1.0 (Referent)</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1-14</td>
+<td style="text-align: left;">8.1</td>
+<td style="text-align: left;">7.0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">15-24</td>
+<td style="text-align: left;">19.8</td>
+<td style="text-align: left;">9.5</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">25+</td>
+<td style="text-align: left;">32.4</td>
+<td style="text-align: left;">16.3</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All smokers</td>
+<td style="text-align: left;">18.5</td>
+<td style="text-align: left;">9.1</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>Compare the results of the two studies. Comment on the similarities and differences in the calculated measures of association.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapt5.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Causality vs association</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapt7.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Measurement error and screening</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
