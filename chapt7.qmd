@@ -1,0 +1,297 @@
+# Measurement error and screening
+
+## Three types of validity
+
+| Study design issue | Question to ask                                                             | Ideal answer           |
+|:----------------|:--------------------------|:--------------------------|
+| External validity  | How was the sample chosen?                                                  | Random sampling design |
+| Internal validity  | How were participants assigned to treatment vs. control?                    | Random assignment      |
+| Validity           | Do measures correspond to constructs of interest and predict gold standard? | Yes                    |
+
+## Data anomalies
+
+Finding anomalies in data is one way to identify measurement error problems.
+
+These issues are obvious in retrospect when pointed out, but many don't bother to investigate.
+
+Jack Fowler: researchers often refer to survey instruments "as if having been validated was some absolute state, such as beatification."
+
+### Validation through logical contradictions
+
+"Why are so many men pregnant?"
+
+-   "In 2009-10, nearly 20,000 adults were coded as having attended paediatric outpatient services, and 3,000 patients under 19 were apparently treated in geriatric clinics."
+
+-   "15,000 and 20,000 men have been admitted to obstetric wards each year since 2003, and almost 10,000 to gynaecology wards. Nearly 20,000 midwife"episodes" --- NHS jargon for completed treatments --- were with men." --\> much larger than expected number of transmen to give birth.
+
+-   "a hospital coded an entire year's births as stillbirths and had to be excluded from the statistics altogether." Similarly: positive STI tests among self-reported virgins.
+
+### Overestimates of rare events
+
+Hemenway: "Myth of Millions of Annual Self-Defense Gun Uses: A Case Study of Survey Overestimates of Rare Events"
+
+Validate with aggregate information: compares number of buglaries with number of alleged self-defense gun uses. Small misclassification errors lead to large impacts for rare events.
+
+-   Using actual heights, 1% of children are stunted. Using mother-reported heights, 25% of children are stunted.
+
+-   6% of people say that they have met aliens: 1.2 million people!
+
+-   Possible to over-estimate, but not under-estimate the number of self-defense gun uses.
+
+## Methods for valid answers
+
+Most of these methods apply to survey answers, but some address any type of study.
+
+### Compare with aggregate information.
+
+-   Number who claim to have donated blood with amount of blood in blood bank.
+
+-   Likewise, voting; membership in an organization (Ducks Unlimited, Sierra Club, etc.)
+
+This is an older plot dating from 2013, but there doesn't seem to be a more recent version of this comparison.
+
+![](https://assets.pewresearch.org/wp-content/uploads/sites/12/2013/05/PF_13.05.08_VoterTurnout_01.png)
+
+https://www.pewresearch.org/fact-tank/2013/05/08/six-take-aways-from-the-census-bureaus-voting-report/
+
+-- Number of patients seen in all emergency departments every year with number of people who claim to have shot someone, or been shot.
+
+### Compare with gold standard
+
+-- Parry and Crossley's 1949 Denver study: library card, voting, rent or own residence, car ownership, have a telephone.
+
+-- Voting self-report versus administrative records (Silver et al POQ 1986)
+
+-- Self-reported circumcision status with expert examination.
+
+-- Self-reported condom use in past 2 weeks versus semen Y-chromosome test: among 141 Baltimore STD clinic patients who reported 100% condom use in the last two weeks, 55% tested positive on the Yc-PCR (Jadack 2006).
+
+-- Self-reported smoking versus cotinine test.
+
+### Compare with earlier report
+
+-- Drug use last year versus actual report from last year.
+
+-- Test-retest over short interval when answers are not likely to change.
+
+-- Adolescents recant earlier reports of sexual intercourse, cigarette smoking, the use of alcohol and illegal drugs, abortions, and pregnancy, virginity pledges, having a permanent tattoo, driving for respondents under age 15, and pierced ears for men.
+
+### Ask a question you know the answer to.
+
+-- Include names of fictitious drugs in a list of drugs that respondents have tried.
+
+### Ask the question under different survey modes
+
+-- Assumption is that larger number is correct.
+
+### Randomized response method
+
+Respondent flips a coin and doesn't show interviewer. -- If heads: answer sensitive yes/no question. -- If tails: answer a yes/no question with a known % of expected to say yes for that population. -- Do the math to estimate the proportion who said yes to the question, given that half got heads.
+
+### Bogus pipeline
+
+Take hair sample and claim that will test hair for (subject of question), and then ask the question.
+
+### Ask respondents at the end of a section if they were honest.
+
+### Ask respondent casually while walking out of the interview if they were honest.
+
+### Methods that do not work
+
+Reassure the respondent that answers are confidential: likely to backfire by raising problem.
+
+## Other issues in measurement error
+
+### Survey mode effects
+
+People may answer questions differently depending on the survey mode: by ACASI, pen and paper, interview. More female teens report dieting in self-administered survey than interview. It's possible to test for survey mode effects by asking the same questions in 2 different modes.
+
+### Editing of responses
+
+Respondents may know the correct answer but give a different answer for some reason. One reason could be self-presentation bias.
+
+### Recall accuracy
+
+Respondents may not know the correct answer, due to changing memories of the past.
+
+### Survey context
+
+Respondents may answer questions differently depending on the other questions around them.
+
+### Non-attitudes
+
+Respondents report attitudes on surveys about things that they don't really know about. Researchers revealed non-attitudes in late 1970s by asking respondents about a non-existent law, the "Public Affairs Act of 1975", on which more than 30% of respondents offered an opinion.
+
+Comedy features use non-attitudes: - Jimmy Kimmel asking people to compare the Affordable Care Act with Obamacare (10/1/13). http://www.youtube.com/watch?v=sx2scvIFGjE - Zlati Meyer, a reporter for Detroit Free Press, asking people on the street about the federal government shutdown. http://www.freep.com/article/20131008/NEWS01/310080140/government-shutdown-zlati-meyer
+
+## Reliability
+
+Examine reliability by giving the same survey two times, separated by a reasonable time period (e.g., 2 weeks): test-retest.
+
+## Screening
+
+Primary prevention: preventing disease
+
+Secondary prevention: detecting disease early
+
+Tertiary prevention: treatment of cases
+
+### US Preventive Services Task Force criteria for screening
+
+-   Disease is frequent or severe enough to be important.
+-   Disease can be detected through screening well before symptoms appear.
+-   Effective treatment at this early stage can improve outcomes of cases or prevent transmission.
+-   Treatment is more effective if done earlier.
+-   Screening test can distinguish between diseased and non-diseased.
+
+### Characteristics of screening tests
+
+-   Sensitivity = probability that a person with disease is detected by test
+-   Specificity = probability that a person without disease gets a correct negative result
+-   Positive predictive value = probability that someone with a positive test has the disease. Depends on prevalence of disease.
+-   Negative predictive value = probability that someone with a negative test doesn't have the disease. Depends on prevalence of disease.
+
+### Evaluations of effectiveness of screening programs
+
+-   RCT: randomly assign people to screening
+-   Cohort: observe outcomes in screened vs. non-screened, following both screened and unscreened from time of screening.
+-   Ecological: compare disease rate in populations with and without screening programs
+-   Case-control: cases are those who developed condition that could have been averted through screening. Controls are those at risk for disease at time of screening.
+
+### Different characteristics of screening tests are important in different contexts.
+
+-   Court system: overarching goal is to avoid sending innocent to jail.
+-   Drunk driving after a party: overarching goal is to prevent drunk driving. If you're having a party, and you err on the side of someone sleeping over unnecessarily, that's better than the opposite.
+
+## Test accuracy
+
+Estimating positive and negative predictive value: the easiest way is to fill out the 2x2 table with sample size, prevalence of disease, and by applying the definitions of sensitivity and specificity. Then PPV and NPV are easy to calculate from the table.
+
+|            | Positive test | Negative test |
+|:-----------|:--------------|:--------------|
+| Disease    |               |               |
+| No disease |               |               |
+| Total      |               |               |
+
+How do you find each parameter from the tables?
+
+PPV =
+
+NPV =
+
+### Probability notation
+
+You can use the probability notation, but these risk errors, as in these xkcds.
+
+![Alt text: P((B\|A)\|(A\|B)) represents the probability that you'll mix up the order of the terms when using Bayesian notation.](https://imgs.xkcd.com/comics/bayes_theorem.png){fig-alt="Explained here: https://www.explainxkcd.com/wiki/index.php/2545:_Bayes%27_Theorem"}
+
+![Alt text: Don't forget to add another term for "probability that the Modified Bayes' Theorem is correct."](https://imgs.xkcd.com/comics/modified_bayes_theorem.png){fig-alt="Explained here: https://www.explainxkcd.com/wiki/index.php/2059:_Modified_Bayes%27_Theorem"}
+
+Events A, B. $\bar{A}$ is the event that A does not occur.
+
+P(A) = probability of A.
+
+P(AB) = probability of A and B.
+
+For all events A and B, P(A or B) $= P(A) + P(B) - P(AB)$
+
+If A and B are independent, $P (AB) = P (A)P(B)$. Equivalently, $P (A|B) = P (A)$: i.e., knowing that B occurred does not convey information about whether A occurred.
+
+Conditional probability, Bayes's Theorem: \$P(B\|A) = P (AB) P (A) \$
+
+Law of total probability. $P(A) = P (A|B)P (B) + P(A|\bar{B})P(\bar{B})$
+
+One more Bayes theorem xkcd:
+
+![Alt text: This is roughly equivalent to 'number of times I've picked up a seashell at the ocean' / 'number of times I've picked up a seashell', which in my case is pretty close to 1, and gets much closer if we're considering only times I didn't put it to my ear.](https://imgs.xkcd.com/comics/seashell.png){fig-alt="Explained here: https://www.explainxkcd.com/wiki/index.php/1236:_Seashell"}
+
+
+Relative risk RR $≡ P (B|A)/P ( B | \bar{A} )$
+D+ =has disease, D− = no disease. T+ = positive test. T− = negative test.
+
+Specificity $C ≡ P (T −|D−)$: probability that someone without the disease will correctly test negative. Out of all people without the disease, how many tested negative? Opposite: false positive.
+
+Sensitivity $S ≡ P(T+|D+)$: probability that someone with the disease will correct test positive. Out of all people with the disease, how many tested positive? Opposite: false negative.
+
+Positive predictive value $= PPV = P V + = P (D+|T +)$
+
+Negative predictive value $= NPV = P V − = P (D−|T −)$
+
+Receiver operating characteristic (ROC) curves: plot of 1-C versus S. used for choosing
+cut-off point for a diagnostic test.
+
+Area under the curve (AUC) refers to area under the ROC curve.
+
+## Exercises
+
+### Pilot drug tests
+
+This problem comes from Dick Light's course, Statistics for Leaders
+
+There are 100,000 airline pilots in the US. Obviously a bad thing if some of them take drugs. Some of them probably do but not too many. Let’s estimate that 1% of them take drugs. Drug test has specificity 95%, and sensitivity 95%.
+
+(a) Fill in the following table according to the information above. 
+
+|            | Test + | Test - | Total |
+|:-----------|:--------------|:--------------|:--------------|
+| On drugs    |              |               |  |
+| Not on drugs|               |               | |
+| Total      |              |               | 100,000|
+
+
+
+(b) Using the table, calculate the positive predictive value of the drug test.
+
+(c) To improve PPV, which aspect of the test do we need to improve, sensitivity or specificity?
+
+(d) If we couldn’t improve the test, is there anything that we could do to improve the positive predictive value? What assumption regarding the test outcomes would we need to make to improve the PPV?
+
+### Lack of gold standard tests
+
+The data below comes from a study to estimate the prevalence of Strongyloides in Cam- bodian refugees to Canada in 1982–83 for which only two imperfect tests are available: a stool test and a blood test. Neither test is a gold standard. Current gold standard is up to 7 serial stool examinations. http://www.cdc.gov/parasites/strongyloides/health professionals/
+
+|            | Stool Test + | Stool Test - | Total |
+|:-----------|:--------------|:--------------|:--------------|
+| Blood test +    |        38      |        87       | 125 |
+| Blood test -  |       2        |35 | 37|
+| Total      |    40          |     122          | 162|
+
+(a) What’s the prevalence of the disease according to the stool test? 
+
+(b) What’s the prevalence of the disease according to the blood test?
+
+(c) Is there any way to estimate the actual prevalence?
+
+
+### Misunderstanding Bayes
+
+The State of Florida offered this argument in a brief filed on October 4, 2012
+Given the small percentage of the population [about 5%] that is licensed to
+carry a concealed firearm, the overwhelming majority of firearms, or 95%, are
+not licensed to be concealed. Thus, an officer’s suspicion that a [concealed]
+firearm is not licensed would be reasonable because, in any given case, there
+would be, statistically speaking, a 95% likelihood of illegality.
+www.loweringthebar.net/2012/10/florida-ag-not-acquainted-with-statistics.html
+
+What mistake did the Florida Attorney General make? Express the mistake in probabilistic terms. You don't need to use notation.
+
+### Test-retest 
+ The following data comes from a 2-week test-retest evaluation of the Youth Risk Behavior Survey (YRBS). Trained data collectors administered 72 questions from the YRBS to 4628 students at 61 high schools at a 2 week interval. Students’ answers were compared. The question was “Have you ever been pregnant or made another pregnant?”
+
+|            | week 2, Ever pregnant (%) | week 2, Never pregnant (%) | Total (%)|
+|:-----------|:--------------|:--------------|:--------------|
+| Baseline, Ever pregnant (%)    |     5          |       4        | 9 |
+| Baseline, Never pregnant (%)|        3       |       88        | 91|
+| Total      |       8        |      92         | 100|
+
+
+
+ (a) If you believe these data, what proportion of the sample became pregnant or made another pregnant in the 2 week interval?
+ 
+(b) If you believe this data, what proportion of the sample forgot having been pregnant or made another pregnant?
+
+(c) What are the cross-sectional percentages of those who became pregnant or made another pregnant in each survey? (e.g., At baseline, how many have ever been pregnant or made another pregnant, if only have that wave’s data? Likewise wave 2.)
+
+(d) What proportion of respondents retracted their claim that they were ever pregnant or made another pregnant?
+
+(e) Can you identify a single percentage that summarizes how many people were pregnant?

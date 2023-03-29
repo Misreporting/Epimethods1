@@ -1,0 +1,204 @@
+# Confounding and linear regression
+
+
+## Confounding definition
+Confounders must be associated with both the exposure and the disease, and generally come before both exposure and disease. Confounders may explain all or part of an observed relationship between exposure and disease.
+
+A factor that comes after the exposure is often not a confounder. It’s an intermediate variable, and controlling for it will introduce bias.
+
+A confounder is:
+1. associated with disease among non-exposed
+2. associated with exposure
+3. not intermediate between exposure and outcome
+
+Simpson’s paradox: type of confounding, where the effect reverses after stratification.
+
+## Effect modification
+An effect modifier is a factor that changes the relationship between a predictor and an outcome. For example, if smoking is more dangerous for men than women for some health outcome, then gender is an effect modifier of the relationship between smoking and that health outcome.
+
+Addressing confounding through stratification
+
+If effect estimate changes after stratifying on a potential confounder, then confounding is present. 
+
+A rule of thumb is that if the effect estimate changes by 10%, the crude estimate is confounded, and the adjusted values are more appropriate to present. We already saw one example with the Berkeley admissions data.
+
+
+|          | Men applicants | Men admitted |     | Women applicants | Women admitted |     |
+|:----------|:----------|:----------|:----------|:----------|:----------|:----------|
+| Arts     | 4100           | 1300         | 32% | 8250             | 3150           | 38% |
+| Sciences | 8200           | 5100         | 62% | 2900             | 1900           | 66% |
+| Total    | 12300          | 6400         | 52% | 11150            | 5050           | 45% |
+
+
+Note that the 10% rule of thumb is just a rule of thumb, and it doesn't imply confunding, nor does it imply whether a term should be in a regression or not.
+
+### Confounding example
+
+### Confounding in a case-control study
+
+### Confounding in a cohort study
+
+### Addressing potential confounding through rate adjustment
+Rate adjustment is a method of adjustment on a small number of categorical factors.
+Two groups may have different age distributions. Can weight communities by age composition of a reference group, to make the rates comparable. 
+
+
+
+### Addressing confounding through multivariate regression
+Often multiple factors are potential confounders, and some confounders are continuous. Discretization of continuous factors into a small number of categories allows residual confounding. Multivariate regression can reduce confounding by many factors simultaneously. The coefficients can all be described as adjusted for all of the covariates included in the regression.
+
+|  Outcome        | Regression method | Interpretation |
+|:----------|:----------|:----------|
+| Continuous     | Linear regression | Increase of outcome associated with one unit increase in the exposure |
+| Count | Poisson regression | Incidence rate ratio (longitudinal data) or prevalence ratio (cross-sectional data) |
+| Binary    | Poisson regression | Incidence rate ratio (longitudinal data) or prevalence ratio (cross-sectional data)|
+|           | Logistic regression | odds ratio |
+|           |Linear probability model  | Percentage point difference in probability of outcome associated with one unit increase in exposure|        
+| Proportions    | Logistic regression | odds ratio |
+
+
+ Note: log = ln = natural log.
+ 
+For the above example of potential confounding by age, one could use a logistic regression with outcome the proportion of people with the disease and use age as a predictor. The coefficient on age would tell us if there was a difference in disease by age.
+
+## Identifying effect modification using multivariate regression
+Multivariate regression also allows testing for effect modification. Include an interaction term in the regression that is the product of the factors where there may be effect modification. It’s easier to identify graphically. This data comes from a review of chocolate bars in Consumer Reports: price, rating by Consumer Reports raters, and type of chocolate (milk or 70% cacao dark.)
+
+```{r}
+library(mosaic)
+chocolate=read.csv("chocolate-ratings-consumer-reports.csv")
+xyplot(rating ~ price, data=chocolate, auto.key=T,
+type=c("p", "r"))
+```
+
+
+```{r}
+xyplot(rating ~ price, data=chocolate, group=type, auto.key=T,
+type=c("p", "r"), pch=c(9, 10))
+```
+Which of these plots shows effect modification? How can you tell?  
+
+What do we see if we try a regression?
+
+## Assumptions of regression
+Regression makes the following assumptions:
+1. Linearity: The plot of response means (outcome) against the explanatory variable (pre- dictor) is a straight line.
+2. Constant variance: The spread of the responses around the straight line is the same at all levels of the explanatory variable. Economists call this “homoscedasticity”. The opposite of homoscedasticity is heteroscedasticity. (Economists call statistics “econometrics” so clearly they just make up their own words.)
+3. Normality: The subpopulations of responses around the straight line is the same at all levels of the explanatory variable.
+4. Independence: The location of any outcome in relation to its mean cannot be predicted from knowledge of where other outcomes are in relation to their means, either fully or partially. Further, the location of any outcome in relation to its mean cannot be predicted from knowledge of the explanatory variable values.
+When these assumptions are violated, linear regression results may be inaccurate or mis- leading.
+1. Violations of Linearity: Linearity could be violated either if the points form a curved line throughout the range of the predictors, or if there are enough outliers to change the direction of the line. Estimated means and predictions may be biased.
+2. Non-constant variance: If there is non-constant variance, standard errors, signfiicance tests, and confidence intervals may be inaccurate.
+3. Violations of normality: Usually does not threaten the validity of estimates of coefficients and their standard errors because the sampling distribution of estimates is normal re- gardless of the distribution of the population. With small samples that contain outliers, violations of normality can bias estimates of coefficients and standard errors.
+
+4. Lack of independence: Lack of independence doesn’t bias estimates of coefficients, but it harms standard errors. Serial effects — where one observation relies on the observation before it — require models designed especially for this situation.
+
+
+Create plots
+```{r}
+
+```
+
+1. Best case scenario: standard regression (lm command in R) is perfect because the means are in a straight line and the standard deviation is approximately equal.
+2. Means are curved — with a sharp increase at the beginning and reduced slope as X increases — and the standard deviations are about equal. This could occur in a case where there are reduced marginal effects as a predictor increases. Transforming X may make the means linear. Taking the log of X may help. Then do regression.
+ 
+3. Means are curved in an inverted U shape, and the standard deviations are about equal. This could occur in a case where an outcome peaks at a certain ideal value of a predictor and then decreases again. Including a term with X2 will account for this effect. Then use regression.
+4. Means are curved upwards, with slow increases in outcome for low values of the predictor, and increasing more sharply. Also, standard deviations increase with increasing values of the predictor. Transform Y (e.g., take the log of Y, square root of Y, or recriprocal of Y.) Plot again and evaluate whether this fixes the problem, and then use regression.
+5. The means increase in a straight line and the standard deviations are about equal, but the distributions around the line are skewed. There is nothing to do about this problem, except to do regresison and report the skewness.
+6. The means are a straight line, but the standard deviations are increasing as X increases. Regression gives reasonable estimates for the coefficients, but the standard errors are biased. Use weighted regression, which will be taught later.
+
+
+### Weaknesses of multivariate regression
+Regression should never be the first step in data analysis. Data analysis should always begin with univariate and bivariate analysis, preferably plots. Recall Anscombe’s plots: 4 different plots with exactly the same numerical summaries, including regression line.
+Multivariate regression relies on assumptions that are often not true.
+Multivariate regression requires that relationships between predictor and outcome be close to linear or log-linear. If a relationship between predictor and outcome is exponential, there will still be residual confounding after multivariate regression.
+
+## Analyzing potential confounding and effect modification in R
+This example will demonstrate how to predict height from simple inputs, and demonstrates effect modification. Confounding isn’t particularly an issue because the inputs are obvious: parents’ heights and children’s sex.
+
+### Heritability of height
+A famous regression dataset is from Francis Galton — heights of adults and their parents — which is in the mosaic package. This analysis involves simple prediction of an outcome (depen- dent variable) from predictor variables (independent variables.) The data has been cleaned of non-numeric entries for height such as “tall”, “short”, “idiotic”, and “deformed.”
+
+Source: “Transmuting” women into men: Galton’s family data on human stature. (2004) The American Statistician, 58(3):237–243.
+
+We can start out by looking at the distribution of (adult) children’s heights. Generally, we want outcomes of regressions to be normally distributed, or at least symmetrical. Do they look normally distributed? Symmetrical?
+
+```{r}
+histogram(~height, data=Galton)
+histogram(~height | sex, data=Galton, auto.key=T)
+```
+
+We can also get a sense for which heights are typical for each group: males, females, mothers, and fathers. Do the children seem to be taller than their parents, on average?
+
+```{r}
+favstats(~height, groups=sex, data=Galton)
+favstats(~father, data=Galton)
+favstats(~mother, data=Galton)
+```
+
+
+How are children’s heights related to parents’ heights? Is the relationship different for male and female children? 
+
+Look first at plots. 
+
+```{r}
+xyplot(height ~ father, groups=sex, type=c("p", "r"), auto.key=T, data=Galton)
+xyplot(height ~ mother, groups=sex, type=c("p", "r"), auto.key=T, data=Galton)
+```
+
+We have the concept of regression towards the mean: the children of exceptionally tall or exceptionally short parents will tend to be closer to average height. Do we see regression to the mean in this dataset? How could you tell from these plots?
+We can do regression analysis using this data.
+
+
+```{r}
+model1=lm(height ~ father + mother + sex, data=Galton)
+summary(model1)
+```
+
+What does each component mean? Intercept
+Father
+Mother
+Sex
+R-squared
+F-statistic
+Degrees of freedom Residual standard error
+Is the intercept meaningful? If not, how can we transform the variables so that the intercept becomes meaningful?
+
+
+Does the relationship between parents’ heights differ for males and females? How can you tell?
+
+```{r}
+model1b=lm(height ~ father + mother + sex + father*sex, data=Galton)
+summary(model1b)
+```
+
+
+We can also explore further and consider two separate models: one for males, and one for females. Do males inherit their height from their fathers, or from both parents? Likewise, for females?
+
+```{r}
+model1.m=lm(height ~ father, data=subset(Galton, sex=="M"))
+summary(model1.m)
+model2.m=lm(height ~ father + mother, data=subset(Galton, sex=="M"))
+summary(model2.m)
+model1.f=lm(height ~ mother, data=subset(Galton, sex=="F"))
+summary(model1.f)
+model2.f=lm(height ~ mother + father, data=subset(Galton, sex=="F"))
+summary(model2.f)
+```
+
+
+Does the number of kids matter? Does the number of kids matter differently for males or for females?
+
+```{r}
+model2a=lm(height ~ father + mother + sex + nkids, data=Galton)
+summary(model2a)
+```
+
+
+```{r}
+model2=lm(height ~ father + mother + sex + nkids*sex, data=Galton)
+summary(model2)
+```
+
+
+

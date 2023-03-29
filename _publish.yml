@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: "qpa_9MK6868EycI5Y421W55c0wrxSvwlMDpIaKeneFYC1kQw4dQAqZs8EJR3yiT6GPSu"
+      url: "https://janetrosenbaum.quarto.pub/epidemiology-methods-lecture-notes/"

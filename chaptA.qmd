@@ -1,0 +1,376 @@
+# Introduction to R
+
+Using statistics software
+
+## What is R
+
+R is free software, in the sense of both "free speech" and "free beer" (in the words of Richard Stallman). R can implement almost every type of statistics, produces high-quality statistical graphics, and you can use it for free for the rest of your long careers.  
+
+R uses an open format, so that the data that you use and generate in R will always be available to you.  R also does not cost money, as opposed to proprietary software packages that require large annual fees that get higher after you are no longer students, which tend to increase because people using a proprietary software will generally avoid having to convert everything over.  
+
+## Installing R and Rstudio
+
+R is available for free here for  Mac, Windows, and Linux operating systems.  Go to http://R-project.org and choose Downlaod.
+
+R studio is an interface to R to make everything appear in 1 window, and it lets you click on commands to execute them.  You can install it from this website: http://www.rstudio.com/
+
+## Using Rstudio
+
+Open R Studio and poke around.  If you want help for any command type help or simply a question mark followed by the command name, or type the command name in the upper right corner of the R console. 
+```{r, eval=F}
+help(command-name)
+```
+
+
+```{r, eval=F}
+?commandname
+```
+
+## Conventions of programming
+
+R uses conventions of computer programming, so it may require new forms of thinking.  
+
+In this class, we will use a text formatting program Rmarkdown within Rstudio. You will knit these files to create files to submit to our course website. Knitting executes all code chunks within the file.  
+
+In your Rmarkdown file, explain your code chunks to remind yourself what it does, so that when you come back to it in a few weeks, you will remember what to use it for. 
+
+- Keep only the code that actually works.
+
+- Knit frequently.
+
+- If you paste R code into a document, it will be easier to read in Courier or another monospace font.  
+
+- Text from a word processor or email program or PDF may have hidden characters that R can't read, so if you paste from these formats, you may need to retype something if you get an error.  
+
+- Be careful with quotation marks:  typing quotation marks directly into R will always work, but if you are pasting from another source, occasionally straight up-and-down quotation marks that are the same at the beginning and end will be transformed to "smart" quotation marks that are different at the beginning and end of a quotation. R does not know how to read smart quotation marks.
+
+
+
+R can have a steep learning curve. Once you know how to use R, you will have an easier time learning to use  other statistical packages and computer languages.   
+
+
+
+
+
+## R Reference
+
+Many of the R commands you will learn this term
+
+
+ R Studio has menu items for importing data.  It also remembers past plots.  
+ 
+R Studio will display some of the data that you've loaded, but it does not show all variables in either the viewer or the list of variables.
+
+### Libraries
+
+R has a great deal of built-in functionality, but it gets its strength from having user-written packagesthat add functions. 
+
+
+
+ 
+### Help
+
+If you want help for any command type help(command-name) or simply a question mark followed by the command name  ?commandname, or type the command name in the upper right corner of the R console. 
+
+ 
+ |Command | Meaning | Example |
+|:-------|:-----| :-----|
+|?command | Get help for command  | ?xyplot|
+|help(command) | Get help for command | help(xyplot)|
+|??keyword | Find topics related to keyword  | ??plot|
+
+
+
+### Using data
+
+R stores data in structures called data frames.  When you load in data in R, your data will automatically be in a data frame.  Data frames are similar to matrices, although R recognizes a difference between them.   
+
+
+|Command | Meaning  |
+|:-------|:-----|
+|DF=read.table("file", header=T)} | Read in data from tab-separated file with header containing variable names and assign it to dataframe called DF.|
+|DF=read.csv("file", header=T)| Read in data from comma-separated file with header containing variable names and assign it to dataframe called DF.|
+
+### Using variables
+
+All variables must be referenced by their dataframe, such as  DF$x.
+
+Avoid using attach/detach
+
+### Describing data objects
+
+|Command | Meaning  |
+|:-------|:-----|
+|nrow(DF) | Number of rows in data frame or other two-dimensional object DF|
+|ncol(DF) | Number of columns in data frame or other two-dimensional object DF|
+|rownames(DF) | Lists names of rows in data frame or other two-dimensional object DF|
+|colnames(DF) | Lists names of columns in data frame or other two-dimensional object DF|
+|summary(DF) | Summarize data frame  DF|
+|names(DF) | List all the names of all items in data frame  DF|
+|str(DF) | Summarize each item in data frame DF|
+|length(Var1) | Length of one-dimensional object Var1|
+|is.na(Var1) | Tests whether each item in Var1 is missing (NA)|
+
+
+### Creating data objects
+
+|Command | Meaning  |
+|:-------|:-----|
+|X = cbind(v1, v2) | Create  2-dimensional object X  where vectors v1 and v2 are the columns|
+|X = rbind(v1, v2) | Create  2-dimensional object X  where vectors v1 and v2 are the rows|
+|X = c(1, 2, 3) | Create vector X, which is the numbers (1, 2, 3)|
+|DF1=subset(DF, condition) | Create a new object DF1: all items in DF that satisfy a condition.|
+
+
+### Referring to elements
+
+|Command | Meaning  |
+|:-------|:-----|
+|Var1[1] | first element in Var1 (one-dimensional).|
+|DF[1,] | first row in DF (two-dimensional).|
+|DF[,1] | first column in DF (two-dimensional).|
+|DF[3,4] | fourth element in the third row of DF (two-dimensional).|
+
+
+### Shortcuts
+
+|Command | Meaning  |
+|:-------|:-----|
+|seq(0, 100, 10) | All multiples of 10 from 0 to 100|
+|1:10 | All numbers between 1 and 10|
+
+### Calculation
+
+|Command | Meaning  |
+|:-------|:-----|
+|+ | Plus|
+|- | Minus|
+|* | Multiply|
+|/ | Division|
+|! | Logical not (opposite) |
+|log() | Natural log (base e)|
+|log10() | log base 10|
+|exp(x) | \(e^x\)|
+|sqrt(x) | \(\sqrt{x}\)|
+|abs(x) | Absolute value of x|
+|round(x, digits=2) | Round x to 2 digits|
+
+### Comparisons
+
+|Command | Meaning  |
+|:-------|:-----|
+| == | Tests for equality|
+| = | Sets equal|
+| <- | Sets equal|
+|!= | Tests for inequality|
+|<= | Tests for less than or equal|
+|< | Tests for less than |
+|>= | Tests for greater than or equal|
+|> | Tests for greater than |
+
+### Defining new variables
+
+When defining new variables, remember that == tests for equality and = sets a variable equal to the quantity on the right hand side.  
+
+
+
+
+### Summarizing data
+
+For many of these functions, you must first load the mosaic library. Mosaic was written by professors at small colleges to make R easier to use for students. 
+
+If this is your first time using mosaic, you must first install it. When you press "save" on an Rmarkdown file that calls the library, Rstudio will automaically ask if you want to install the library.
+
+```{r, warning=F, message=F}
+library(mosaic)
+```
+
+
+
+|Command | Meaning  |
+|:-------|:-----|
+|favstats() | Displays numerical summaries: minimum, maximum, median, quartiles, sample sizes|
+|sum() | Sum everything in parentheses|
+|mean() | Mean|
+|median() | Median|
+|sd() | Standard deviation|
+|var() | Variance|
+|median() | Median|
+|min() | Minimum|
+|max() | Maximum|
+|tally(~x, data=DF) | Frequency table of x in dataframe DF|
+|tally(y~x, data=DF) | Cross-tabulation table of x and y in dataframe DF|
+
+### Plotting using Mosaic
+
+The Mosaic package uses the same form for many plotting and analysis commands.
+
+ command ( y ~ x | z, data= DF, groups = w, auto.key=T)
+
+y is the y-axis variable
+
+x is the x-axis variable
+
+z is the grouping variable to make separate plots
+
+w is the grouping variable to plot in different colors in the same plot.  
+
+DF is the data frame that these variables are located in. 
+
+auto.key=T tells the plotting command to automatically draw a key for each item.
+
+
+### Univariate distributions
+
+|Command | Meaning  |
+|:-------|:-----|
+|histogram() | Histogram|
+|densityplot() | Density plot (kernel density plot)|
+|freqpolygon() | Frequency polygon|
+|bargraph() | Bargraph|
+
+### Bivariate distributions
+
+|Command | Meaning  |
+|:-------|:-----|
+|bwplot() | Box and whisker plot|
+|xyplot() |  Scatter plot|
+
+### Data analysis
+
+#### Bivariate analysis
+
+|Command | Meaning  |
+|:-------|:-----|
+|t.test() | T-test|
+|wilcox.test() | Wilcoxon test|
+|chisq.test() | Chi-squared test|
+|prop.test() | Proportion test|
+|binom.test() | Binomial test|
+
+
+#### Multivariate analysis
+
+|Command | Meaning  |
+|:-------|:-----|
+|model1=lm(y~x1 + x2, data=DF) | Perform linear regression of y on x1 and x2 and put results in model1|
+|model1=glm(y~x1 + x2, family=binomial) | Perform logistic regression of y on x1 and x2 and put results in model1|
+|model1=glm(y~x1 + x2, family=poisson) | Perform Poisson regression of y on x1 and x2 and put results in model1|
+|summary(model1) | Summarize results in model1|
+
+
+
+### Defining variables
+
+In R, all variables are lists of numbers.  More formally, they are vectors.  Here is an example.  In this case, I am using R's shortcut for all the numbers from 1 to 10. 
+
+```{r}
+var1=1:10
+var1
+```
+
+An equivalent way to write this command is using the c() function, which tells R to make a list out of everything within the parentheses.  c stands for concatenate, which means to attach elements 
+together.  If you need to enter a few numbers yourself, you can use the c() function.  
+
+```{r}
+var1=c(1,2,3,4,5,6,7,8,9,10)
+```
+
+
+```{r}
+var1+1
+var2=var1+1
+var2
+```
+
+
+I just defined a new variable called test which is the numbers from 1 to 10.  I then created a new variable called test2 which is defined as test+1.  That is, you add 1 to every member of test.  If you do something to a variable without setting it equal to anything, R just prints the output.  
+
+You can also add two variables.  For example:
+
+```{r}
+var1+var2
+```
+
+If you want just a few elements of a variable, you can use brackets to ask for them.  The following commands ask for the first element, the first through third elements, and the elements in the list  c(2,4,6):
+
+```{r}
+var2[1]
+var2[1:3]
+var2[c(2,4,6)]
+```
+
+R also has other data types besides vectors.  
+
+### Matrices
+
+Matrices are 2-dimensional ways to store variables.  For example, a two by two table can be represented as a matrix.  
+
+You can create a matrix with the  matrix command.  The following creates a matrix with the elements from 1 to 8.  You can tell R how many rows or columns you want using either the option  nrow= or  ncol=.  By default, this function fills in columns in order.  If you want the matrix to be entered by row, you have to use the option byrow=T.
+
+```{r}
+test.matrix=matrix(1:8, nrow=2)
+test.matrix
+test.matrix2=matrix(1:8, nrow=2, byrow=T)
+test.matrix2
+```
+
+
+
+### Missing data
+
+Sometimes, data is missing.  In this case, I am using a command to set the 3rd element of test to be missing, using a command called is.na().  You don't have to worry about that command yet, but I'm using it to get somewhere. 
+
+```{r}
+is.na(var1)=3
+var1
+var2=var1+1
+var2
+```
+
+Now I just made the third element of the variable missing (NA).  I created var2 which is again var1+1, but notice that NA stays the same because adding 1 to missing is still missing.  
+
+
+```{r}
+test3=1:10
+test4=1:10
+is.na(test3)=c(2,4,6,8,10)
+is.na(test4)=c(1,3,5,7,9)
+test3
+test4
+```
+
+In each case where test1 is missing, there is a test2 number to fill in.  
+
+You can use the ifelse command to combine the variables test1 and test2 so that you again get 1 through 10.  
+
+```{r}
+test5=ifelse(is.na(test3), test4, test3)
+test5
+```
+
+## Exercises
+
+### Software preparation
+
+Install R and R Studio on your computer of choice (if not already installed). If already installed, update all of these. 
+
+Familiarize yourself with the menus in Rstudio. 
+ 
+Find the following features of R studio:  
+
+- History listings
+
+- File pane 
+
+- Editing window where you can create an Rmarkdown file. 
+
+- Button to create a code chunk: green +C. Run code in a chunk by pressing the green "play" button in it. Remember to write all of your code in this document and to knit code frequently.
+
+- Environment, where all the items in memory are displayed.  
+
+- Listing of all available packages.  
+
+- The help window.  
+
+

@@ -1,0 +1,552 @@
+# Data displays
+
+Extra reading: Edward Tufte, The Visual Display of Quantitative Information (1983, 2001), 106--121. http://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=00040Z
+
+## Plots as necessary data summaries
+
+The following data --- Anscombe's quartet --- have the same summary statistics (moments.) Plotting reveals the relationship between the factors. (Anscombe, F. J. (1973). Graphs in Statistical Analysis. American Statistician 27 (1): 17--21. Plots from wikipedia.)
+
+| Quantity                 | Value             |
+|:-------------------------|:------------------|
+| Mean of x                | 9 (exactly)       |
+| Variance of x            | 11                |
+| Mean of y                | 7.50              |
+| Variance of y            | 4.122             |
+| Cor(x, y)                | 0.816             |
+| Linear regression result | y = 3.00 + 0.500x |
+
+Here are code that generate plots of Anscombe's quartet. I place them one by one on a grid.
+
+```{r, message=F, warning=F}
+library(mosaic)
+p1=xyplot(y1 ~ x1, data=anscombe, type=c("p", "r"))
+p2=xyplot(y2 ~ x2, data=anscombe, type=c("p", "r"))
+p3=xyplot(y3 ~ x3, data=anscombe, type=c("p", "r"))
+p4=xyplot(y4 ~ x4, data=anscombe, type=c("p", "r"))
+print(p1, pos = c(0.0, 0.5, 0.5, 1.0), more = TRUE)
+print(p2, pos = c(0.5, 0.5, 1.0, 1.0), more = T)
+print(p3, pos = c(0.0, 0.0, 0.5, 0.5), more = TRUE)
+print(p4, pos = c(0.5, 0.0, 1.0, 0.5), more = F)
+```
+
+Someone who gets a dataset may generate numerical summaries and linear regressions without looking at the data. You can see here that only the first dataset is appropriate for linear regression.
+
+Dataset 2 needs a quadratic term to fit the parabolic shape.
+
+Dataset 3 has a linear relationship but one large outlier that has a lot of leverage, pulling the regression line up.
+
+Dataset 4 has no relationship at all between x and y. The line goes between the average value of the y at x4=8 and the datapoint at the far end: the regression line is a line determined by two points.
+
+## Effective presentation of data
+
+-   Use a plot rather than a table whenever possible.
+
+-   White backgrounds and sans serif fonts are easier to read. (These are defaults in R.)
+
+-   Maximize data to ink ratio: all ink should communicate something. If ink can be removed without losing information, it is "chart junk" and unnecessary.
+
+-   Examples of unnecessary ink: unnecessary 3d plots, pie charts, "ducks." A "duck" is an element of a plot that is only for decoration. Ducks are named after the Big Duck, located in Flanders, NY.
+
+The primary rule for data display is the less ink, the better. Eliminate as much as possible from a plot or table to avoid obscuring your data with extra ink or redundant information. This rule has a few consequences:
+
+-   Avoid graphical features that add ink without communicating anything, common in Excel.
+
+-   Avoid pie charts and other plotting methods that communicate little information for the amount of ink used.
+
+R has a function pie to make a pie chart, but the help file helpfully notes that pie charts are terrible. "Pie charts are a very bad way of displaying information. The eye is good at judging linear measures and bad at judging relative areas. A bar chart or dot chart is a preferable way of displaying this type of data. Cleveland (1985), page 264:"Data that can be shown by pie charts always can be shown by a dot chart. This means that judgements of position along a common scale can be made instead of the less accurate angle judgements." This statement is based on the empirical investigations of Cleveland and McGill as well as investigations by perceptual psychologists."
+
+You can make a pie chart to show Pacman, however.
+
+Pacman in base R:
+
+```{r}
+pie(c("Pacman" = 78, "Pacman's mouth" = 22),
+    init.angle = 45, col = c("yellow", "white"), border = F)
+```
+
+Pacman in ggplot:
+
+```{r}
+df <- data.frame(
+  variable = c("does not resemble Pacman", "resembles Pacman"),
+  value = c(20, 80)
+)
+
+ggplot(df, aes(x = "", y = value, fill = variable)) +
+  geom_col(width = 1) +
+  scale_fill_manual(values = c("white", "yellow")) +
+  coord_polar("y", start = 2*pi/3) +
+  labs(title = "Pac man") + 
+  theme_classic()
+```
+
+Pyramid pie chart:
+
+```{r}
+pie(c(Sky = 78, "Sunny side of pyramid" = 17, "Shady side of pyramid" = 5),
+    init.angle = 315, col = c("deepskyblue", "yellow", "yellow3"), border = FALSE)
+```
+
+## Choosing suitable plots and analyses for the data
+
+We divide data into categorical (C) and quantitative (Q). The types of analysis depend on the types of data.
+
+Categorical variables can further be categorized as ordinal or non-ordinal.
+
+| Variable type          | Outcome Quantitative | Outcome Categorical |
+|:-----------------------|:---------------------|:--------------------|
+| Predictor quantitative | $Q \rightarrow Q$    | $Q \rightarrow C$   |
+| Predictor categorical  | $C \rightarrow Q$    | $C \rightarrow C$   |
+
+The displays and analysis types are not meant to correspond to each other.
+
+This table is not meant to be a cookbook. This table demonstrates that some types of analysis definitely do not make sense for some types of data. E.g., scatterplot cannot be used instead of 2x2 table.
+
+| Data                                   | Display                                | Analysis                                    |
+|:------------------|:---------------------------------|:------------------|
+| $Q \rightarrow Q$                      | scatterplots (xyplot)                  | linear regression (lm)                      |
+| $Q \rightarrow C$ or $C \rightarrow Q$ | Box and whisker plot (bwplot)          |                                             |
+|                                        | dotplot (w or w/o confidence interval) |                                             |
+| Categorical variable is binary         | stratified density plot (densityplot)  | t-test, Wilcoxon                            |
+| Categorical variable is binary         |                                        | Logistic regression glm( , family=binomial) |
+| Categorical variable is not binary     |                                        | test for trend (if ordinal): e.g., Cuzick's |
+| Categorical variable is not binary     |                                        | Tukey's HSD (anova followesd by TukeyHSD)   |
+| Categorical variable is not binary     |                                        | transform to binary and use above methods   |
+| $C \rightarrow C$                      | Contingency table (tally)              | chi-square test (chisq.test)                |
+|                                        |                                        | Kruskal-Wallis test (kruskal.test)          |
+|                                        |                                        | pairwise chi-square test                    |
+
+## Exercise
+
+How can you improve the following plots?
+
+[![Pirates and global warming (Source: Forbes (https://www.forbes.com/sites/erikaandersen/2012/03/23/true-fact-the-lack-of-pirates-is-causing-global-warming); Wikimedia commons.)](https://imageio.forbes.com/blogs-images/erikaandersen/files/2012/03/w1467103173.jpg?format=jpg&width=560)](https://imageio.forbes.com/blogs-images/erikaandersen/files/2012/03/w1467103173.jpg?format=jpg&width=560)
+
+![Source: "Hematocrit was not validated as a surrogate end point for survival among epoetin-treated hemodialysis patients", Dennis J. Cotter, Kevin Stefanik, Yi Zhang, Mae Thamer, Daniel Scharfstein, James Kaufman, Journal of Clinical Epidemiology 57(10):1086-1095, October 2004.](images/badplot-cottera.jpg)
+
+Source: Cotter DJ, et al. (2004) Hematocrit was not validated as a surrogate endpoint for survival amoung epoetin-treated hemodialysis patients. Journal of Clinical Epidemiology 57:1086-1095,
+
+![Source: Roeder K (1994) DNA fingerprinting: A review of the controversy (with discussion). Statistical Science 9:222-278, Figure 4b](images/badplot-roedera.jpg)
+
+Source: Roeder K (1994) DNA fingerprinting: A review of the controversy (with discussion). Statistical Science 9:222-278, Figure 4b
+
+![Height of fed chair and inflation rate.](images/inflation-fed-chair-height.jpg)
+
+\includegraphics[height=4in]{../images/inflation-fed-chair-height}\\
+
+Including an image of the fed chair is a \`\`duck'' --- if they are really making a point about the height of the chair of the Federal Reserve Board, they don't need the picture. For an infographic (non-academic purpose), it is reasonable to include some eye-catching elements.
+
+## Visualizing a screening test
+
+These hypothetical data show the results of a screening test for a low-prevalence condition.
+
+Here are three visualizations of the screening test results. Is any more effective?
+
+![Screening test illustration](images/screentest-fig1.jpg)
+
+![Screening test for rare condition (Yes = red, No = blue), FN= false negative (outline red), TP = true positive (shaded red), FP = false positive (blue), and TN = true negative (outline blue).](images/screentest-fig4.jpg)
+
+For a higher prevalence condition, the data might look like this:
+
+![Screening test for common condition](images/screening-test-visualization-01.png)
+
+Is there a universally preferred method of displaying these data, or does it depend on context?
+
+(Source: Tim Brock, How to explain screening test outcomes, *Significance*, 27 April 2017. Retrieved from: https://www.significancemagazine.com/science/547-a-visual-guide-to-screening-test-results)
+
+## Data displays in R
+
+R is a free open-source statistical package that was first released in 1995, based on the S statistical package which was a commercial package developed at Bell Labs. R comprises a central set of commands augmented by libraries that introduce new commands.
+
+Base R includes a plot command that provides for many types of plotting. as well as additional commands: histogram, barplot, dotchart, boxplot, and curve. These commands can get a bit involved. For example, putting two plots on the same axes requires specifying the scale for both plots, and in between putting the command par(new=T): three commands. Adding a regression line requires doing the regression and then giving the command abline: again, three commands.
+
+In recent years, the ggplot has become a popular way to do plots. ggplot can be powerful, but it can be involved.
+
+We use the package mosaic, which simplifies commands for statistics students. What would normally take 3 commands in regular R can be done in just 1 command. The plotting commands in Mosaic are listed in the R reference guide at the end of today's notes. Mosaic is based on the lattice graphics package, something you may see referenced in the help pages.
+
+Plotting commands in Mosaic use the same format:
+
+```{r, eval=F}
+command ( y \(\sim\) x, data=dataset)
+```
+
+You can stratify by a third variable using simple variations:
+
+```{r, eval=F}
+command ( y \(\sim\) x, groups=z, data=dataset)
+command ( y \(\sim\) x | z, data=dataset)
+```
+
+## Exploring a dataset
+
+Many packages, including Mosaic, comes with built-in datasets that can be used for analysis. You can read about a built-in dataset using the help command (equivalent to a ?), and see the variables available using the names command.
+
+We will use the HELPrct study (Health Evaluation and Linkage to Primary Care). \`\`The HELP study was a clinical trial for adult inpatients recruited from a detoxification unit. Patients with no primary care physician were randomized to receive a multidisciplinary assessment and a brief motivational intervention or usual care, with the goal of linking them to primary medical care.''
+
+```{r, eval=F}
+help(HELPrct)
+names(HELPrct)
+```
+
+## Single variable plots
+
+When there's one variable, it is on the right side of the formula.
+
+```{r}
+histogram(~age, data=HELPrct)
+densityplot(~age, data=HELPrct)
+freqpolygon(~age, data=HELPrct)
+```
+
+```{r}
+bwplot(~age, data=HELPrct)
+bargraph(~age, data=HELPrct)
+```
+
+## Two variable plots
+
+```{r}
+xyplot(i1 ~ age, data=HELPrct, ylab="Number of drinks per day", type=c("p", "r"))
+bwplot(age ~ substance, data=HELPrct)
+bwplot(substance ~ age, data=HELPrct)
+```
+
+## Stratifying plots by a third variable
+
+Often it's useful to stratify plots by a third variable. You can do this using two methods.
+
+```{r}
+xyplot(i1 ~ age, groups=female, data=HELPrct, ylab="Number of drinks per day", 
+auto.key=T, type=c("r", "p"))
+xyplot(i1 ~ age | female, data=HELPrct, ylab="Number of drinks per day", 
+auto.key=T, type=c("r", "p"))
+```
+
+## Making historical plots in R
+
+## John Snow's cholera data
+
+John Snow's cholera data is in the library HistData.
+
+```{r}
+library(HistData)
+```
+
+Number of cholera deaths by population size.
+
+```{r}
+xyplot(cholera_deaths ~ popn, data=Cholera, type=c("r", "p"), 
+       xlab="Population in 1849", ylab="Number of cholera deaths in 1849", 
+       main="Cholera deaths in 1849")
+
+xyplot(cholera_deaths ~ popn, groups= water, auto.key=T, 
+       data=Cholera, type=c("r", "p"), xlab="Population in 1849", 
+       ylab="Number of cholera deaths in 1849", 
+       main="Cholera deaths in 1849 by water supplier")
+
+xyplot(cholera_deaths ~ popn | water, data=Cholera, type=c("p", "r"),
+xlab="Population in 1849", ylab="Number of cholera deaths in 1849" , 
+main="Cholera deaths in 1849 by water supplier")
+```
+
+Number of cholera deaths by population density.
+
+```{r}
+xyplot(cholera_deaths ~ pop_dens, data=Cholera, type=c("r", "p"), 
+       xlab="Population density in 1849", 
+       ylab="Number of cholera deaths in 1849", 
+       main="Cholera deaths in 1849")
+
+xyplot(cholera_deaths ~ pop_dens, groups= water, data=Cholera, 
+       type=c("r", "p"), auto.key=T,
+       xlab="Population density in 1849", 
+       ylab="Number of cholera deaths in 1849", 
+       main="Cholera deaths in 1849 by water supplier")
+
+xyplot(cholera_deaths ~ pop_dens | water, data=Cholera, type=c("p", "r"),
+xlab="Population density in 1849 (persons per acre)", ylab="Number of cholera deaths in 1849" , 
+main="Cholera deaths in 1849 by water supplier")
+```
+
+Number of cholera deaths by house value
+
+```{r}
+xyplot(cholera_deaths ~ house_valpp | water, data=Cholera, type=c("p", "r"),
+xlab="Average value of houses in 1849 (pounds)", ylab="Number of cholera deaths in 1849" , 
+main="Cholera deaths in 1849 by water supplier")
+```
+
+### Questions for discussion:
+
+-   Interpret each of these plots. Based on these plots, which factors predict cholera?
+
+-   If you are able to explore the data further, are there other factors that appear important?
+
+## Florence Nightingale's data
+
+It's possible to create the coxcomb plot in R: see the documentation of Histdata.
+
+Florence Nightingale's plot of mortality during the Crimean War is a famous early example of data display. It is a polar area diagram, also known as a coxcomb plot. Note: it is not a pie chart.
+
+-   Based on looking at both the static and the animated version of the data, explain what the data shows about the primary causes of death during the Crimean War.
+
+-   Name two advantages that make this data display particularly effective at communicating the data.
+
+-   Name two disadvantages that make this data display confusing or ineffective.
+
+-   What is another way to display the same information, and how would it address the problems that you identified? Name both the type of display and exactly what you would plot.
+
+Why is the following plot better than the coxcomb plot?
+
+```{r}
+xyplot(Disease.rate + Wounds.rate + Other.rate ~ Date, data=Nightingale, 
+type=c("p", "l"), auto.key=T, ylab="Annual rate of deaths per 1000", 
+xlab = "Date (year-month)")
+```
+
+## Births by day of year
+
+This plot shows the number of US births by the day of the year in 1978.
+
+```{r}
+xyplot (births ~ day_of_year, data=Births78, type=c("p", "smooth"))
+```
+
+Notice that the data are grouped. What proportion of the data are in the lower group, approximately? What are these data points?
+
+Define new variable weekend to be 1 if Sat or Sun, 0 if any other day. Now view the data again with the command View(Births78) and then plot the data.
+
+```{r}
+Births78$weekend=Births78$wday=="Sun" | Births78$wday=="Sat"
+xyplot(births ~ day_of_year, groups=weekend, data=Births78, auto.key=T,
+       type=c("p", "smooth"))
+```
+
+## Women's weights and heights
+
+Make a simple scatterplot of the average heights and weights of women in the US from an unspecified year. You can execute the below commands by pasting them into the command box.
+
+Load data into memory. We use a built-in dataset of women, their heights, and weights. Look at the dataset by typing the name of it.
+
+```{r}
+data(women)
+```
+
+Make a simple scatterplot.
+
+```{r}
+xyplot(weight ~ height, data=women)
+```
+
+Improve the scatterplot a bit by labeling the axes and giving it a title. Also, change the plotting character from an open circle to a closed circle. Do a linear regression of weight on height, and draw the regression line on the plot.
+
+```{r}
+xyplot(weight ~ height, data=women, xlab="Height (inches)", ylab="Average weight (pounds)", main="Average weights by height for US women in an unknown year", pch=20, type=c("p", "r"))
+```
+
+Create a new variable for body mass index (BMI) for each height/average-weight combination in this dataset
+
+```{r}
+bmi=703*women$weight/women$height^2
+```
+
+Plot average BMI by height
+
+```{r}
+xyplot(bmi ~ height, data=women, type=c("r", "p"), xlab="Height (inches)", ylab="Average BMI (kg/m^2)", 
+main="Average BMI by height for US women in an unknown year")
+```
+
+-   Currently, about 2/3 of American women are overweight (BMI between 25 and 30) or obese (BMI more than 30), a trend that began in the early 1990s. Do you think that these data are recent, or do they predate the "epidemic" of overweight and obesity? Explain your answer.
+
+-   The goal of the BMI is to assess weight independent of height. Based on your scatterplot, do you think that BMI succeeds in doing that? Explain why. If there is a group of women for whom BMI succeeds as a measurement of weight independent of height, specify it.
+
+## Esophageal cancer case-control data
+
+These data come from a study of esophageal cancer in Ille-et-Vilaine, France. (Source: Breslow, N. E. and Day, N. E. (1980) Statistical Methods in Cancer Research. 1: The Analysis of Case-Control Studies.http://w2.iarc.fr/en/publications/pdfs-online/stat/sp32/)
+
+"Cases were 200 males diagnosed with esophageal cancer in one of the regional hospitals between January 1972 and April 1974. Controls were a sample of 775 adult males drawn from electoral lists in each commune. Both types of subject were administered a detailed dietary interview. which contained questions about their consumption of tobacco and of various alcoholic beverages in addition to those about foods."
+
+Load and summarize the data.
+
+```{r}
+data(esoph)
+summary(esoph)
+```
+
+Plot the ratio of cases to controls versus age, alcohol consumption, and tobacco consumption.
+
+```{r}
+bwplot(ncases/ncontrols ~ agegp, data=esoph, xlab="Age (years)", 
+ylab="Ratio of cases to controls")
+bwplot(ncases/ncontrols ~ alcgp, data=esoph, xlab="Alcohol consumption (grams/day)", 
+ylab="Ratio of cases to controls")
+bwplot(ncases/ncontrols ~ tobgp, data=esoph, xlab="Tobacco consumption (grams/day)", 
+ylab="Ratio of cases to controls")
+```
+
+Based on these plots, does alcohol or tobacco seem to be most strongly associated with esophageal cancer? Explain your answer.
+
+## Map data
+
+R can also plot maps using additional packages. This example comes from the book Flowing Data by Nathan Yau. Note that he chooses to use hexadecimal numbers for colors instead of names.
+
+```{r}
+library(maps)
+fertility=read.csv("http://book.flowingdata.com/ch08/points/adol-fertility.csv")
+```
+
+This map plots adolescent fertility for each country by latitude and longitude. In demographics, fertility refers to the number of births, which is a term in contrast to conversational English. (Fecundability in demographics refers to the ability to become pregnant and give birth, which is what is called fertility in conversational English.) Circles are proportional to fertility rate for adolescents. Why is a square root scaling useful?
+
+```{r}
+histogram(~ad_fert_rate, data=fertility)
+```
+
+```{r}
+map("world", fill=F, col="#cccccc")
+symbols(fertility$longitude, fertility$latitude, circles=sqrt(fertility$ad_fert_rate), add=T, inches=0.15, bg="#03ceef", fg="#ffffff")
+```
+
+## Summarizing data in R
+
+## Data are data frames
+
+As before, we'll use data from Health Evaluation and Linkage to Primary (HELP) care randomized clinical trial (RCT), which followed n=470 subjects without primary care enrolled in detox in Boston circa 2000, followed for up to 2 years, every six months. Before you analyze data, you should look at the data frame with the {\tt dim} and {\tt names} commands to make sure it looks like you expect: the appropriate number of observations and variables.
+
+```{r}
+library(mosaic)
+```
+
+### Numerical summaries: one categorical and one quantitative variable
+
+R has the expected tools for data summaries: mean, median, sd
+
+Mosaic also includes a command to do many data summaries at once: favstats.
+
+```{r}
+histogram(~age, data=HELPrct)
+favstats(~age, data=HELPrct)
+```
+
+On average, both mean and median, the participants are about 35 years old.
+
+We can also summarize data by groups. The following commands from Mosaic are equivalent.
+
+```{r}
+favstats(age ~ substance, data=HELPrct)
+favstats(~age, groups=substance, data=HELPrct)
+```
+
+We can also find means stratified by two factors simultaneously:
+
+```{r}
+mean(age ~ substance | sex, data=HELPrct)
+```
+
+When the categorical variable is binary, we can test for significance with a t.test or Wilcoxon test.
+
+```{r}
+t.test(age ~ sex, data=HELPrct) 
+wilcox.test(age ~ sex, data=HELPrct)
+```
+
+When the categorical variable is not binary, we can test for significance with a linear regression or a Kruskal-Wallis test.
+
+```{r}
+kruskal.test(age ~ substance, data=HELPrct) 
+summary(lm(age ~ substance, data=HELPrct))
+```
+
+We will discuss the meaning of these tests in subsequent class sessions.
+
+## Tables in R: two categorical variables
+
+We can make cross-tabulations in R easily, using the Mosaic command tally.
+
+```{r}
+tally(~sex, data=HELPrct) 
+tally(~substance, data=HELPrct)
+```
+
+tally can show counts, proportions, or percents, and it can show margins.
+
+```{r}
+tally(sex ~ substance, data=HELPrct, format="count", margins=T) 
+tally(sex ~ substance, data=HELPrct, format="proportion", margins=F) 
+tally(sex ~ substance, data=HELPrct, format="percent") 
+tally(~sex + substance, data=HELPrct, format="percent")
+```
+
+### Analyzing data in tables
+
+Several tests are possible: chi-square, McNemar. The McNemar test is for non-independent observations (e.g., comparison of the same subject over time.)
+
+The chi-square test takes a table as input.
+
+```{r}
+chisq.test(tally(sex ~ substance, data=HELPrct)) 
+```
+
+## Two continuous variables
+
+### R data object manipulation: apply
+
+We've learned how to sum all the elements in a vector or matrix, but what if we want to sum only the columns or rows? We can use the apply command to apply a command to rows or columns of a matrix.
+
+```{r}
+test.matrix=matrix(c(1:8), nrow=2, byrow=T) 
+test.matrix 
+apply(test.matrix, 2, sum) 
+apply(test.matrix, 1, sum)
+```
+
+The apply command is useful if we want to look for missing data in a dataset and see how many of each values are missing in the dataset.
+
+We can go one by one through all of the variables in the dataset to see how many missing values they have using the is.na command. The HELPrct dataset has 27 variables, however, so it would take 27 commands to review that information. Instead, we can use apply to find out how many observations are missing from each variable.
+
+```{r}
+dim(HELPrct) 
+names(HELPrct) 
+sum(is.na(HELPrct$age)) 
+sum(is.na(HELPrct$anysub)) 
+apply(apply(HELPrct, 2, is.na), 2, sum) 
+```
+
+We can notice that the variables with the most missing data (missing 207, 209, and 239 observations) are missing responses from about half of the sample. That fact is important to note because any analysis that includes these variables will have half the sample size compared with an analysis that doesn't use those variables.
+
+## Exercise
+
+In February 2015, the New England Journal of Medicine published a randomized controlled trial that assigned infants ages 4--11 months to be introduced to peanuts or to avoid peanuts. The study found that infants introduced to peanuts had much lower prevalence of peanut allergy at age 5 years old than infants who avoided peanuts: 3% among peanut eaters versus 17% among avoiders in intention-to-treat analysis. The study included the following plots. (George Du Toit, et al. Randomized Trial of Peanut Consumption in Infants at Risk for Peanut Allergy, NEJM. 2015; 372:803--813.)
+
+![Plot from peanut consumption in infants at risk for peanut allergy](images/peanut-study-graphics.png)
+
+-   Describe how wheal sizes differed between the peanut avoidance and peanut consumption groups, and how they changed over time. Support your answer with reference to specific components of the data displays.
+
+-   Describe how peanut specific IgE differed between the peanut avoidance and peanut consumption groups, and how they changed over time. Support your answer with reference to specific components of the data displays.
+
+-   Why did the authors show both individual and aggregate measures in this data display?
+
+-   Assuming that the above data displays are accurate, in your opinion, are these effective displays of the data? Explain your answer.
+
+-   The authors used graphical data displays instead of tables in their paper. The paper included zero tables. Why might they have used data displays instead of tables, in your opinion?
+
+### Suggested answers
+
+-   Describe how wheal sizes differed between the peanut avoidance and peanut consumption groups, and how they changed over time. Support your answer with reference to specific components of the data displays. Any reasonable answer will get credit.
+
+The wheal sizes were bigger in the peanut avoidance group than in the peanut consumption group, both on average and individually. We can see the average wheal size as the dark black line which is practically zero in the peanut consumption group, but the mean is not zero and increases with time in the peanut avoidance group. We can see the individual wheal sizes among those allergic to peanuts as the red lines on the plot and notice only one person in the peanut consumption group had a peanut allergy and their wheal sizes increased over time, whereas many people in the peanut avoidance group had peanut allergies, and their wheal sizes increased over time. We can also notice that many children eating peanuts had nonzero wheal sizes, but they were not allergic. Wheal sizes were generally larger in the avoidance group, though.
+
+-   Describe how peanut specific IgE differed between the peanut avoidance and peanut consumption groups, and how they changed over time. Support your answer with reference to specific components of the data displays.Any reasonable answer will get credit.\
+    Peanut specific IgE differed between the two groups, as we described for the skin wheal size. The patterns both on average and at mean were similar as we described above.
+
+-   Why did the authors show both individual and aggregate measures in this data display?
+
+Showing both individual and mean measures in a data display lets readers decide for themselves what the data shows. We can see patterns in both the mean and individual data, and the patterns are the same. Any reasonable answer will get credit.
+
+-   Assuming that the above data displays are accurate, in your opinion, are these effective displays of the data? Explain your answer.
+
+I think these are effective displays of the data. They show a lot of information without overwhelming the reader. Every bit of ink is useful and conveys useful information to the reader. Any reasonable answer will get credit.
+
+-   The authors used graphical data displays instead of tables in their paper. The paper included zero tables. Why might they have used data displays instead of tables, in your opinion?
+
+The authors manage to display more information in these plots then would've been reasonable to put into a table. The readers of this article are busy doctors who do not have time to read tables, so the authors took time to figure out how to convey the information in an easy to read format that allows readers to see both individual and average trends over time. Making a table might be easier, but it would probably only show the average, which gives less useful information. A reader seeing this paper might wonder about individual variation from the mean because peanut allergies are so severe and sometimes means to conceal information. For example the reader might wonder whether any individuals in the peanut consumption group developed highly severe allergies, but this data display answers their question about how individuals vary from the group by showing wheal size and IgE levels for every participant, and we see that the one peanut allergic person in the peanut consumption group had relatively low wheal size and IgE levels, compared to those in the peanut avoidance group. Showing every individual in a table would not be feasible.

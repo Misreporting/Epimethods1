@@ -1,0 +1,37 @@
+project:
+  type: book
+
+book:
+  title: "Epidemiology Methods lecture notes"
+  author: "Janet Rosenbaum"
+  date: "3/28/2023"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - chaptA.qmd
+    - chapt1.qmd
+    - chapt2.qmd
+    - chapt3.qmd
+    - chapt4.qmd
+    - chapt5.qmd
+    - chapt6.qmd
+    - chapt7.qmd
+    - chapt8.qmd
+    - chapt9.qmd
+    - chapt10.qmd
+    - chapt11.qmd
+    - chapt12.qmd
+    - chapt13.qmd
+    - chapt14.qmd
+    - chapt15.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+editor: visual
+execute:
+  freeze: auto

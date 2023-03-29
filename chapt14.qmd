@@ -1,0 +1,123 @@
+# Cohort studies
+
+Last time, we spoke about RCTs and natural experiments. In many cases, we can’t do either an RCT or a natural experiment for ethical or logistical reasons. 
+
+Cohort studies in epidemiology can be chosen by exposure, which is useful for a rare exposure, such as bariatric surgery, SARS, MERS.
+
+## Prospective Cohort Studies to study a specific exposure
+
+### SARS and MERS cohort studies   
+
+In 2002, the SARS virus began in China, spreading to a few locations including Canada. People who were infected with SARS were successfully isolated, but some health care workers became ill. As a novel virus, this disease was not well-understood, so people who were infected with SARS were followed over years. These follow-up studies found that several years after illness, 30-40% of SARS patients had a new-onset mental illness of varying types, about 30-40% met criteria for chronic fatigue syndrome, and about 30-40% did not go back to work; these were non-mutually exclusive, so some people had more than one of these, and some people had none of these. 
+
+Children who had been infected with SARS had reduced aerobic capacity about 18 months after infection, but it was thought this was due to deconditioning rather than the disease.  Patients who had been treated with steroids had femoral head necrosis, likely an effect of steroids rather than disease.
+
+In 200x, the MERS virus emerged. Similar cohorts were formed of people who had been infected with MERS and followed for years.  
+
+These cohort studies were useful when Covid-19 emerged because they foreshadowed possible effects of Covid-19, such as long covid.
+
+## Prospective Cohort Studies to study a specific disease
+
+Cohort studies may also be chosen by demographic characteristic and disease-free status, not by exposure status. 
+
+At the start, no subjects have the outcomes of interest.
+
+Framingham Heart Study: 5209 residents of Framingham, MA in 1948 ages 30--62 without heart disease (including my late step-grandfather). 
+
+Nurses Health Study follows 117,000 women without cancer or CVD who were nurses in 1976 (including my aunt) 
+
+Whitehall Studies (UK): Whitehall I studied 17,530 male civil servants 1967--77; Whitehall II studies 10,308 civil servants ages 35--55 (2/3 male) 1985--2012. 
+
+Millennium Cohort Study will follow 150,000 military personnel for 21+ years during and after service, recruited in 3 panels beginning in 2001.
+
+
+## Longitudinal/panel studies 
+
+Sometimes referred to simply as longitudinal or panel studies because they aren't chosen by exposure status. Economists refer to longitudinal studies as panel studies.
+
+
+### Economics: Longitudinal/Panel Studies. 
+
+Not designed to study health outcomes but may be used for these purposes. 
+
+National Longitudinal Study of Youth (NLSY79 and NLSY97). https://www.nlsinfo.org 
+
+Panel Study of Income Dynamics (PSID since 1968), and similar studies in other countries. Available here https://www.ipums.org/ 
+
+Medical Expenditure Panel Survey (MEPS). Available here: https://www.ipums.org/ 
+
+### Life course studies
+
+Youth and human development 
+
+Fragile Families and Child Wellbeing Study followed 5000 children born to mostly unmarried mothers in 1998--2000 at birth, and ages 1, 3, 5, and 9 years old. Available here: https://opr.princeton.edu/archive/ 
+
+Northwestern Juvenile Project: 1800 youth enrolled between 1995--98 from Chicago justice system, still following 1644. 
+
+National Longitudinal Study of Adolescent Health (Add Health). 
+
+1958 National Child Development Study or 1958 Birth Cohort Study: 17,000 people born in the UK in a single week in 1958. 
+
+Birth to Twenty in South Africa studied 3273 individuals born during the 7 weeks after Nelson Mandela's release from prison in February 1990. 
+
+National Children's Study will follow 100,000 US children from before birth to age 21. A pilot study at 40 locations is currently in progress. 
+
+Wisconsin Longitudinal Study followed a cohort of men and women born in 1939 from high school graduation to the present. 
+
+Project Talent: 440,000 high school students (grades 9--12) in 1960, 1965, 1971. 
+
+Midlife in the US (MIDUS): 7000 middle-aged people in 1995-96 and 2006.
+
+### Educational studies 
+
+All conducted by Institute for Educational Sciences https://ies.ed.gov/, and available free online.
+
+Education Longitudinal Study (ELS) is a longitudinal study of 16,197 high school sophomores surveyed in 2002 and followed in 2004, 2006, and 2012. The main outcomes of interest are educational, family formation, and employment. 
+
+ECLS-B follows a cohort from birth until kindergarden, beginning in 2001, and includes family structure, prenatal care, and early infancy factors. 
+
+NELS (high school students followed post-graduation), ECLS (Early Childhood Longitudinal Studies), BPS (Beginning Postsecondary Studies: high school graduates followed in first year of post-secondary studies for several years).
+
+## Studies by compiling data
+
+Some epidemiology studies combine different sources of data, rather than using data collected in a unified way.  
+
+### Disadvantages of using an external comparison group 
+
+Chlamydia prevalence among men, by race/ethnicity, selected populations. This table illustrates how the prevalence of a disease (chlamydia) may vary when samples are taken from different, non-comparable populations.
+
+| Data source (years)                                   | Black race | White race | Hispanic ethnicity |
+|:-----------------|:-----------------|:-----------------|:-----------------|
+| NHANES (1999--2000; ages 14--39)                      | 5.3        | 1.5        | 3.1                |
+| Add Health (2001--02; ages 18--26)                    | 11.1       | 1.4        | 7.2                |
+| National Job Training Program (2003--04; ages 16--24) | 13.0       | 3.1        | 5.7                |
+| MSM Prevalence Monitoring Project (2005; ages 15--80) | 7.0        | 6.0        | 6.0                |
+
+Source: Satterwhite, Joesoef, Datta, Weinstock. Estimates of Chlamydia trachomatis Infections Among Men: United States, Sexually Transmitted Diseases, 2008: 35:S3-S7.
+
+Populations may not actually be comparable. 
+
+Populations may differ in exposures other than the exposure of interest. 
+
+Measurement of exposure or outcome may differ between the two studies. 
+
+If significant proportion of the comparison group also has the risky exposure, results are biased, just as if the control group in an experiment is given the treatment.
+
+## Exercise 
+Read the abstract and look at the tables/figures for the attached study, DeBoer MD, Scharf RJ, Demmer RT, "Sugar-Sweetened Beverages and Weight Gain in 2- to 5-Year-Old Children", Pediatrics, 2013;132(3):413--420. Do not read the paper itself. 
+
+1. The authors' hypothesis is that sugar-sweetened beverages (SSBs) cause children to become overweight due to excess energy consumption. That could be true, but it could also be a spurious association caused by other factors --- that is, internal validity could be compromised. Before reading the study, what do you think could be going on? That is, what could be causing the association between SSBs and childhood overweight other than the SSBs themselves? 
+
+2. Look at the tables and figures. Do any of the tables/figures support your initial thoughts about potential threats to internal validity? Do they spark new ideas? 
+
+3. Based just on the tables and figures, which approaches do the authors use to avoid con- founding? 
+
+4. Describe what Table 2 shows in your own words. What is the purpose of the three models? What happens as the analysis goes from Model 0 to Model 1 to Model 2, within each age? 
+
+5. Based on Table 2, does the association between overweight/obesity status and SSB hold up after analyses? 
+
+6. Do you think that the analysis in Table 2 adequately adjusts for each of the covariates in the respective models? Explain why or why not. 
+
+7. Describe in your own words what Figure 1 demonstrates. What do the * mean? What do the little Ts above the bars mean? Does Figure 1 demonstrate a dose-response rela- tionship? 
+
+8. What's the difference between Tables 2 and 3? What's the advantage of each type of analysis?

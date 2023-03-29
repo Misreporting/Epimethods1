@@ -1,0 +1,209 @@
+# Excess risk
+
+A cohort study with n subjects produces data in exposed versus unexposed participants, as in the following 2x2 table:
+
+|           | Disease | No disease | Total |
+|:----------|:--------|:-----------|:------|
+| Exposed   | a       | b          | a+b   |
+| Unexposed | c       | d          | c+d   |
+| Total     | a+c     | b+d        | n     |
+
+We calculate the following basic measures from the table:
+
+$I_1$ = incidence of disease in exposed = a/(a+b)
+
+$I_0$ = incidence of disease in unexposed= c/(c+d)
+
+$I_t$ = incidence of disease in all persons, exposed and unexposed = (a+c)/n
+
+| Measure                                                     | Formula                        | Interpretation                                                                         |
+|:---------------------|:-----------------|:-------------------------------|
+| Relative risk (RR)                                          | $I_1 /I_0$                     | How much more likely is disease in exposed versus unexposed?                           |
+| Risk difference (RD)= Attributable risk to the exposed (AR) | $I_1 - I_0 = I_0(RR−1)$        | Among exposed, how much of the incidence of disease is attributable to the exposure?   |
+| Attributable risk (AR%)                                     | $(RR − 1)/RR =(I_1 − I_0)/I_1$ | What proportion of the disease in exposed individuals is attributable to the exposure? |
+| Population attributable risk (PAR)                          | $I_t − I_0$                    | How much of the disease in the population is attributable to the exposure?             |
+| Population attributable risk % (PAR%)                       | $(I_t − I_0)/I_t$              | What proportion of the disease in the population is attributable to the exposure?      |
+
+|           \| Case \| Control \| \|
+|           \| Disease \| No disease \| Total \|
+
+\|:----------\|:--------\|:-----------\|:------\| \| Exposed \| a \| b \| a+b \| \| Unexposed \| c \| d \| c+d \|
+
+## Estimating the relative risk from a case-control study
+
+If incidence rates cannot be calculated, we can calculate cumulative incidence among the treated and control as $CI_1= a/(a+b)$ and $CI_0= c/(c+d)$
+
+We calculate the relative risk as the ratio of these cumulative incidences \$RR = CI_1/CI_0 = \frac{a/(a+b)}{c/(c+d)} = \frac{a(c+d)}{c(a+b)} \$
+
+If an event is rare, a + b ≈ b and c + d ≈ d, so
+
+\$RR \approx \frac{ad}{cb} =\frac{a/c}{b/d} = OR \$
+
+Note that a/c = Odds of exposure among people who develop disease, and b/d = odds of exposure among people who do not develop disease.
+
+If an event is not rare, the odds ratio does not approximate the relative risk.
+
+### Estimating the attributable risk from a case-control study
+
+Define the following quantities:
+
+$p_1$ = frequency of exposure among cases of disease $= a/(a+b)$
+
+$p_0$ = frequency of exposure among controls = $b/(b+d)$
+
+If frequency of exposure is approximately equal in both controls and cases ($p_1 ≈ p_0$).
+
+If incidence in overall population $I_t$ is known (or can be estimated), you can estimate $I_0$. By definition, the incidence in the full population is the sum of incidence among each population times the frequency of exposure:
+
+$I_t =I_1p_1 +I_0p_0 =I_1p_1 +I_0(1−p_1)=RR·I_0p_1 +I_0(1−p_1)=I_0(p_1(RR−1)+1)$
+
+$I_0 = \frac{I_t}{p_1(RR−1)+1}$
+
+That allows you to estimate AR using the following formula: $AR = I_0(RR − 1)= \frac{I_t}{p_1(RR−1)+1}(RR − 1)= \frac{I_t}{p_1+\frac{1}{(RR−1)}}$
+
+### Odds ratios versus risk ratios
+
+Note that odds ratios are normally larger than risk ratios.
+
+EIS case: Wendell Ames, Stafford Wheeler, and Alexander Langmuir, "Oswego -- An Outbreak of Gastrointestinal Illness Following a Church Supper", Centers for Disease Control and Prevention Epidemiology Program Office Case Studies in Applied Epidemiology No. 401-303. https://www.cdc.gov/eis/casestudies/xoswego.401-303.student.pdf
+
+Gross M. Oswego County revisited. Public Health Rep. 1976 Mar-Apr;91(2):168-70.
+
+Here is a 2x2 table of gastoenteritis (ill = yes) versus eating vanilla ice cream.
+
+```{r}
+library(epitools)
+library(mosaic)
+data(oswego)
+tally(ill~vanilla.ice.cream, data=oswego, margins=T)
+```
+
+The odds ratio is 23.5 = $43*18/(3*11)$. We can also calculate this in R. Note that we have to take the reciprocol because the upper left corner is not exposed and no disease.
+
+```{r}
+1/orrr(tally(ill~vanilla.ice.cream, data=oswego))
+```
+
+The relative risk = (43/54)/(3/21) = 5.6
+
+## Exercise: smoking and lung cancer
+
+This EIS exercise shows how scientists discovered smoking was linked to lung cancer.
+
+A causal relationship between cigarette smoking and lung cancer was first suspected in the 1920s on the basis of clinical observations. To test this apparent association, numerous epidemiologic studies were undertaken between 1930 and 1960. Two studies were conducted by Doll and Hill in Great Britain. The first was a case-control study begun in 1947 comparing the smoking habits of lung cancer patients with the smoking habits of other patients. The second was a cohort study begun in 1951 recording causes of death among British physicians in relation to smoking habits. This exercise --- developed by the CDC's Epidemic Intelligence Service (EIS) to train officers --- deals first with the case-control study, then with the cohort study.
+
+Data for the case-control study were obtained from hospitalized patients in London and vicinity over a 4-year period (4 April 1948 -- February 1952). Initially, 20 hospitals, and later more, were asked to notify the investigators of all patients admitted with a new diagnosis of lung cancer. These patients were then interviewed concerning smoking habits, as were controls selected from patients with other disorders (primarily non-malignant) hospitalized in the same hospitals at the same time. Data for the cohort study were obtained from the population of all physicians listed in the British Medical Register who resided in England and Wales as of October 1951. Information about present and past smoking habits was obtained by questionnaire. Information about lung cancer came from death certificates and other mortality data recorded during ensuing years.
+
+1.  What makes the second study a cohort study?
+
+2.  What makes the first study a case-control study?
+
+The following questions apply to the case-control study. 3. Why were hospitals chosen as the setting for the case-control study?
+
+4.  What are the advantages of selecting controls from the same hospitals as cases?
+
+5.  How representative of all persons with lung cancer are hospitalized patients with lung cancer? What other sources of cases might have been used?
+
+6.  How representative of all persons without lung cancer are hospitalized patients without lung cancer? What other sources of controls might have been used?
+
+7.  How may these representativeness issues affect interpretation of the study results?
+
+8.  Over 1700 cases of lung cancer, all under age 75, were eligible for the case-control study. About 15% were not interviewed because of death, discharge from hospital, severity of illness, or inability to speak English. In addition, some patients were interviewed but later excluded when initial lung cancer diagnosis proved mistaken. The final study group included 1465 cases (1357 males and 108 females).
+
+The following table shows the relationship between cigarette smoking and lung cancer among male cases and controls.
+
+|                  | Cases | Controls | Total |
+|:-----------------|:------|:---------|:------|
+| Cigarette smoker | 1350  | 1296     |       |
+| Non-smoker       | 7     | 61       |       |
+| Total            | 1357  | 1357     |       |
+
+(a) From this table, calculate the proportion of cases and controls who smoked. What do you infer from these proportions?
+
+(b) Calculate the odds of smoking for cases and controls. Calculate the odds ratio. Interpret these data.
+
+9.  The following table shows the frequency distribution of male cases and controls by average number of cigarettes smoked per day.
+
+| Daily \# cigarettes | Cases | Controls | Odds ratio |
+|:--------------------|:------|:---------|:-----------|
+| 0 (non-smokers)     | 7     | 61       | Referent   |
+| 1-14                | 565   | 706      |            |
+| 15-24               | 445   | 408      |            |
+| 25+                 | 340   | 182      |            |
+| All smokers         | 1350  | 1296     |            |
+| Total               |       |          |            |
+
+Calculate the odds ratio by category of daily cigarette consumption, comparing each smoking category to non-smokers. Interpret these results in words.
+
+10. While the study appears to demonstrate a clear association between smoking and lung cancer, cause-and-effect is not the only explanation. What are the other possible explanations for the apparent association?
+
+The following questions apply to the cohort study.
+
+As you may recall, data for the cohort study were obtained from the population of all physicians listed in the British Medical Register who resided in England and Wales as of October 1951. Questionnaires were mailed in October 1951, to 59,600 physicians. The questionnaire asked the physician to classify him/herself into one of three categories: 1) current smoker, 2) ex-smoker, or 3) nonsmoker. Smokers and ex-smokers were asked the amount they smoked, their method of smoking, the age they started to smoke, and, if they had stopped smoking, how long it had been since they last smoked. Nonsmokers were defined as persons who had never consistently smoked. This was defined as smoking as much as one cigarette a day for up to one year. Usable responses to the questionnaire were received from 68% or 40,637 physicians, of whom 34,445 were males and 6,192 were females.
+
+11. How might the response rate of 68% have affected the study's results?
+
+The remainder of this exercise is concerned exclusively with male physician respondents, 35 years of age or older. The occurrence of lung cancer in physicians responding to the questionnaire was docu- mented over the period of 10 years (November, 1951 through October, 1961) from death certificates filed with the Registrar General of the United Kingdom and from lists of physician deaths provided by the British Medical Association. All certificates indicating that the decedent was a physician were obtained. For each lung cancer case, medical records were reviewed to confirm the diagnosis. Diagnoses of lung cancer were based upon the best evidence available; about 70% were from biopsy, autopsy, or sputum cytology (combined with bronchoscopy or X-ray evidence); 29% from cytology, bronchoscopy, or X-ray alone; and only 1% from just case history, physical examination, or death certificate. Of 4,597 deaths in the cohort over the 10-year period, 157 were reported to have been due to lung cancer; in 4 of the 157 cases this diagnosis could not be documented, leaving a net total of 153 cases of lung cancer.
+
+The following table shows numbers of lung cancer deaths by daily number of cigarettes smoked at the time of the 1951 questionnaire (for male physician nonsmokers and current smokers only). Person-years at risk are given for each smoking category. The number of cigarettes smoked was available for 136 of the lung cancer cases.
+
+| Daily \# cigarettes | \# deaths from lung cancer | Person-years at risk | Death rate per 1000 person-years | Rate ratio | Rate difference per 1000 person-years |
+|:-----------|:-----------|:-----------|:-----------|:-----------|:-----------|
+| 0 (non-smokers)     | 3                          | 42,800               | 0.07                             | reference  | reference                             |
+| 1-14                | 22                         | 38,600               |                                  |            |                                       |
+| 15-24               | 54                         | 38,900               |                                  |            |                                       |
+| 25+                 | 57                         | 25,100               |                                  |            |                                       |
+| All smokers         | 133                        | 102,600              |                                  |            |                                       |
+| Total               | 136                        | 145,400              |                                  |            |                                       |
+
+12. What does it mean that the person-years at risk were age-standardized? Why was that done?
+
+13. Calculate lung cancer death rates, rate ratios, and rate differences for each smoking category. What does each of these measures mean?
+
+14. Why was the rate ratio the correct measure of association to calculate for this study?
+
+15. What proportion of lung cancer cases among all smokers can be attributed to smoking? What is this proportion called? What assumption must be made about the relationship between smoking and lung cancer to interpret this?
+
+16. If none of the smokers had smoked, how many cases of lung cancer would have been averted?
+
+The following table shows the relationship between smoking and lung cancer mortality in terms of the effects of stopping smoking.
+
+| Smoking status               | \# deaths from lung cancer | Death rate per 1000 person-years | Rate ratio     |
+|:-----------------|:-----------------|:-----------------|:-----------------|
+| Current smokers              | 133                        | 1.3                              | 18.5           |
+| Ex-smokers, quit \<5 years   | 5                          | 0.67                             | 9.6            |
+| Ex-smokers, quit 5-9 years   | 7                          | 0.49                             | 7.0            |
+| Ex-smokers, quit 10-19 years | 3                          | 0.18                             | 2.6            |
+| Ex-smokers, quit 20+ years   | 2                          | 0.19                             | 2.7            |
+| Non-smokers                  | 3                          | 0.07                             | 1.0 (referent) |
+
+17. What do these data imply for the practice of public health and preventive medicine?
+
+18. The cohort also provided mortality rates for cardiovascular disease among smokers and non-smokers. The following table presents data on lung cancer mortality and comparable cardiovascular disease mortality.
+
+/1000 p-y = per 1000 person-years
+
+MR = Mortality rate per 1000 person-years
+
+|                        | MR Smokers | MR Non-smokers | MR All | Rate ratio      | Excess deaths /1000 p-y | Attributable risk % |
+|:----------|:----------|:----------|:----------|:----------|:----------|:----------|
+| Lung cancer            | 1.3        | 0.07           | 0.94   | 1.3/0.07 = 18.6 | 1.23                    | 95%                 |
+| Cardiovascular disease | 9.51       | 7.52           | 8.87   | 1.3             | 2.19                    | 23%                 |
+
+Which disease has a stronger association with smoking? Which measure gives information?
+
+19. What proportion of each disease in the entire population can be attributed to smoking? What is this proportion called? How does this proportion differ from the one that you calculated above?
+
+20. Doll and Hill began their case-control study in 1947. They began their cohort study in 1951. Which type of study --- case-control or cohort --- would you have done first? Why? Why do a second study? Why do the other type of study?
+
+21. The odds ratios and rate ratios from the two studies by numbers of cigarettes smoked are given in the table below.
+
+| \# cigarettes per day | Rate ratio cohort study | Odds ratio case-control study |     |
+|:-----------------|:-----------------|:-----------------|:-----------------|
+| 0                     | 1.0 (Referent)          | 1.0 (Referent)                |     |
+| 1-14                  | 8.1                     | 7.0                           |     |
+| 15-24                 | 19.8                    | 9.5                           |     |
+| 25+                   | 32.4                    | 16.3                          |     |
+| All smokers           | 18.5                    | 9.1                           |     |
+
+Compare the results of the two studies. Comment on the similarities and differences in the calculated measures of association.

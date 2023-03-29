@@ -1,0 +1,163 @@
+# Survey data analysis
+
+## Survey types
+
+Simple random survey: every unit in the population has an equal chance of being selected. When we analyze data without accounting for survey design, we treat data as if it were from a simple random sample.
+
+Cluster random sample: units are selected within clusters (primary sampling units), such as schools. Because people within a cluster are more similar to each other than to people outside the cluster, failing to account for the primary sampling unit will result in standard deviations that are too small.
+
+Stratified sample: the population is stratified before the sample is seleccted (strata), such as region of country (west, northeast, midwest, south).
+
+Simple random samples might be used in a case where the population of interest is small and there's a well-defined dataframe. However, few surveys use simple random samples. Most surveys use all of the above techniques, so surveys come with 3 survey parameters (and sometimes 4). All major survey packages can use survey data.
+
+## Weighting
+
+Unequal probability of selection, such as for an oversample that chooses units from populations of interest are selected with greater probability in order to ensure sufficient power to understand these populations. (probability weights).
+
+Post-stratification weights: not everyone participates in the survey, and weights are estimated to account for the probability that people from each population of interest will participate. Also called non-response weights.
+
+Strata
+
+Primary sampling unit (PSU)
+
+Survey weights E.g., probability weights, poststratification weights.
+
+Finite population correction (FPC) Only used when the sample is large relative to the population
+
+PSUs and strata are linked to location, so to protect subjects' privacy, sometimes replicate weights are used instead of PSU and strata. In this case, the PSU and strata are not available.
+
+To analyze data from surveys, you start out by telling the statistical package which variables identify the strata, PSU, and weights. Then, you analyze the data with commands that are designed to use the survey parameters. Not all commands have been adapted for use with survey data, or they may use arcane syntax. For instance, often it's easier to do a single-variable survey-weighted regression rather than a t-test; these yield the same answer.
+
+In longitudinal dataset with several waves of data, multiple survey weights are available, and each estimate must use the appropriate survey weight.
+
+In sum, analyzing survey data with the survey parameters makes estimates representative of the population and ensures that associations are not falsely significant.
+
+Datasets generally come with a document that tells how to analyze the data using survey weights and the other survey features. The document generally gives the exact commands for setting the survey parameters. We use the R survey package to analyze data from the Youth Risk Behavior Survey 20\`9 We use the document produced by YRBS called "Software for Analysis of YRBS Data".
+
+We use the Stata format because it reliably keeps the labels.
+
+```{r, message=F}
+library(readstata13)
+library(mosaic)
+library(arm)
+library(survey)
+yrbs=read.dta13("yrbs2019.dta")
+dim(yrbs)
+```
+
+Here's the example from the YRBS document. The I protects whatever is inside, so this example yields confidence intervals for frequency of each variable. The reason it's necessary is because the YRBS data is coded 1 = yes and 2 = no. If it were coded 0 vs 1, you could just take the mean.
+
+Set the survey design
+
+```{r}
+yrbsdes <- svydesign(id=~psu, weight=~weight, strata=~stratum,data=yrbs, nest=T)
+```
+
+Storing returned value in a variable
+
+```{r}
+(eversex <- svyciprop(~I(QN58==1), yrbsdes, na.rm=TRUE))
+(heroin <- svyciprop(~I(QN52==1), yrbsdes, na.rm=TRUE))
+```
+
+Now let's analyze the data from the Epi 5201 fall 2018 final exam. Evaluate the association between water consumption and BMI. I defined a binary variable for water drinking: the variable water3 is coded as 1 for those who drank at least 3 glasses of water per day and 0 for those who drank less than 3 glasses of water per day.
+
+In the R survey package, when new variables are added, you need to explicitly add the variable to the survey design object. You can do this with the update or transform function. You do not need to use both, only one of these.
+
+This procedure is a bit cumbersome, but it's a consequence of R's capability to have more than one dataframe in memory at a time. A package such as Stata that can only have one dataset in memory at a time.
+
+```{r}
+summary(svyglm(bmipct ~ Q93, yrbsdes, family="gaussian"))
+yrbsdes=update(yrbsdes, water3=qnwater3==1)
+yrbsdes=transform(yrbsdes, water3=qnwater3==1)
+summary(svyglm(bmipct ~ 0+water3, yrbsdes, family="gaussian"))
+```
+
+Alternatively, you can add the new variable to your dataframe and then define the survey design object again. I defined the following variables: age was defined as the number of years over age 11 (12 years old is 1, 13 years old is 2, etc.); male gender was 1 for males and 0 for females. Juice, soda, milk, and sports drink were ordered categorical variables with the same categories as water: none, 1-3 times per week, 4-6 times per week, 1 time per day, 2 times per day, 3 times per day, and 4+ times per day. I defined a variable for obese status and evaluated whether obesity was associated with water consumption. Obesity was coded as 1 for adolescents with a BMI percentile over 95, which is considered obese, and 0 for adolescents with BMI percentile under 95.
+
+If you are defining lots of variables, it's more efficient to define them and then define the survey design object again. Note that we need to repeat the water3 variable definition because we didn't do that one inside the yrbs dataset yet, only directly in the survey object.
+
+```{r}
+yrbs$water3=yrbs$qnwater3==1
+	yrbs$age = as.numeric(yrbs$Q1)
+	yrbs$male = yrbs$Q2=="Male"
+	yrbs$sportsdrink=as.numeric(yrbs$Q92)
+	yrbs$soda = as.numeric(yrbs$Q75)
+	yrbs$milk = as.numeric(yrbs$Q76)
+	yrbs$juice=as.numeric(yrbs$Q69)
+	yrbs$obese=yrbs$qnobese==1
+	
+	yrbsdes = svydesign(id=~psu, weight=~weight, strata=~stratum,data=yrbs, nest=TRUE)
+```
+
+I conducted an analysis to predict BMI percentile from whether the respondent reported drinking water at least 3 times per day, adjusting for age; gender; and sports drink, soda, and milk consumption. Interpret the coefficient on water in a sentence: both the coefficient and its significance. Does this result suggest that drinking water at least 3 times per day could lead to weight gain? Explain your answer.
+
+```{r}
+model1 = svyglm (bmipct ~ water3 + age + male + sportsdrink
++ soda+ milk + juice, yrbsdes)
+summary(model1, detail=T)
+
+```
+
+Let's calculate the associations in both directions and the statistical significance of the associations. Interpret the relevant percentages in both 2x2 tables to evaluate the associations between obesity and water consumption. We specify the total to be 100 because otherwise the weights make it add up. The sum of the 4 cells is 100%, so the entries are cell percentages. It takes some experimentation to figure out how to get what you want.
+
+```{r}
+svytable(~obese + water3, design=yrbsdes, Ntotal=100)
+summary(svytable(~ water3 + obese, design=yrbsdes))
+svyby(~obese, ~water3, design=yrbsdes, svymean, na.rm=T)
+```
+
+57% of adolescents with obesity drink water at least 3 times per day compared with 50% of adolescents without obesity, which is statistically significant with p \< 0.001. Among those who drink water at least 3 times per day, 16% are obese, versus 13% of those who drink water less than 3 times per day, which is statistically significant with p \< 0.001. Based on the above analysis, I evaluated whether adolescents with obesity are more likely to drink water at least 3 times per day, controlling for the same variables. What does this model suggest about the relationship between obesity and drinking water at least 3 times a day?
+
+```{r}
+model2 =svyglm (water3 ~ obese  + age + male + sportsdrink
++ soda+ milk + juice, design=yrbsdes, family=binomial)
+summary(model2)
+cbind(exp(coef(model2)), exp(confint(model2)))
+```
+
+Adolescents with obesity have 40% greater odds of drinking water at least 3 times per day than adolescents without obesity, controlling for age, gender, and other fluid consumption (OR=1.40, 95% CI (1.19, 1.64)).
+
+## In class exercises
+
+1.  Use the Youth Risk Behavior Study (YRBS) and codebook on the course website to do the following analyses:
+
+```{=html}
+<!-- -->
+```
+(a) Read in the data.
+(b) Define the survey design. (See page 49 of the codebook.) Note that you may have to do this again if you define more variables within the YRBS dataframe.
+(c) Look at the variable for whether a student carried a gun to school at least once in the past 30 days. If the variable is not suitable for analysis, add a variable to the YRBS dataframe for whether a student carried a gun to school at least once in the past 30 days and look at the summary to make sure that you defined it properly. (table or tally command)
+(d) Do the same thing for whether a student missed school at least once in the past 30 days because they felt unsafe.
+(e) If you defined new variables, define the survey design (again --- you need it to include any new variables.)
+(f) Summarize the gun variable as mean and standard deviation, without accounting for survey characteristics. Summarize the gun variable as mean and standard deviation, accounting for survey characteristics. Describe the differences between the survey- adjusted and unadjusted.
+(g) Predict whether someone who missed school due to feeling unsafe is more likely to carry a gun with and without accounting for survey characteristics. Interpret each finding. Describe the differences between the survey-adjusted and unadjusted.
+(h) Using the codebook, add potential confounders to your model. Is the association still significant?
+
+### Suggested answers
+
+Carry gun at least once in past 30 days
+
+```{r}
+yrbs$gun30d=yrbs$QN12==1
+tally(gun30d~Q12, data=yrbs)
+```
+
+Missed school at least once in 30 days because felt unsafe Not go to school because felt unsafe
+
+```{r}
+yrbs$unsafe.missed.school30d=yrbs$QN15==1
+tally(unsafe.missed.school30d~Q15, data=yrbs)
+```
+
+```{r}
+yrbs.design =svydesign(id=~psu, strata=~stratum, weights=~weight, data=yrbs)
+```
+
+```{r}
+svymean(~gun30d, yrbs.design, na.rm=T)
+mean(yrbs$gun30d, na.rm=T)
+sd(yrbs$gun30d, na.rm=T)/sqrt(length(yrbs$gun30d))
+summary(svyglm(gun30d~unsafe.missed.school30d, yrbs.design, family=binomial(link="logit")))
+summary(glm(gun30d~unsafe.missed.school30d, data=yrbs, family=binomial(link="logit")))
+```

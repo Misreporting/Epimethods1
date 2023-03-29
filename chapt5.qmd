@@ -1,0 +1,248 @@
+# Causality vs association
+
+Remember our example of John Snow's investigation of cholera from last time.
+
+In 1855, John Snow made the following cross-tabulation showing the rate of cholera among customers of 2 different London water providers. In 1852, Lambeth changed its intake pipe on the Thames to be upstream to avoid sewage contamination of the water. Southwark and Vauxhall kept the same intake pipe. John Snow evaluated whether there were any systematic differences between houses getting water from one company versus the other.
+
+"The mixing of the \[water\] supply is of the most intimate kind. The pipes of each Company go down all the streets, and into nearly all the courts and alleys. A few houses are supplied by one Company and a few by the other, according to the decision of the owner or occupier at the time when the Water Companies were in active competition. In many cases, a single house has a supply different from that on either side. Each company supplies both rich and poor, both large houses and small; there is no difference either in the condition or occupation of the persons receiving the water of the different Companies. ... It is obvious that no experiment could have been devised which would more thoroughly test the effect of water supply on the progress of cholera than this.... \[The new intake pipe\] divided into two groups without their choice, and, in most cases, without their knowledge; one group being supplied with water containing the sewage of London, and, amongst it, whatever might have come from the cholera patients, the other group having water quite free from such impurity." (John Snow, 1855, On the Mode of Communication of Cholera London: John Churchill, 2nd edition. Reprinted in Snow on Cholera, London: Humphrey Milford; Oxford University Press, 1965)
+
+| Company                | Number of houses | Cholera deaths | Death rate per 10,000 |
+|:------------------|:-----------------|:-----------------|:-----------------|
+| Southwark and Vauxhall | 40,046           | 1263           | 315                   |
+| Lambeth                | 26,107           | 98             | 37                    |
+
+Did John Snow demonstrate causality? Did he demonstrate association? Something in between?
+
+## Philosophical approaches to causality
+
+### David Hume
+
+"All reasonings concerning matter of fact seem to be founded on the relation of cause and effect. By means of that relation alone we can go beyond the evidence of our memory and senses." ---David Hume, An Enquiry Concerning Human Understanding, 1777.
+
+"Suppose a person, though endowed with the strongest faculties of reason and reflection, to be brought on a sudden into this world; he would, indeed, immediately observe a continual succession of objects, and one event following another; but he would not be able to discover anything farther. He would not, at first, by any reasoning, be able to reach the idea of cause and effect" (section V, part I).
+
+Similar reasoning was found by earlier philosophers, such as 11th century al Ghazali.
+
+Hume believed that we perceive causality on the basis of experience, but causality cannot be proved by reason. He established 8 "rules by which to judge of causes and effects" (Treatise on Human Nature, book 1, part III, section 15):
+
+1.  Contiguous in space and time.
+
+2.  Temporality: cause comes before effect.
+
+3.  Perfect correlation: "constant union betwixt the cause and effect"
+
+4.  "The same cause always produces the same effect, and the same effect never arises but from the same cause."
+
+5.  "like effects imply like causes."
+
+6.  Failure of an expected event to occur "proceeds from some difference in the causes"
+
+7.  Dose-response: "The absence or presence of one part of the cause is here supposed to be always attended with the absence or presence of a proportionable part of the effect." but "A certain degree of heat gives pleasure; if you diminish that heat, the pleasure diminishes; but it does not follow, that if you augment it beyond a certain degree, the pleasure will likewise augment; for we find that it degenerates into pain."
+
+8.  Multiple causes: "like effects necessarily follow from like causes, and in a contiguous time and place, their separation for a moment shows, that these causes are not complete ones." Hume comments on his rules for perceiving causality: "Here is all the LOGIC I think proper to employ in my reasoning; and perhaps even this was not very necessary, but might have been supplied by the natural principles of our understanding. ... All the rules of this nature are very easy in their invention, but extremely difficult in their application."
+
+Kant believed in causality because otherwise it wouldn't be possible to understand the world.
+
+## Epidemiologic approaches to causality
+
+Causal inference is the goal of epidemiologic studies.
+
+"Correlation does not imply causation" is a known clichee, but how far can you get with correlation?
+
+### Associations
+
+-   Children raised with more books in the house delay sex.
+
+-   As ice cream sales rise, the risk of drowning rises.
+
+-   As the number of pirates has decreased, the average global temperature has increased.
+
+-   People who consume beta carotene supplements have lower rates of cancer. Randomized controlled trials showed beta carotene treatment group had a small increase in lung cancer and mortality relative to the placebo control group.
+
+### Lack of association is meaningful.
+
+-   If lack of access to land caused scurvy, we would expect to see an association between recovery from scurvy and being buried in the ground, even in a non-randomized trial.
+
+-   If drowning was unrelated to alcohol, we would expect to see no correlation between rates of drowning and sales of alcohol.
+
+-   If comprehensive sex education increased teen pregnancy and sexually transmitted in- fections, we would expect that places with less comprehensive sex education would have lower teen pregnancy and STIs than the rest of the country.
+
+### Henle-Koch postulates (1890)
+
+Robert Koch and Friedrich Loeffler
+
+1.  The agent is present in every case of the disease, and not in healthy subjects.
+
+2.  The agent can be isolated and grown in pure culture.
+
+3.  The agent will cause the disease if introduced to healthy subjects.
+
+4.  The same organism must be reisolated from the experimentally infected host.
+
+Using Koch's postulates, Koch's students identified the organisms responsible for diphtheria, typhoid, gonorrhea, pneumonia, meningitis, leprosy, bubonic plague, tetanus and syphilis. In 1984, Barry Marshall drank Helicobacter pylori to test his theory about gastritis, following Koch's third postulate.
+
+Limitations of Henle-Koch postulates
+
+-   Asymptomatic carriers of a disease agent: Koch discovered asymptomatic carriers of typhoid and cholera. Poliovirus causes paralytic disease in about 1% of those infected.
+
+-   Some disease agents can't be cultured: e.g., prions.
+
+-   Public health expanded to chronic diseases, injury prevention, and other non-infectious causes of morbidity and mortality.
+
+### Hill's criteria for observational data
+
+The Surgeon General's report on smoking and 1965 paper by Sir Austin Bradford Hill advanced standards that could be used to judge when an association might be causal. Note: This list is not a checklist.
+
+1.  Strength: Stronger associations are more likely to be causal and less likely due to chance or confounding.
+
+2.  Consistency: Association has been observed by different persons, in different settings (places, circumstances, times), populations, and methods.
+
+3.  Specificity: single cause produces a specific effect.
+
+4.  Temporality: Exposure precedes outcome.
+
+5.  Biologic Gradient: dose-response relationship.
+
+6.  Plausibility of a mechanism between exposure and disease.
+
+7.  Coherence between epidemiologic theory and laboratory evidence.
+
+8.  Experiment: concurring experimental evidence exists.
+
+9.  Analogy to similar situations.
+
+### Koepsell and Weiss's causal criteria Summary of Hill's criteria
+
+1.  Temporality
+
+2.  Strong association
+
+3.  No plausible non-causal explanation accounts for entirety of the association, and a plausible explanation for the association being causal.
+
+4.  Magnitude of association is strongest when predicted to be so. Causality from potential outcomes: the Rubin Causal Model Epidemiologic research attempts to establish what would have happened in the absence of "treatment."
+
+## Counterfactuals
+
+### Counterfactuals in the legal system.
+
+The Federal Judicial Center's Reference Manual on Scientific Evidence (1994, Chapter 3, p. 481) states: "The first step in a damages study is the translation of the legal theory of the harmful event into an analysis of the economic impact of that event. In most cases, the analysis considers the difference between the plaintiff's economic position if the harmful event had not occurred and the plaintiff's actual economic position. The damages study restates the plaintiff's position"but for" the harmful event; this part is often called the but-for analysis. Damages are the difference between the but-for value and the actual value." (Book available for free download here: https://nap.nationalacademies.org/read/13163/chapter/10)
+
+### Effect of aspirin on headaches with n=1
+
+Don Rubin gives the following example of a counter-factual: Say that you have a headache. You will measure your pain 2 hours after taking an aspirin versus not taking an aspirin. You can phrase the causal effect of the aspirin as follows.
+
+You can express the headache pain with and without aspirin. The effect of aspirin on headache pain is -50 units of pain, comparing the headache pain without aspirin (75) versus with aspirin (25).
+
+| Unit | Headache pain with aspirin | Headache pain without aspirin | Causal effect |
+|:-------------|:--------------------|:----------------------|:-------------|
+| You  | 25                         | 75                            | -50           |
+
+You can express the same quantities by how much headache pain changes under aspirin and no aspirin. Without aspirin, the pain reduces by 5 units. With aspirin, it reduces by 55 units. The effect of aspirin on headache pain is -50 units of pain.
+
+| Unit | Initial headache | Reduction in pain with aspirin | Reduction in pain without aspirin | Causal effect |
+|:------------|:------------|:---------------|:-----------------|:------------|
+| You  | 80               | -55                            | -5                                | -50           |
+
+In real life, you never know what would have happened both with and without aspirin: one condition is always missing.
+
+### The perfect doctor
+
+This example is also due to Don Rubin.
+
+Imagine an omniscient doctor who could know the outcome of each patient under two different treatments.
+
+The data given below shows all potential outcomes for the number of years lived under two different treatments: standard surgery and a new surgery.
+
+| Patient      | Standard surgery | New surgery | Causal effect (new-standard) |
+|:-------------|:-----------------|:------------|:-----------------------------|
+| A            | 13               | 14          | -1                           |
+| B            | 6                | 0           | 6                            |
+| C            | 4                | 1           | 3                            |
+| D            | 5                | 2           | 3                            |
+| E            | 6                | 3           | 3                            |
+| F            | 6                | 1           | 5                            |
+| G            | 8                | 10          | -2                           |
+| H            | 8                | 9           | -1                           |
+| True average | 7                | 5           | 2                            |
+
+We can see from this omniscient standpoint that the true causal effect is that the standard surgery results in 2 more years of life on average than the new surgery. If we did a randomized experiment, we would expect that on average our results would show this.
+
+The perfect doctor would choose the best treatment for the patient, and if there's no difference, she flips a coin.
+
+Observed outcomes under perfect doctor's assignment give the opposite of random assignment. The data therefore look like this:
+
+| Patient          | Standard surgery | New surgery | Treatment |
+|:-----------------|:-----------------|:------------|:----------|
+| A                | ?                | 14          | New       |
+| B                | 6                | ?           | Standard  |
+| C                | 4                | ?           | Standard  |
+| D                | 5                | ?           | Standard  |
+| E                | 6                | ?           | Standard  |
+| F                | 6                | ?           | Standard  |
+| G                | ?                | 10          | New       |
+| H                | ?                | 9           | New       |
+| Observed average | 5.4              | 11          |           |
+
+The apparent causal effect is that the new surgery results in 5.6 more years of life than the standard surgery.
+
+Random assignment on average yields the true averages. Across all possible assignments to standard versus new surgery (56 ways to assign 3 participants to get the new surgery and 5 participants to get the old surgery), we get an average treatment effect of -2 (standard surgery better than new surgery by 2 years).
+
+## Exercises
+
+### Whickham data
+
+These data come from
+
+DR Appleton, JM French, MPJ Vanderpump. "Ignoring a covariate: an example of Simpson's paradox". (1996) American Statistician, 50(4):340-341.
+
+These data are a random sample study in Whickham, UK of smoking among women in 1972-74 and viral status in 1992-94.
+
+```{r}
+library(mosaic)
+tally(outcome ~ smoker, data=Whickham, margin=T)
+```
+
+Calculate the percentage of baseline current smokers versus baseline never-smokers who were still alive at the second survey (1992--94.) Interpret your results. Can you think of any explanation for these results?
+
+```{r}
+tally(outcome ~ smoker, data=Whickham, format="percent")
+```
+
+Use the data to evaluate whether age is a confounder of the relationship between smoking and mortality.
+
+### Perfect doctor continued
+
+This Perfect Doctor problem is based on one from Don Rubin.
+
+Schizophrenia drugs are a big problem for state Medicaid budgets: need to test new drugs against old to see if the extra cost is worth it. From point of view of omniscient being, we have two drugs to compare. Outcome is quality of life, 0 to 100.
+
+| Patient | New drug | Old drug | Causal effect (new-old) |
+|:--------|:---------|:---------|:------------------------|
+| A       | 100      | 80       | 20                      |
+| B       | 100      | 80       | 20                      |
+| C       | 50       | 90       | -40                     |
+| D       | 40       | 90       | -50                     |
+
+Calculate the true average treatment effect (ATE) of the drug. Is the new drug better?
+
+People vary and the perfect doctor assigns each person to their optimal treatment. Calculate the treatment effect under the perfect doctor. Is the new drug better?
+
+There are 4 choose 2 = 6 combinations of assignments of subjects to treatment or control, listed below: trial 1 through trial 6.
+
+Write down all possible treatment effects under each assignment. Make a histogram of the average treatment effect (ATE).
+
+| Patient          | 1   | 2   | 3   | 4   | 5   | 6   |
+|:-----------------|:----|:----|:----|:----|:----|:----|
+| A                | New | New | Old | Old | New | Old |
+| B                | New | Old | New | Old | Old | New |
+| C                | Old | New | Old | New | Old | New |
+| D                | Old | Old | New | New | New | Old |
+| Treatment effect |     |     |     |     |     |     |
+
+Locate your answers to part a and b on the histogram. Comment on the role of randomized treatment assignment in causal inference.
+
+In the real world, people drop out: 75% of people in the Sept 2005 NEJM study that this problem is based on dropped out. Who is most likely to drop out of the study? How will the drop out affect treatment effects? How do you compensate for the drop out?
+
+
+
+

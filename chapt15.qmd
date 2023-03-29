@@ -1,0 +1,134 @@
+# Case-control studies
+
+
+Schulz KF, Grimes DA, “Case-control studies: research in reverse.” Lancet. 2003; 359:431–4. Schulz KF, Grimes DA, “Compared to what? Finding controls for case-control studies.” Lancet. 2005; 365: 1429–33.
+
+## Case-control studies
+
+As we discussed in the previous chapter, cohort studies group by exposure.
+Case-control studies group by outcome: cases have the outcome and controls lack the outcome. Usually this outcome is a disease, but this research design can be used for any outcome with the same advantages of any case-control study. For example, I wanted to evaluate health conditions associated with community college and 4 year college degree completion. Participants were grouped over outcome: college graduation because little was known about which health conditions are associated with graduation.
+
+
+Case-control studies can be used to study outcomes that take a long time to emerge. 
+
+Advantages and disadvantages of case-control studies
+• More efficient for diseases with long latency periods: no need to wait a long time to find a case.
+
+• More efficient for rare diseases. No need to screen many inidividuals to find a case.
+
+• Less efficient for rare exposures: need to screen many individuals to find the exposure of interest. (“As a rule of thumb, cohort designs are more efficient in settings in which the incidence of outcome is higher than the prevalence of exposure.” — Lancet 2002)
+
+• Some case-control studies attempt a fishing expedition: finding factors associated with a poorly understood disease or condition. In this case, need to be careful about multiple comparisons.
+
+
+
+Case-control can mimic cohort study if populations drawn from same underlying population.
+
+Genome-wide association studies (GWAS) identify genes associated with diseases.
+
+
+Case-case or case-only studies: compare different variants of the same disease.
+Gillison et al, Evidence for a Causal Association Between Human Papillomavirus and a Subset of Head and Neck Cancers. Journal of the National Cancer Institute, Vol. 92, No. 9, May 3, 2000
+
+## Nested case-control studies
+
+In nested case-control studies, controls and cases are chosen from a cohort study or longitudinal dataset. This nested approach has several advantages. First, the data already exist, so all advantages of using secondary data apply to nested case-control studies: low cost, quick access, and high quality. Second, the data are longitudinal, allowing clear temporal ordering of events; longitudinal datasets can potentially cover long time periods, allowing evaluation of distal exposures, such as good information about family backgrounds, childhood, and adolescence.
+Tnird, the controls and cases were chosen from the same population and given the same survey instruments, biomarker tests, and other measurements. 
+
+However, the nested approach has disadvantages as well. First, the disadvantages of secondary data apply to nested case-control studies: the data may lack desired information relevant to the disease or outcome. Second, the disadvantages of long-term longitudinal studies may also apply: the baseline was designed so long ago that the measures of the earliest exposures may not follow the current conventions or they may not have collected measures we consider important now: these disadvantages apply for any study over a long time period and they are intrinsic to long-term longitudinal studies. Finally, if there is subjectivity in classifying participants' outcomes, subjectivity could cause researchers to judge outcomes according to exposure status; in the case of most datasets that already exist, these subjective decisions do not occur.
+
+For example, the National Longitudinal Study of Youth 1979 has followed people from adolescence through age 50 or older. These data were collected by the Bureau of Labor Statistics, which did not initially collect much health information, but later years included a great deal of health information. 
+
+
+
+Cautions that apply in all studies
+Make sure that population and sample are well-defined, uniform, and chosen ahead of time. While obvious, it’s easier said than done.
+Choosing cases
+As with cohort studies, choose incident (new) cases to be sure that diagnosis is uniform.
+Choosing controls
+Choose controls from the same population as cases. Controls represent people at risk of be- coming cases.
+• If controls and cases are chosen from different population, there’s a risk of selection bias. E.g., controls might not go to the same clinician if they got the disease.
+• Ideal to choose controls who have tested negative for the disease with the same provider as the cases have, so they are from the same population and have the same indications that lead the cases to get tested. Asymptomatic diseases are best because all cases will have been tested, and therefore from same population as controls who were also tested.
+• Can choose controls from same geographic area of the cases: e.g., physical neighbors, friends/relatives. Used to be able to identify controls from random-digit dialing in same geographic area, but less useful without landlines.
+• Hard to determine whether hospitals come from the same population as cases. Different departments/diseases within the same hospital may have different catchment areas.
+Choose controls independently of the exposure of interest.
+• Cases/controls should ideally be determined by people who do not know the subject’s exposure status, or who do not know the study’s hypothesis.
+• If cases are chosen after exposure is known, there is a risk of selective misclassification of cases. The clinician making diagnosis knows the participant’s exposure status and is more likely to diagnose the disease (e.g., aspirin and Reye’s syndrome.)
+• If controls have a disease that is also related to the exposure, bias towards the null.
+Determining exposure status
+• Questionnaires/interviews about past exposures:
+– Interviewers could bias the data collection if they are aware of the hypothesis or
+case/control status of participants.
+– Can use memory prompts such as pictures of all oral contraception brands and a blank calendar grid (Schulz and Grimes 2002).
+• Administrative records, lab records
+Rosenbaum 3 – Desired information not always available.
+• Some medical quantities do not change (e.g., blood type, lead in teeth), so can be measured at the time of the study.
+• Non-differential measurement error — i.e., measurement error that doesn’t vary between control and cases — does not introduce bias into the study. For instance, both cases and controls may have a hard time remembering the past exposures, but there is no difference in quality of memory between the cases and the controls.
+• Differential measurement error creates information bias, such as if cases remember expo- sures differently than controls do. Mothers of babies with birth defects may recall their exposure status differently than mothers of babies without birth defects.
+
+Measuring outcomes
+Loss-to-follow-up does not bias results if it occurs non-differentially: in both exposed and unexposed groups.
+Loss-to-follow-up represents a bias when comparing a group with the general population, which does not have this attrition.
+Mortality can be observed from National Death Index.
+Scandinavia has a cancer registry, so can observe outcomes other than death for cancer patients, but other countries use death from cancer rather than other outcomes because that’s the data available to them.
+
+Prevalence vs. Incidence
+Need to observe a group for a period of time to observe incidence.
+Prevelance is easier to measure: can measure in cross-sectional study, but may under-estimate prevalence of traits that could cause someone not to be in the sample. e.g., an impair- ment that would cause someone to terminate their employment.
+
+Observing outcomes too soon after an exposure measurement can lead to reverse causality: e.g., colon cancer and cholesterol levels; brain tumors and anti-seizure medication.
+
+Reducing confounding
+Studies use either matching or regression/stratification methods.
+
+
+Examples
+• Why exactly would this situation pose a problem? Spell out the problem.
+Suppose investigators selected individuals with myocardial infarction from the cardiology ward of a large, city hospital as cases, but identified people without infarction from the emergency medicine ward of the same hospital as controls. Bias might result. The cardiology ward is used as a referral centre for the entire state, whereas the emergency medicine department primarily serves only the city. Unfortunately, the exposure history for patients from the city would not
+usually accurately reflect that of patients statewide. For example, the exposure of interest — eg, a new blood pressure drug — might not be available to patients in outlying areas of the state but be commonly prescribed in the city. (Schulz and Grimes 2002)
+
+• Direction of bias = ?
+Assume that this new antihypertensive drug causes drowsiness and slows reac- tion time. Such side- effects might lead to automobile accidents, with injured drivers entering the emergency medicine department. Thus, the investigator’s control group would include an abnormally high proportion of individuals ex- posed to the new antihypertensive, a biased comparison with the case group. (Schulz and Grimes 2002)
+
+• Direction of bias = ?
+a case-control study of whether non-steroidal anti-inflammatory drugs (NSAIDs) prevent colorectal cancer. The study measures previous NSAID use by patients admitted to hospital with (cases) and without (controls) colorectal cancer. If the control group came from the rheumatology service, then the study would be biased, since individuals with arthritis use NSAIDs more often than do the gen- eral population from which the cases were chosen. Such a high level of NSAID use in controls would result in a spuriously low risk (odds ratio) calculation. Al- ternatively, if the control group came from the gastroenterology service, where many ulcer patients had been advised by their doctors to avoid NSAIDs, then that control group might yield a low level of NSAID use and a spuriously high risk (odds ratio) calculation. (Schulz and Grimes 2002)
+
+• Direction of bias = ?
+the researchers compared cases of AIDS diagnosed in San Francisco, CA, USA, between 1983 and 1984 with two HIV-uninfected control groups. One control group included individuals who attended a clinic for sexually transmitted dis- eases (STD), and the other included people identified from the neighbourhoods of the cases. The investigators compared the risk of AIDS in individuals with more than 100 sexual partners with that in people with no to five sexual part- ners. The resulting odds ratios were 2.9 with STD clinic controls, but 52.0 with neighbourhood controls. The magnitude of this difference shows the potential for huge biases due to selection of improper control groups. In this study, con- trols from the STD clinic proved inappropriate, since their selection was not independent of exposure (more than 100 sexual partners). Acquisition of STDs is associated with number of sexual partners, thus these controls generated a highly biased odds ratio estimate. (Schulz and Grimes 2002)
+
+• Direction of bias = ?
+In a Swedish study, investigators examined the potential link between induced abortion and later development of breast cancer. They gathered information about exposure (previous abortion) from cases and controls by means of per- sonal interviews and by looking through national medical records. When interviewed, fewer controls admitted to having had an abortion than was evident in vital statistics. This discrepancy did not arise among cases. (Schulz and Grimes 2002)
+
+
+## Example: Genome-wide association study of schizophrenia
+The Schizophrenia Working Group of the Psychiatric Genomics Consortium published a paper in Nature identifying 108 genes associated with schizophrenia in a case-control study of 36,989 cases and 113,075 controls. The author list filled a full column of text from 208 instutional affiliations. Despite being an intensive genetics research project, it has elements common to epidemiologic studies: they created an index of risk called the risk profile score, estimated odds ratio of schizophrenia for each level of predicted risk, and estimated the predictive power of the risk profile score (area under the curve).
+
+## Exercise
+
+Exercise: Concussion in Adolescence and Risk of Multiple Scle- rosis
+Montgomery S, Hiyoshi A, Burkill S, Alfredsson, L, Bahmanyar S, Olsson T. Concussion in Adolescence and Risk of Multiple Sclerosis. Annals of Neurology. 2017;82:554561
+
+1. The study never says what kind of study design they use. What kind of study is this? How can you tell?
+
+2. Why did the authors choose that type of study design?
+
+3. The authors used prospectively recorded data in their study. What issue have the re- searchers avoided by using prospectively recorded data? Why might that issue normally affect the study design? Given that they are using prospectively recorded data, what is the more specific name of the type of study design?
+
+4. The researchers only included individuals who were diagnosed with multiple sclerosis (MS)
+while currently resident in Sweden. Why is that?
+
+5. The researchers adjusted for broken limb bones in childhood (ages 0–10 years) and adoles- cents (ages 11-20 years). What concern were they addressing by paying special attention to broken bones?
+
+6. The researchers matched each of the individuals diagnosed with multiple sclerosis (MS) with 10 people without MS by age, sex, region, and age/vital status at MS diagnosis.
+
+(a) Why may the researchers have chosen to match on these factors?
+
+(b) Does matching on these factors reduce potential confounding significantly, or might confounding remain?
+
+(c) Why might the researchers have chosen to match 10 controls to each case, as opposed to a smaller number?
+
+7. What is the advantage for the study that concussions were measured in adolescence, as
+opposed to a later period?
+
+8. What evidence is presented that is consistent with the hypothesis that concussions in adolescents increase the risk of multiple sclerosis?
+
